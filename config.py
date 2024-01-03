@@ -23,7 +23,7 @@ SONG_DOWNLOAD_DURATION = int(
 
 LOGGER_ID = int(getenv("LOGGER_ID", ""))
 
-OWNER_ID = int(getenv("OWNER_ID", "6321307663"))
+OWNER_ID = int(getenv("OWNER_ID", "2107529793"))
 
 HEROKU_APP_NAME = getenv("HEROKU_APP_NAME")
 
