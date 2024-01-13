@@ -1,5 +1,5 @@
 import time
-
+import random
 from pyrogram import filters
 from pyrogram.enums import ChatType
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
@@ -9,6 +9,7 @@ import config
 from AarohiX import app
 from AarohiX.misc import _boot_
 from AarohiX.plugins.sudo.sudoers import sudoers_list
+from AarohiX.utils import bot_sys_stats
 from AarohiX.utils.database import (
     add_served_chat,
     add_served_user,
@@ -19,9 +20,27 @@ from AarohiX.utils.database import (
 )
 from AarohiX.utils.decorators.language import LanguageStart
 from AarohiX.utils.formatters import get_readable_time
-from AarohiX.utils.inline import help_pannel, private_panel, start_panel
+from AarohiX.utils.inline import first_page, private_panel, start_panel
 from config import BANNED_USERS
 from strings import get_string
+
+
+#<<<<<<<<<<<<<pics>>>>>>>>>>>#
+
+
+ADISA_PICS = [
+"https://graph.org/file/e0c7e04cc0acff425fe5d.jpg",
+"https://graph.org/file/0f256eac6f4a8a053193a.jpg",
+"https://graph.org/file/e3babc6e511746be05204.jpg",
+"https://graph.org/file/323acfeef219c919091ec.jpg",
+"https://graph.org/file/1f34f63999a5599051b94.jpg",
+"https://graph.org/file/528b50c44cbfedda9c77e.jpg",
+"https://graph.org/file/365b3ab63ccd789f99bb4.jpg"
+]
+
+
+#<<<<<<<<<<<<<pics>>>>>>>>>>>#
+
 
 
 @app.on_message(filters.command(["start"]) & filters.private & ~BANNED_USERS)
@@ -31,9 +50,9 @@ async def start_pm(client, message: Message, _):
     if len(message.text.split()) > 1:
         name = message.text.split(None, 1)[1]
         if name[0:4] == "help":
-            keyboard = help_pannel(_)
+            keyboard = first_page(_)
             return await message.reply_photo(
-                photo=config.START_IMG_URL,
+                random.choice(ADISA_PICS),
                 caption=_["help_1"].format(config.SUPPORT_CHAT),
                 reply_markup=keyboard,
             )
@@ -85,7 +104,7 @@ async def start_pm(client, message: Message, _):
     else:
         out = private_panel(_)
         await message.reply_photo(
-            photo=config.START_IMG_URL,
+            random.choice(ADISA_PICS),
             caption=_["start_2"].format(message.from_user.mention, app.mention),
             reply_markup=InlineKeyboardMarkup(out),
         )
