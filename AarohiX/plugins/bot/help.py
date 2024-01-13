@@ -4,7 +4,7 @@ from pyrogram import filters, types
 from pyrogram.types import InlineKeyboardMarkup, Message
 
 from AarohiX import app
-from AarohiX.utils import help_pannel
+from AarohiX.utils import first_page, second_page
 from AarohiX.utils.database import get_lang
 from AarohiX.utils.decorators.language import LanguageStart, languageCB
 from AarohiX.utils.inline.help import help_back_markup, private_help_panel
@@ -14,9 +14,7 @@ from strings import get_string, helpers
 
 @app.on_message(filters.command(["help"]) & filters.private & ~BANNED_USERS)
 @app.on_callback_query(filters.regex("settings_back_helper") & ~BANNED_USERS)
-async def helper_private(
-    client: app, update: Union[types.Message, types.CallbackQuery]
-):
+async def helper_private(client: app, update: Union[types.Message, types.CallbackQuery]):
     is_callback = isinstance(update, types.CallbackQuery)
     if is_callback:
         try:
@@ -26,7 +24,7 @@ async def helper_private(
         chat_id = update.message.chat.id
         language = await get_lang(chat_id)
         _ = get_string(language)
-        keyboard = help_pannel(_, True)
+        keyboard = first_page(_)
         await update.edit_message_text(
             _["help_1"].format(SUPPORT_CHAT), reply_markup=keyboard
         )
@@ -37,12 +35,37 @@ async def helper_private(
             pass
         language = await get_lang(update.chat.id)
         _ = get_string(language)
-        keyboard = help_pannel(_)
+        keyboard = first_page(_)
         await update.reply_photo(
             photo=START_IMG_URL,
             caption=_["help_1"].format(SUPPORT_CHAT),
             reply_markup=keyboard,
         )
+
+@app.on_callback_query(filters.regex("settings_back_helper_fixed") & ~BANNED_USERS)
+async def helper_private(client: app, update: Union[types.Message, types.CallbackQuery]):
+    is_callback = isinstance(update, types.CallbackQuery)
+    if is_callback:
+        try:
+            await update.answer()
+        except:
+            pass
+        chat_id = update.message.chat.id
+        language = await get_lang(chat_id)
+        _ = get_string(language)
+        keyboard = first_page(_)
+        await update.edit_message_text(_["help_1"].format(SUPPORT_CHAT), reply_markup=keyboard)
+    else:
+        try:
+            await update.delete()
+        except:
+            pass
+        language = await get_lang(update.chat.id)
+        _ = get_string(language)
+        keyboard = first_page(_)
+        await update.reply_photo(photo=START_IMG_URL, caption=_["help_1"].format(SUPPORT_CHAT), reply_markup=keyboard)
+    
+
 
 
 @app.on_message(filters.command(["help"]) & filters.group & ~BANNED_USERS)
@@ -90,4 +113,27 @@ async def helper_cb(client, CallbackQuery, _):
         await CallbackQuery.edit_message_text(helpers.HELP_15, reply_markup=keyboard)
     elif cb == "hb16":
         await CallbackQuery.edit_message_text(helpers.HELP_16, reply_markup=keyboard)
-      
+
+@app.on_callback_query(filters.regex("ayush") & ~BANNED_USERS)
+@languageCB
+async def first_pagexx(client, CallbackQuery, _):
+    menu_next = second_page(_)
+    try:
+        await CallbackQuery.message.edit_text(_["help_69"], reply_markup=menu_next)
+        return
+    except:
+        return
+
+@app.on_callback_query(filters.regex("justayu") & ~BANNED_USERS)
+@languageCB
+async def first_pagee(client, CallbackQuery, _):
+    menu_next = second_page(_)
+    try:
+        await CallbackQuery.message.edit_text(_["help_69"], reply_markup=menu_next)
+        return
+    except:
+        return
+
+
+# Do not try to change whole code, just add or remove what you want.
+# Credited To Dil(Adisa)
