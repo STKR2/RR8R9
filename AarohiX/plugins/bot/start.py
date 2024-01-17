@@ -27,7 +27,7 @@ from strings import get_string
 
 #<<<<<<<<<<<<<pics>>>>>>>>>>>#
 
-
+"""
 ADISA_PICS = [
 "https://graph.org/file/e0c7e04cc0acff425fe5d.jpg",
 "https://graph.org/file/0f256eac6f4a8a053193a.jpg",
@@ -40,7 +40,7 @@ ADISA_PICS = [
 
 
 #<<<<<<<<<<<<<pics>>>>>>>>>>>#
-
+"""
 
 
 @app.on_message(filters.command(["start"]) & filters.private & ~BANNED_USERS)
@@ -53,7 +53,7 @@ async def start_pm(client, message: Message, _):
             keyboard = first_page(_)
             await message.reply_sticker("CAACAgUAAx0CcSyO9gACl7dkQoL0p1vXqcYtCuCHmSyh4Hi1UgACEwgAAonAEVYwaJ0Jkk8L0B4E")
             return await message.reply_photo(
-                random.choice(ADISA_PICS),
+                photo=config.START_IMG_URL,
                 caption=_["help_1"].format(config.SUPPORT_CHAT),
                 reply_markup=keyboard,
             )
@@ -106,7 +106,7 @@ async def start_pm(client, message: Message, _):
         out = private_panel(_)
         await message.reply_sticker("CAACAgUAAx0CcSyO9gACl7dkQoL0p1vXqcYtCuCHmSyh4Hi1UgACEwgAAonAEVYwaJ0Jkk8L0B4E")
         await message.reply_photo(
-            random.choice(ADISA_PICS),
+            photo=config.START_IMG_URL,
             caption=_["start_2"].format(message.from_user.mention, app.mention),
             reply_markup=InlineKeyboardMarkup(out),
         )
