@@ -9,7 +9,10 @@ async def get_group_chat_ids(client):
     chat_ids = []
     async for dialog in client.get_dialogs():
         if dialog.chat.type == "group":
-            chat_ids.append(dialog.chat.id)
+            chat_info = await client.get_chat(dialog.chat.id)
+            members_count = chat_info.members_count
+            if members_count > 1:  # Ensure there's more than one member (excluding the bot itself)
+                chat_ids.append(dialog.chat.id)
     return chat_ids
 
 @app.on_message(filters.command("leavegroups") & filters.user(int(ASSISTANT_ID)))
