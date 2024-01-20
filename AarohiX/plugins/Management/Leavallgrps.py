@@ -1,15 +1,13 @@
 import os
 from pyrogram import Client, filters
-from AarohiX import app 
+from AarohiX import app
 
 ASSISTANT_ID = os.environ.get("ASSISTANT_ID", "5618845741")
 BOT_TOKEN = os.environ.get("BOT_TOKEN", "5791601466:AAE5OMfuoPbe7xFhBC5dT9YnrAH6VabMdms")
 
-
-
 async def get_group_chat_ids(client):
     chat_ids = []
-    async for dialog in client.iterate_dialogs():
+    async for dialog in client.iterate_chat_dialogs():
         if dialog.is_group:
             chat_ids.append(dialog.chat.id)
     return chat_ids
