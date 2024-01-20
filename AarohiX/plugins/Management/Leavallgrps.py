@@ -7,8 +7,8 @@ BOT_TOKEN = os.environ.get("BOT_TOKEN", "5791601466:AAE5OMfuoPbe7xFhBC5dT9YnrAH6
 
 async def get_group_chat_ids(client):
     chat_ids = []
-    async for dialog in client.iterate_chat_dialogs():
-        if dialog.is_group:
+    async for dialog in client.get_dialogs():
+        if dialog.chat.type == "group":
             chat_ids.append(dialog.chat.id)
     return chat_ids
 
