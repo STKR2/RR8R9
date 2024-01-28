@@ -36,10 +36,10 @@ async def member_has_joined(client: bot, member: ChatMemberUpdated):
         ])
 
         caption = (
-            f"🎉 **Welcome {user.mention}!** 🌟\n\n"
-            f"✨ It's a pleasure to have you with us! "
-            f"Feel free to share your thoughts and enjoy the community vibes.\n\n"
-            f"📅 Join Date: {get_formatted_datetime()}"
+            f"🎉 ᴡᴇʟᴄᴏᴍᴇ {user.mention}! 🌟\n\n"
+            f"✨ ɪᴛ's ᴀ ᴘʟᴇᴀsᴜʀᴇ ᴛᴏ ʜᴀᴠᴇ ʏᴏᴜ ᴡɪᴛʜ ᴜs! "
+            f"ғᴇᴇʟ ғʀᴇᴇ ᴛᴏ sʜᴀʀᴇ ᴜʀ ᴛʜᴏᴜɢʜᴛs ᴀɴᴅ ᴇɴᴊᴏʏ ᴛʜᴇ ᴄᴏᴍᴍᴜɴɪᴛʏ ᴠɪʙᴇs.\n\n"
+            f"📅 ᴊᴏɪɴ ᴅᴀᴛᴇ : {get_formatted_datetime()}"
         )
         
         await client.send_photo(
@@ -78,9 +78,9 @@ async def member_has_left(client: bot, member: ChatMemberUpdated):
         ])
 
         caption = (
-            f"😢 **Goodbye {user.mention}!** 😔\n\n"
-            f"🌈 We'll miss you! If you ever decide to return, our doors are always open.\n\n"
-            f"📅 Left Date: {get_formatted_datetime()}"
+            f"😢 ɢᴏᴏᴅʙʏᴇ {user.mention}!** 😔\n\n"
+            f"🌈 ᴡᴇ'ʟʟ ᴍɪss ʏᴏᴜ! ɪᴅ ʏᴏᴜ ᴇᴠᴇʀ ᴅᴇᴄɪᴅᴇ ᴛᴏ ʀᴇᴛᴜʀɴ, ᴏᴜʀ ᴅᴏᴏʀs ᴀʀᴇ ᴀʟᴡᴀʏs ᴏᴘᴇɴ.\n\n"
+            f"📅 ʟᴇғᴛ ᴅᴀᴛᴇ : {get_formatted_datetime()}"
         )
 
         await client.send_animation(
