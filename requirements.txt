@@ -3,6 +3,7 @@ aiohttp
 asyncio
 beautifulsoup4
 dnspython
+emojis
 ffmpeg-python
 gitpython
 hachoir
