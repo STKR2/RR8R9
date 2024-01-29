@@ -9,7 +9,7 @@ from pyrogram.types import *
 from typing import Union, Optional
 import random
 
-photo = [
+dil_photo = [
     "https://graph.org/file/210751796ff48991b86a3.jpg",
     "https://graph.org/file/7b4924be4179f70abcf33.jpg",
     "https://graph.org/file/f6d8e64246bddc26b4f66.jpg",
@@ -149,7 +149,7 @@ async def userinfo(_, message):
                     profile_path=photo,
                 )
             else:
-                welcome_photo = random.choice(photo)
+                welcome_photo = random.choice(dil_photo)
                 
             await app.send_photo(chat_id, photo=welcome_photo, caption=INFO_TEXT.format(
                 id, first_name, last_name, username, mention, status, dc_id, bio), reply_to_message_id=message.id)
@@ -179,7 +179,7 @@ async def userinfo(_, message):
                     profile_path=photo,
                 )
             else:
-                welcome_photo = random.choice(photo)
+                welcome_photo = random.choice(dil_photo)
                 
             await app.send_photo(chat_id, photo=welcome_photo, caption=INFO_TEXT.format(
                 id, first_name, last_name, username, mention, status, dc_id, bio), reply_to_message_id=message.id)
@@ -209,7 +209,7 @@ async def userinfo(_, message):
                     profile_path=photo,
                 )
             else:
-                welcome_photo = random.choice(photo)
+                welcome_photo = random.choice(dil_photo)
                 
             await app.send_photo(chat_id, photo=welcome_photo, caption=INFO_TEXT.format(
                 id, first_name, last_name, username, mention, status, dc_id, bio), reply_to_message_id=message.id)
