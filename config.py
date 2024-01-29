@@ -25,6 +25,8 @@ LOGGER_ID = int(getenv("LOGGER_ID", ""))
 
 OWNER_ID = int(getenv("OWNER_ID", "2107529793"))
 
+BOT_USERNAME = getenv("BOT_USERNAME" , "Alone_Dil_bot")
+
 HEROKU_APP_NAME = getenv("HEROKU_APP_NAME")
 
 HEROKU_API_KEY = getenv("HEROKU_API_KEY")
