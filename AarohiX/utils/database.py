@@ -25,6 +25,7 @@ sudoersdb = mongodb.sudoers
 usersdb = mongodb.tgusersdb
 queriesdb = mongodb.queries
 filtersdb = mongodb.filters
+notesdb = mongodb.notes
 
 # Shifting to memory [mongo sucks often]
 active = []
