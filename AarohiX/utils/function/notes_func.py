@@ -4,7 +4,7 @@ import html
 import re
 from pyrogram.types import InlineKeyboardMarkup
 from AarohiX import app
-from AarohiX.utils.Database.notesdb import GetNote
+from AarohiX.utils.database.notesdb import GetNote
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from AarohiX.utils.msg_types import button_markdown_parser
 
