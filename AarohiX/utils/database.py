@@ -24,6 +24,7 @@ skipdb = mongodb.skipmode
 sudoersdb = mongodb.sudoers
 usersdb = mongodb.tgusersdb
 queriesdb = mongodb.queries
+filtersdb = mongodb.filters
 
 # Shifting to memory [mongo sucks often]
 active = []
