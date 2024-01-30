@@ -27,6 +27,8 @@ OWNER_ID = int(getenv("OWNER_ID", "2107529793"))
 
 BOT_USERNAME = getenv("BOT_USERNAME" , "Alone_Dil_bot")
 
+COMMAND_HANDLER = getenv("COMMAND_HANDLER", "! / .").split()
+
 HEROKU_APP_NAME = getenv("HEROKU_APP_NAME")
 
 HEROKU_API_KEY = getenv("HEROKU_API_KEY")
