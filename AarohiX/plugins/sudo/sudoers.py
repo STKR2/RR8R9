@@ -46,7 +46,7 @@ async def userdel(client, message: Message, _):
 
 
 
-GAMDOP = "https://telegra.ph/file/96d4950c132ab4326559b.jpg"
+GAMDOP = "https://te.legra.ph/file/4e26d2aa0b65a92e7244d.jpg"
 
 @app.on_message(filters.command(["sudolist", "listsudo", "sudoers"], prefixes=["/", "!", "%", ",", "", ".", "@", "#"]) & ~BANNED_USERS)
 async def sudoers_list(client, message: Message):
