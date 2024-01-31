@@ -46,7 +46,7 @@ async def userdel(client, message: Message, _):
 
 
 
-GAMDOP = "https://te.legra.ph/file/4e26d2aa0b65a92e7244d.jpg"
+GAMDOP = "https://telegra.ph/file/96d4950c132ab4326559b.jpg"
 
 @app.on_message(filters.command(["sudolist", "listsudo", "sudoers"], prefixes=["/", "!", "%", ",", "", ".", "@", "#"]) & ~BANNED_USERS)
 async def sudoers_list(client, message: Message):
@@ -68,7 +68,8 @@ async def check_sudo_list(client, callback_query: CallbackQuery):
         sudo_users_caption = "<u><b>✨ sᴜᴅᴏ ᴜsᴇʀs :</b></u>\n"
 
         keyboard.append([InlineKeyboardButton(" ᴏᴡɴᴇʀ ", url=f"tg://openmessage?user_id={OWNER_ID}")])
-
+        keyboard.append([InlineKeyboardButton("« ᴄʟᴏsᴇ »",callback_data="close_data")])
+        
         count = 1
         for user_id in SUDOERS:
             if user_id != OWNER_ID:
@@ -76,9 +77,9 @@ async def check_sudo_list(client, callback_query: CallbackQuery):
                     user = await app.get_users(user_id)
                     user_mention = user.mention if user else f"{count} ɪᴅ: {user_id}"
                     sudo_users_caption += f"{count} ➤ {user_mention}\n"
-                    button_text = f" sᴜᴅᴏ {count}"
-                    keyboard.append([InlineKeyboardButton(button_text, url=f"tg://openmessage?user_id={user_id}")])
-                    count += 1
+                 #   button_text = f" sᴜᴅᴏ {count}"
+                 #   keyboard.append([InlineKeyboardButton(button_text, url=f"tg://openmessage?user_id={user_id}")])
+               #     count += 1
                 except:
                     continue
 
