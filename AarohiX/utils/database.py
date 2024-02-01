@@ -26,6 +26,8 @@ usersdb = mongodb.tgusersdb
 queriesdb = mongodb.queries
 filtersdb = mongodb.filters
 notesdb = mongodb.notes
+fbandb = mongodb
+blacklist_db = mongodb
 
 # Shifting to memory [mongo sucks often]
 active = []
