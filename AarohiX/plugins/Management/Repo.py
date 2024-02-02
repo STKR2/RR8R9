@@ -1,6 +1,6 @@
 from pyrogram import filters, Client
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-from AarohiX import app
+from AarohiX import app as bot
 import requests
 from config import BOT_USERNAME
 
@@ -68,7 +68,7 @@ async def start(_, msg):
 #-------------------------------------------------------#
 
 
-@app.on_message(filters.command("repo", prefixes="@"))
+@bot.on_message(filters.command("repo", prefixes="@"))
 @capture_err
 async def repo(_, message):
     async with httpx.AsyncClient() as client:
@@ -82,11 +82,11 @@ async def repo(_, message):
             list_of_users += f"{count}. [{user['login']}]({user['html_url']})\n"
             count += 1
 
-        text = f"""[ʀᴇᴘᴏ](https://github.com/stkeditz/AAROHIxMUSICv2) | [𝖦𝖱𝖮𝖴𝖯](https://t.me/HEROKUFREECC)
+        text = f"""[ʀᴇᴘᴏ](https://github.com/stkeditz/AAROHIxMUSICv2) | [𝖦𝖱𝖮𝖴𝖯](https://t.me/alonegroup121)
 | ᴄᴏɴᴛʀɪʙᴜᴛᴏʀs |
 ----------------
 {list_of_users}"""
-        await app.send_message(message.chat.id, text=text, disable_web_page_preview=True)
+        await bot.send_message(message.chat.id, text=text, disable_web_page_preview=True)
     else:
-        await app.send_message(message.chat.id, text="Failed to fetch contributors.")
+        await bot.send_message(message.chat.id, text="Failed to fetch contributors.")
 
