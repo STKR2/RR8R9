@@ -11,8 +11,7 @@ from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
 from AarohiX import app
-from AarohiX.misc import SUDOERS as OWNER_ID
-from config import OWNER_ID
+from config import OWNER_ID, RUN
 
 
 async def aexec(code, client, message):
@@ -31,13 +30,13 @@ async def edit_or_reply(msg: Message, **kwargs):
 
 @app.on_edited_message(
     filters.command("eval")
-    & filters.user(OWNER_ID)
+    & filters.user(RUN)
     & ~filters.forwarded
     & ~filters.via_bot
 )
 @app.on_message(
     filters.command("eval")
-    & filters.user(OWNER_ID)
+    & filters.user(RUN)
     & ~filters.forwarded
     & ~filters.via_bot
 )
@@ -141,13 +140,13 @@ async def forceclose_command(_, CallbackQuery):
 
 @app.on_edited_message(
     filters.command("sh")
-    & filters.user(OWNER_ID)
+    & filters.user(RUN)
     & ~filters.forwarded
     & ~filters.via_bot
 )
 @app.on_message(
     filters.command("sh")
-    & filters.user(OWNER_ID)
+    & filters.user(RUN)
     & ~filters.forwarded
     & ~filters.via_bot
 )
