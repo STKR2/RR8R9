@@ -24,5 +24,4 @@ def user_command(client, message):
         for member in members_list:
             writer.writerow(member)
 
-    # Send the text file as a reply to the message
     app.send_document(message.chat.id, "members.txt")
