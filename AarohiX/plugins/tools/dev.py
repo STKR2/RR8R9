@@ -12,6 +12,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
 from AarohiX import app
 from config import OWNER_ID, RUN
+from config import RUN
 
 
 async def aexec(code, client, message):
