@@ -1,6 +1,6 @@
 from pyrogram import filters, Client
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-from AarohiX import app as bot
+from AarohiX import app
 import requests
 from config import BOT_USERNAME
 
