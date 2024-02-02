@@ -1,5 +1,6 @@
 aiofiles
 aiohttp
+apscheduler
 asyncio
 beautifulsoup4
 dnspython
