@@ -4,7 +4,7 @@ from AarohiX import app
 
 fake = Faker()
 
-@app.on_message(filters.command("rand"))
+@app.on_message(filters.command("fakeit"))
 def generate_info(client, message):
     name = fake.name()
     address = fake.address()
