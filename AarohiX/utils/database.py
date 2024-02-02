@@ -28,6 +28,7 @@ filtersdb = mongodb.filters
 notesdb = mongodb.notes
 fbandb = mongodb
 blacklist_db = mongodb
+nightmodedb = mongodb.nightmode
 
 # Shifting to memory [mongo sucks often]
 active = []
