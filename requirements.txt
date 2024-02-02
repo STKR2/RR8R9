@@ -4,6 +4,7 @@ asyncio
 beautifulsoup4
 dnspython
 emojis
+Faker
 ffmpeg-python
 gitpython
 hachoir
