@@ -29,6 +29,7 @@ qrcode
 requests
 speedtest-cli
 spotipy
+telegraph
 tgcrypto
 unidecode
 yt-dlp==2023.12.30
