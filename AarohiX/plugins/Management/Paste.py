@@ -1,5 +1,6 @@
 import os, re, json, aiohttp, requests
 from pyrogram import Client, filters
+from AarohiX import app
 
 #---------------+-----------+---------------#
 headers = {
@@ -32,8 +33,8 @@ async def p_paste(message, extension=None):
 
 
 
-@Client.on_message(filters.command(["tgpaste", "pasty", "paste"]))
-async def pasty(client, message):
+@app.on_message(filters.command(["tgpaste", "pasty", "paste"]))
+async def pasty(app, message):
     pablo = await message.reply_text("`Pʟᴇᴀꜱᴇ Wᴀɪᴛ...`")
     tex_t = message.text
     if ' ' in message.text:
