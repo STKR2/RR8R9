@@ -8,6 +8,7 @@ emojis
 Faker
 ffmpeg-python
 gitpython
+git+https://github.com/AsmSafone/SafoneAPI
 gtts
 hachoir
 heroku3
