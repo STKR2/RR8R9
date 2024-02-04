@@ -29,6 +29,7 @@ notesdb = mongodb.notes
 fbandb = mongodb
 blacklist_db = mongodb
 nightmodedb = mongodb.nightmode
+afkdb = mongodb.afk
 
 # Shifting to memory [mongo sucks often]
 active = []
