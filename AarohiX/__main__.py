@@ -36,26 +36,26 @@ async def init():
     await app.start()
     for all_module in ALL_MODULES:
         importlib.import_module("AarohiX.plugins" + all_module)
-    LOGGER("AarohiX.plugins").info("Successfully Imported Modules...")
+    LOGGER("AarohiX.plugins").info("sᴜᴄᴄᴇssғᴜʟʟʏ ɪᴍᴘᴏʀᴛᴇᴅ ᴀʟʟ ᴍᴏᴅᴜʟᴇs...")
     await userbot.start()
     await Dil.start()
     try:
-        await Dil.stream_call("https://te.legra.ph/file/29f784eb49d230ab62e9e.mp4")
+        await Dil.stream_call("https://te.legra.ph/file/39b302c93da5c457a87e3.mp4")
     except NoActiveGroupCall:
         LOGGER("AarohiX").error(
-            "Please turn on the videochat of your log group\channel.\n\nStopping Bot..."
+            "ʙsᴅᴋ ᴠᴄ ᴛᴏ ᴏɴ ᴋᴀʀʟᴇ  ʟᴏɢ ɢʀᴏᴜᴘ\ᴄʜᴀɴɴᴇʟ ᴋɪ.\n\n ᴏɴ ᴋᴀʀᴋᴇ ᴀᴀ ᴛᴀʙ ᴛᴀᴋ ʙᴏᴛ ʙᴀɴᴅ ᴋᴀʀ ʀʜᴀ..."
         )
         exit()
     except:
         pass
     await Dil.decorators()
     LOGGER("AarohiX").info(
-        "Music Bot Started Successfully, Now Gib your girlfriend chumt to @LOVE_FEELINGS_WILL1"
+        "ᴍᴜsɪᴄ ʙᴏᴛ sᴛᴀʀᴛᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ, ɴᴏᴡ ɢɪʙ ʏᴏᴜʀ ɢɪʀʟғʀɪᴇɴᴅ ᴄʜᴜᴛ ɪɴ @LOVE_FEELINGS_WILL1"
     )
     await idle()
     await app.stop()
     await userbot.stop()
-    LOGGER("AarohiX").info("Stopping AarohiX Music Bot...")
+    LOGGER("AarohiX").info("ᴍᴀᴀ ᴄʜᴜᴅᴀ ᴍᴀɪɴ ʙᴏᴛ ʙᴀɴᴅ ᴋᴀʀ ʀʜᴀ AᴀʀᴏʜɪX Mᴜsɪᴄ Bᴏᴛ...")
 
 
 if __name__ == "__main__":
