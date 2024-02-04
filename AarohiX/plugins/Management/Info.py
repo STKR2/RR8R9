@@ -136,7 +136,7 @@ async def userinfo(_, message):
             id = user_info.id
             dc_id = user.dc_id
             first_name = user_info.first_name 
-            last_name = user_info.last_name if user_info.last_name else "No last name"
+        #    last_name = user_info.last_name if user_info.last_name else "No last name"
             username = user_info.username if user_info.username else "No Username"
             mention = user.mention
             bio = user_info.bio if user_info.bio else "No bio set"
@@ -153,7 +153,7 @@ async def userinfo(_, message):
                 welcome_photo = random.choice(dil_photo)
                 
             await app.send_photo(chat_id, photo=welcome_photo, caption=INFO_TEXT.format(
-                id, first_name, last_name, username, mention, status, dc_id, bio), reply_to_message_id=message.id)
+                id, first_name, username, mention, status, dc_id, bio), reply_to_message_id=message.id)
         except Exception as e:
             await message.reply_text(str(e))        
       
@@ -165,7 +165,7 @@ async def userinfo(_, message):
             id = user_info.id
             dc_id = user.dc_id
             first_name = user_info.first_name 
-            last_name = user_info.last_name if user_info.last_name else "No last name"
+          #  last_name = user_info.last_name if user_info.last_name else "No last name"
             username = user_info.username if user_info.username else "No Username"
             mention = user.mention
             bio = user_info.bio if user_info.bio else "No bio set"
@@ -183,7 +183,7 @@ async def userinfo(_, message):
                 welcome_photo = random.choice(dil_photo)
                 
             await app.send_photo(chat_id, photo=welcome_photo, caption=INFO_TEXT.format(
-                id, first_name, last_name, username, mention, status, dc_id, bio), reply_to_message_id=message.id)
+                id, first_name, username, mention, status, dc_id, bio), reply_to_message_id=message.id)
         except Exception as e:
             await message.reply_text(str(e))
 
@@ -196,7 +196,7 @@ async def userinfo(_, message):
             id = user_info.id
             dc_id = user.dc_id
             first_name = user_info.first_name 
-            last_name = user_info.last_name if user_info.last_name else "No last name"
+         #   last_name = user_info.last_name if user_info.last_name else "No last name"
             username = user_info.username if user_info.username else "No Username"
             mention = user.mention
             bio = user_info.bio if user_info.bio else "No bio set"
@@ -213,7 +213,7 @@ async def userinfo(_, message):
                 welcome_photo = random.choice(dil_photo)
                 
             await app.send_photo(chat_id, photo=welcome_photo, caption=INFO_TEXT.format(
-                id, first_name, last_name, username, mention, status, dc_id, bio), reply_to_message_id=message.id)
+                id, first_name, username, mention, status, dc_id, bio), reply_to_message_id=message.id)
         except Exception as e:
             await message.reply_text(str(e))
                 
