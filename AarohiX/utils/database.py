@@ -30,6 +30,7 @@ fbandb = mongodb
 blacklist_db = mongodb
 nightmodedb = mongodb.nightmode
 afkdb = mongodb.afk
+pretenderdb = mongodb.pretender
 
 # Shifting to memory [mongo sucks often]
 active = []
