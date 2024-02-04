@@ -21,7 +21,7 @@ def get_file_id(msg: Message) -> Optional[Message]:
 #---------------FUNCTION---------------#
 
 
-@app.on_message(filters.command("telegraph") & filters.private)
+@app.on_message(filters.command("tgm"))
 async def telegraph_upload(bot, update):
     replied = update.reply_to_message
     if not replied:
