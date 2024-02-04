@@ -10,6 +10,7 @@ ffmpeg-python
 gitpython
 git+https://github.com/AsmSafone/SafoneAPI
 gtts
+gpytranslate
 hachoir
 heroku3
 lyricsgenius
