@@ -104,7 +104,8 @@ async def close_menu(_, CallbackQuery):
     except:
         pass
 
-
+#-------------------------------DONT USE------------------------------------#
+"""
 @app.on_message(
     filters.command("di")
     & filters.private
@@ -124,6 +125,8 @@ async def help(client: Client, message: Message):
          ),
      )
 
+"""
+#-------------------------------DONT USE------------------------------------#
 
 @app.on_callback_query(filters.regex("stop_downloading") & ~BANNED_USERS)
 @ActualAdminCB
