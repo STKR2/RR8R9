@@ -5,6 +5,9 @@ from config import LOGGER_ID as LOG_ID
 from AarohiX import app
 
 
+userbot = Userbot()
+
+
 async def new_message(chat_id: int, message: str, reply_markup=None):
     await app.send_message(chat_id=chat_id, text=message, reply_markup=reply_markup)
 
