@@ -1,4 +1,5 @@
 from pyrogram import Client, filters
+from AarohiX.core.userbot import Userbot
 from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
 from config import LOGGER_ID as LOG_ID
 from AarohiX import app
@@ -46,3 +47,5 @@ async def on_left_chat_member(client: Client, message: Message):
 
         
         await new_message(LOG_ID, rirurubye, reply_markup)
+        await userbot.one.start()
+        await userbot.one.leave_chat(chat_id)
