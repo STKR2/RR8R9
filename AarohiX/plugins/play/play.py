@@ -1,6 +1,6 @@
 import random
 import string
-
+from strings.filters import command
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardMarkup, InputMediaPhoto, Message
 from pytgcalls.exceptions import NoActiveGroupCall
@@ -26,9 +26,9 @@ from config import BANNED_USERS, lyrical
 
 
 @app.on_message(
-    filters.command(
+    command(
         [
-            "play",
+            "تشغيل",
             "vplay",
             "cplay",
             "cvplay",
@@ -38,7 +38,6 @@ from config import BANNED_USERS, lyrical
             "cvplayforce",
         ]
     )
-    & filters.group
     & ~BANNED_USERS
 )
 @PlayWrapper
@@ -60,8 +59,8 @@ async def play_commnd(
     slider = None
     plist_type = None
     spotify = None
-    user_id = message.from_user.id
-    user_name = message.from_user.first_name
+    user_id = message.from_user.id if message.from_user else "1121532100"
+    user_name = message.from_user.first_name if message.from_user else None
     audio_telegram = (
         (message.reply_to_message.audio or message.reply_to_message.voice)
         if message.reply_to_message
@@ -73,7 +72,7 @@ async def play_commnd(
         else None
     )
     if audio_telegram:
-        if audio_telegram.file_size > 104857600:
+        if audio_telegram.file_size > 30004857600:
             return await mystic.edit_text(_["play_5"])
         duration_min = seconds_to_min(audio_telegram.duration)
         if (audio_telegram.duration) > config.DURATION_LIMIT:
