@@ -15,17 +15,17 @@ BOT_TOKEN = getenv("BOT_TOKEN", "")
 
 MONGO_DB_URI = getenv("MONGO_DB_URI", "")
 
-DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", 54000))
+DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", 2097152))
 
 SONG_DOWNLOAD_DURATION = int(
-    getenv("SONG_DOWNLOAD_DURATION_LIMIT", "54000")
+    getenv("SONG_DOWNLOAD_DURATION_LIMIT", "20971520")
 )
 
 LOGGER_ID = int(getenv("LOGGER_ID", ""))
 
-OWNER_ID = int(getenv("OWNER_ID", "2107529793"))
+OWNER_ID = int(getenv("OWNER_ID", "1854384004"))
 
-BOT_USERNAME = getenv("BOT_USERNAME" , "Alone_Dil_bot")
+BOT_USERNAME = getenv("BOT_USERNAME" , "")
 
 COMMAND_HANDLER = getenv("COMMAND_HANDLER", "! / .").split()
 
@@ -35,15 +35,15 @@ HEROKU_API_KEY = getenv("HEROKU_API_KEY")
 
 UPSTREAM_REPO = getenv(
     "UPSTREAM_REPO",
-    "https://github.com/stkeditz/AAROHIxMUSICv2",
+    "https://github.com/STKR2/RR8R9",
 )
 UPSTREAM_BRANCH = getenv("UPSTREAM_BRANCH", "main")
 GIT_TOKEN = getenv(
     "GIT_TOKEN", None
 )  # Fill this variable if your upstream repository is private
 
-SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/LOVE_FEELINGS_WILL1")
-SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/LOVE_FEELINGS_WILL1")
+SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "")
+SUPPORT_CHAT = getenv("SUPPORT_CHAT", "")
 
 AUTO_LEAVING_ASSISTANT = bool(getenv("AUTO_LEAVING_ASSISTANT", False))
 AUTO_SUGGESTION_MODE = getenv("AUTO_SUGGESTION_MODE", "True")
@@ -60,8 +60,8 @@ PLAYLIST_FETCH_LIMIT = int(getenv("PLAYLIST_FETCH_LIMIT", 25))
 CLEANMODE_DELETE_MINS = int(
     getenv("CLEANMODE_MINS", "5"))
 
-TG_AUDIO_FILESIZE_LIMIT = int(getenv("TG_AUDIO_FILESIZE_LIMIT", 104857600))
-TG_VIDEO_FILESIZE_LIMIT = int(getenv("TG_VIDEO_FILESIZE_LIMIT", 1073741824))
+TG_AUDIO_FILESIZE_LIMIT = int(getenv("TG_AUDIO_FILESIZE_LIMIT", 20971520000))
+TG_VIDEO_FILESIZE_LIMIT = int(getenv("TG_VIDEO_FILESIZE_LIMIT", 209715200000))
 
 
 
@@ -86,26 +86,46 @@ clean = {}
 autoclean = []
 
 START_IMG_URL = getenv(
-    "START_IMG_URL", "https://te.legra.ph/file/0c373d33859cd378dcafe.jpg"
+    "START_IMG_URL", "https://te.legra.ph/file/5fdd8da2461c05d893189.jpg"
 )
 PING_IMG_URL = getenv(
-    "PING_IMG_URL", "https://graph.org/file/f16f757fe9c10f81b67ef.jpg"
+    "PING_IMG_URL", "https://te.legra.ph/file/5fdd8da2461c05d893189.jpg"
 )
-PLAYLIST_IMG_URL = "https://te.legra.ph/file/e68f585a0a2e4e5dc1164.jpg"
-STATS_IMG_URL = "https://te.legra.ph/file/4a7c28726502e24ea0fe0.jpg"
-TELEGRAM_AUDIO_URL = "https://te.legra.ph/file/810f874873e1565cf5732.jpg"
-TELEGRAM_VIDEO_URL = "https://te.legra.ph/file/16d7dd76f4ce8b8b01fdf.jpg"
-STREAM_IMG_URL = "https://te.legra.ph/file/53f1a295e172d39eaa39d.jpg"
-SOUNCLOUD_IMG_URL = "https://te.legra.ph/file/bb0ff85f2dd44070ea519.jpg"
-YOUTUBE_IMG_URL = "https://te.legra.ph/file/53f1a295e172d39eaa39d.jpg"
-SPOTIFY_ARTIST_IMG_URL = "https://te.legra.ph/file/5d90c3bc7f0d229194a9f.jpg"
-SPOTIFY_ALBUM_IMG_URL = "https://te.legra.ph/file/5d90c3bc7f0d229194a9f.jpg"
-SPOTIFY_PLAYLIST_IMG_URL = "https://te.legra.ph/file/5d90c3bc7f0d229194a9f.jpg"
+PLAYLIST_IMG_URL = getenv(
+    "PLAYLIST_IMG_URL", "https://te.legra.ph/file/5fdd8da2461c05d893189.jpg"
+)                          
+STATS_IMG_URL = getenv(
+    "STATS_IMG_URL", "https://te.legra.ph/file/5fdd8da2461c05d893189.jpg"
+)                       
+TELEGRAM_AUDIO_URL = getenv(
+    "TELEGRAM_AUDIO_URL", "https://te.legra.ph/file/5fdd8da2461c05d893189.jpg"
+)                            
+TELEGRAM_VIDEO_URL = getenv(
+    "TELEGRAM_VIDEO_URL", "https://te.legra.ph/file/5fdd8da2461c05d893189.jpg"
+)
+STREAM_IMG_URL = getenv(
+    "STREAM_IMG_URL","https://te.legra.ph/file/5fdd8da2461c05d893189.jpg"
+)
+SOUNCLOUD_IMG_URL = getenv(
+    "SOUNCLOUD_IMG_URL", "https://te.legra.ph/file/5fdd8da2461c05d893189.jpg"
+)
+YOUTUBE_IMG_URL = getenv(
+    "YOUTUBE_IMG_URL", "https://te.legra.ph/file/5fdd8da2461c05d893189.jpg"
+)
+SPOTIFY_ARTIST_IMG_URL = getenv(
+    "SPOTIFY_ARTIST_IMG_URL", "https://te.legra.ph/file/5fdd8da2461c05d893189.jpg"
+)                                
+SPOTIFY_ALBUM_IMG_URL = getenv(
+    "SPOTIFY_ALBUM_IMG_URL", "https://te.legra.ph/file/5fdd8da2461c05d893189.jpg"
+)                               
+SPOTIFY_PLAYLIST_IMG_URL = getenv(
+    "SPOTIFY_PLAYLIST_IMG_URL", "https://te.legra.ph/file/5fdd8da2461c05d893189.jpg"
+)
 
 
 def time_to_seconds(time):
     stringt = str(time)
-    return sum(int(x) * 60**i for i, x in enumerate(reversed(stringt.split(":"))))
+    return sum(int(x) * 2000**i for i, x in enumerate(reversed(stringt.split(":"))))
 
 
 DURATION_LIMIT = int(time_to_seconds(f"{DURATION_LIMIT_MIN}:00"))
