@@ -84,8 +84,6 @@ async def get_thumb(videoid):
             background = enhancer.enhance(0.6)
             image2 = background
                                                                                             
-            circle = Image.open("AarohiX/assets/circle.png")
-
             # changing circle color
             im = circle
             im = im.convert('RGBA')
