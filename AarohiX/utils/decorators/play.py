@@ -1,5 +1,5 @@
 import asyncio
-from config import OWNER_ID, SUPPORT_CHAT
+
 from pyrogram.enums import ChatMemberStatus
 from pyrogram.errors import (
     ChatAdminRequired,
@@ -31,6 +31,18 @@ def PlayWrapper(command):
     async def wrapper(client, message):
         language = await get_lang(message.chat.id)
         _ = get_string(language)
+        if message.sender_chat:
+            upl = InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton(
+                            text="ʜᴏᴡ ᴛᴏ ғɪx ?",
+                            callback_data="AnonymousAdmin",
+                        ),
+                    ]
+                ]
+            )
+            return await message.reply_text(_["general_3"], reply_markup=upl)
 
         if await is_maintenance() is False:
             if message.from_user.id not in SUDOERS:
@@ -137,44 +149,6 @@ def PlayWrapper(command):
                                 _["call_3"].format(app.mention, type(e).__name__)
                             )
 
-                # Your existing code...
-
-        if not await is_active_chat(chat_id):
-            userbot = await get_assistant(chat_id)
-            try:
-                try:
-                    get = await app.get_chat_member(chat_id, userbot.id)
-                except ChatAdminRequired:
-                    return await message.reply_text(_["call_1"])
-                if (
-                    get.status == ChatMemberStatus.BANNED
-                    or get.status == ChatMemberStatus.RESTRICTED
-                ):
-                    return await message.reply_text(
-                        _["call_2"].format(
-                            app.mention, userbot.id, userbot.name, userbot.username
-                        )
-                    )
-            except UserNotParticipant:
-                if chat_id in links:
-                    invitelink = links[chat_id]
-                else:
-                    if message.chat.username:
-                        invitelink = message.chat.username
-                        try:
-                            await userbot.resolve_peer(invitelink)
-                        except:
-                            pass
-                    else:
-                        try:
-                            invitelink = await app.export_chat_invite_link(chat_id)
-                        except ChatAdminRequired:
-                            return await message.reply_text(_["call_1"])
-                        except Exception as e:
-                            return await message.reply_text(
-                                _["call_3"].format(app.mention, type(e).__name__)
-                            )
-
                 if invitelink.startswith("https://t.me/+"):
                     invitelink = invitelink.replace(
                         "https://t.me/+", "https://t.me/joinchat/"
@@ -206,23 +180,6 @@ def PlayWrapper(command):
                 except:
                     pass
 
-        # Creating inline keyboard buttons
-        owner_button = InlineKeyboardButton(
-            text="🥀 ᴏᴡɴᴇʀ 🥀", url=f"tg://openmessage?user_id={OWNER_ID}",
-        )
-        support_button = InlineKeyboardButton(
-            text="🥀 sᴜᴩᴩᴏʀᴛ 🥀", url=SUPPORT_CHAT,
-        )
-
-        # Adding buttons to an inline keyboard markup
-        inline_keyboard = InlineKeyboardMarkup(
-            [
-                [owner_button],
-                [support_button],
-            ]
-        )
-
-        # Sending message with inline keyboard
         return await command(
             client,
             message,
@@ -233,7 +190,6 @@ def PlayWrapper(command):
             playmode,
             url,
             fplay,
-            reply_markup=inline_keyboard
         )
 
     return wrapper
