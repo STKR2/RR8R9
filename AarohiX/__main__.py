@@ -50,7 +50,7 @@ async def init():
         pass
     await Dil.decorators()
     LOGGER("AarohiX").info(
-        "ᴍᴜsɪᴄ ʙᴏᴛ sᴛᴀʀᴛᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ, ɴᴏᴡ ɢɪʙ ʏᴏᴜʀ ɢɪʀʟғʀɪᴇɴᴅ ᴄʜᴜᴛ ɪɴ @LOVE_FEELINGS_WILL1"
+        "- تم تنصيب سورس فريدوم بنجاح "
     )
     await idle()
     await app.stop()
