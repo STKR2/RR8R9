@@ -1,4 +1,5 @@
 import os
+import re
 import requests
 import yt_dlp
 from strings.filters import command
@@ -93,7 +94,6 @@ async def song(_, message: Message):
         error_message = f"- فشل في حذف الملفات المؤقتة. \n\n**السبب :** `{ex}`"
         await m.edit_text(error_message)
 
-
 @app.on_message(command(["تحميل", "video"]))
 async def video_search(client, message):
     ydl_opts = {
@@ -110,6 +110,8 @@ async def video_search(client, message):
         link = f"https://youtube.com{results[0]['url_suffix']}"
         title = results[0]["title"][:40]
         thumbnail = results[0]["thumbnails"][0]
+        # إزالة الأحرف غير الصحيحة من اسم الملف
+        title = re.sub(r'[\\/*?:"<>|]', '', title)
         thumb_name = f"{title}.jpg"
         thumb = requests.get(thumbnail, allow_redirects=True)
         open(thumb_name, "wb").write(thumb.content)
@@ -127,10 +129,10 @@ async def video_search(client, message):
     except Exception as e:
         return await msg.edit(f"🚫 **error:** {e}")
     thumb_path = f"thumb{title}.jpg"
-if not os.path.exists(thumb_path):
-    return await msg.edit(f"🚫 **error:** Thumb file not found!")
-# إذا تم الوصول إلى هذا النقطة، فإن الملف المصغر موجود ويمكن استخدامه بشكل صحيح
-open(thumb_path, "wb").write(thumb.content)
+    if not os.path.exists(thumb_path):
+        return await msg.edit(f"🚫 **error:** Thumb file not found!")
+    open(thumb_path, "wb").write(thumb.content)
+
     await msg.edit("- تم الرفع انتضر قليلاً .")
     await message.reply_video(
         file_name,
