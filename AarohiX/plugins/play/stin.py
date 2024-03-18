@@ -80,16 +80,16 @@ async def START(c:Client,m:Message):
 		db.execute("INSERT INTO USERS(user_id) VALUES(?)", (m.from_user.id,))
 		con.commit()
 		try:
-			await b3kkk.send_message(OWNER_ID),f"""
+			await b3kkk.send_message(OWNER_ID, f"""
 		<u>«**New User**»</u>
 		
 	➣ Name : {m.from_user.first_name}
 	➣ User Name : {UserName}
 	➣ User Id : `{m.from_user.id}`
-	➣ Link : [Link Profile](tg://user?id=m.from.user.id)
+	➣ Link : [Link Profile](tg://user?id={m.from_user.id})
 	➣ Data : **{date.today()}**
-		""",reply_markup=InlineKeyboardMarkup ([[InlineKeyboardButton (m.from_user.first_name,user_id=m.from_user.id)],[InlineKeyboardButton("حظر هذا العضو",callback_data=f"Ban:{m.from_user.id}")]]))
-		except:pass
+		""", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(m.from_user.first_name, user_id=m.from_user.id)], [InlineKeyboardButton("حظر هذا العضو", callback_data=f"Ban:{m.from_user.id}")]]))
+	        except:pass
 		await m.reply(f"""
 		مرحبا {m.from_user.mention}
 	
