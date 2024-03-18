@@ -21,6 +21,6 @@ async def developer_message(client, message):
     await message.reply("أهلا بك! اختر إحدى الخيارات:", reply_markup=developer_keyboard)
 
 # دالة للرد على أمر start للمستخدمين العاديين
-@app.on_message(filters.command("start") & ~filters.user(OWNER_ID))
+@app.on_message(filters.command("/start") & ~filters.user(OWNER_ID))
 async def start(client, message):
     await message.reply("مرحبًا بك في بوتنا!")
