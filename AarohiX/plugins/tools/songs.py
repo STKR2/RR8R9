@@ -1,7 +1,7 @@
 import os
 import requests
 import yt_dlp
-from filters import command
+from strings.filters import command
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from youtube_search import YoutubeSearch
