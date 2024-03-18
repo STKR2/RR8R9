@@ -1,12 +1,12 @@
 import os
 import requests
 import yt_dlp
-from strings.filters import command
+from filters import command
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from youtube_search import YoutubeSearch
 from Aarohix import app
-import config
+from config import SUPPORT_CHAT
 
 def is_valid_youtube_url(url):
     # Check if the provided URL is a valid YouTube URL
@@ -65,7 +65,7 @@ async def song(_, message: Message):
 
         visit_butt = InlineKeyboardMarkup(
             [
-                [InlineKeyboardButton(text="- المنشئ .", url=config.SUPPORT_CHAT),
+                [InlineKeyboardButton(text="- المنشئ .", url=SUPPORT_CHAT),
             ]
         )
 
