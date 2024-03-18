@@ -5,7 +5,7 @@ from strings.filters import command
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from youtube_search import YoutubeSearch
-from Aarohix import app
+from AarohiX import app
 from config import SUPPORT_CHAT
 
 def is_valid_youtube_url(url):
