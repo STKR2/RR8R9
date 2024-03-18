@@ -7,6 +7,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from youtube_search import YoutubeSearch
 from AarohiX import app
 from config import SUPPORT_CHAT
+import os.path
 
 def is_valid_youtube_url(url):
     # Check if the provided URL is a valid YouTube URL
@@ -92,6 +93,7 @@ async def song(_, message: Message):
         error_message = f"- فشل في حذف الملفات المؤقتة. \n\n**السبب :** `{ex}`"
         await m.edit_text(error_message)
 
+
 @app.on_message(command(["تحميل", "video"]))
 async def video_search(client, message):
     ydl_opts = {
@@ -109,8 +111,6 @@ async def video_search(client, message):
         title = results[0]["title"][:40]
         thumbnail = results[0]["thumbnails"][0]
         thumb_name = f"{title}.jpg"
-        # Replace invalid characters in the filename
-        thumb_name = thumb_name.replace("/", "")
         thumb = requests.get(thumbnail, allow_redirects=True)
         open(thumb_name, "wb").write(thumb.content)
         results[0]["duration"]
@@ -127,6 +127,8 @@ async def video_search(client, message):
     except Exception as e:
         return await msg.edit(f"🚫 **error:** {e}")
     thumb_path = f"thumb{title}.jpg"
+    if not os.path.exists(thumb_path):
+        return await msg.edit(f"🚫 **error:** Thumb file not found!")
     open(thumb_path, "wb").write(thumb.content)
     await msg.edit("- تم الرفع انتضر قليلاً .")
     await message.reply_video(
