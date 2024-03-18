@@ -39,7 +39,7 @@ XCB = [
 def dbb():
     global db
     db = {}
-    LOGGER(__name__).info(f"Local Database Initialized.")
+    LOGGER(__name__).info(f"رفع البيانات .")
 
 
 async def sudo():
@@ -59,7 +59,7 @@ async def sudo():
     if sudoers:
         for user_id in sudoers:
             SUDOERS.add(user_id)
-    LOGGER(__name__).info(f"Sudoers Loaded.")
+    LOGGER(__name__).info(f"تم رفع البيانات .")
 
 
 def heroku():
