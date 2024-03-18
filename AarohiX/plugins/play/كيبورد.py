@@ -33,7 +33,7 @@ developer_keyboard = ReplyKeyboardMarkup([
 
 # دالة للاستجابة عند استخدام المستخدم لأمر /admin
 @app.on_message(filters.command("/start") & ~filters.user(OWNER_ID))
-async def /start(client, message):
+async def start(client, message):
     # يمكنك هنا وضع الاستجابة المخصصة لأمر /admin
     await message.reply("هذا الأمر مخصص للمطور!")
 
