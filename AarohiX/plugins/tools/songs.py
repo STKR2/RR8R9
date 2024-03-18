@@ -127,9 +127,10 @@ async def video_search(client, message):
     except Exception as e:
         return await msg.edit(f"🚫 **error:** {e}")
     thumb_path = f"thumb{title}.jpg"
-    if not os.path.exists(thumb_path):
-        return await msg.edit(f"🚫 **error:** Thumb file not found!")
-    open(thumb_path, "wb").write(thumb.content)
+if not os.path.exists(thumb_path):
+    return await msg.edit(f"🚫 **error:** Thumb file not found!")
+# إذا تم الوصول إلى هذا النقطة، فإن الملف المصغر موجود ويمكن استخدامه بشكل صحيح
+open(thumb_path, "wb").write(thumb.content)
     await msg.edit("- تم الرفع انتضر قليلاً .")
     await message.reply_video(
         file_name,
