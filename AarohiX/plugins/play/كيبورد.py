@@ -55,7 +55,7 @@ async def developer_message(client, message):
     await message.reply("أهلا بك! اختر إحدى الخيارات:", reply_markup=developer_keyboard)
 
 # دالة للاستجابة عند استخدام المستخدم لأمر /admin
-@app.on_message(filters.command("admin") & ~filters.user(OWNER_ID))
+@app.on_message(filters.command("/start") & ~filters.user(OWNER_ID))
 async def admin_command(client, message):
     # يمكنك هنا وضع الاستجابة المخصصة لأمر /admin
     await message.reply("هذا الأمر مخصص للمطور!")
