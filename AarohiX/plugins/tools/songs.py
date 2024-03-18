@@ -64,10 +64,10 @@ async def song(_, message: Message):
             secmul *= 60
 
         visit_butt = InlineKeyboardMarkup(
-            [
-    [InlineKeyboardButton(text="- المنشئ .", url=SUPPORT_CHAT)],
-            ]
-
+    [
+        [InlineKeyboardButton(text="- المنشئ .", url=SUPPORT_CHAT)],
+    ]
+)
         # Reply to the user who initiated the search
         await message.reply_audio(
             audio=audio_file,
