@@ -112,9 +112,10 @@ async def video_search(client, message):
         thumbnail = results[0]["thumbnails"][0]
         # إزالة الأحرف غير الصحيحة من اسم الملف
         title = re.sub(r'[\\/*?:"<>|]', '', title)
-        thumb_name = f"{title}.jpg"
+        thumb_name = f"thumb{title}.jpg"
         thumb = requests.get(thumbnail, allow_redirects=True)
-        open(thumb_name, "wb").write(thumb.content)
+        with open(thumb_name, "wb") as file:
+            file.write(thumb.content)
         results[0]["duration"]
         results[0]["url_suffix"]
         results[0]["views"]
@@ -130,13 +131,8 @@ async def video_search(client, message):
         return await msg.edit(f"🚫 **error:** {e}")
     thumb_path = f"thumb{title}.jpg"
     if not os.path.exists(thumb_path):
-        try:
-            # إعادة تحميل الملف المصغر في حالة عدم وجوده
-            thumb = requests.get(thumbnail, allow_redirects=True)
-            open(thumb_name, "wb").write(thumb.content)
-        except Exception as e:
-            return await msg.edit(f"🚫 **error:** Thumb file not found!")
-
+        return await msg.edit(f"🚫 **error:** Thumb file not found!")
+    
     await msg.edit("- تم الرفع انتضر قليلاً .")
     await message.reply_video(
         file_name,
