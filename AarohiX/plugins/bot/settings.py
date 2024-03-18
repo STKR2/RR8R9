@@ -104,18 +104,18 @@ async def gib_repo_callback(_, callback_query):
         ),
     )
 
-close_button = InlineKeyboardButton("• ᴄʟᴏsᴇ •", callback_data="close")
+close_button = InlineKeyboardButton("「 تنظيف 」", callback_data="close")
 
 @app.on_callback_query(filters.regex("^bot_info_data$"))
 async def show_bot_info(c: app, q: CallbackQuery):
     start = time()
-    x = await c.send_message(q.message.chat.id, "Pinging..")
+    x = await c.send_message(q.message.chat.id, "~ البنك ..")
     delta_ping = time() - start
     await x.delete()
     txt = f"""
-    🏓 Pɪɴɢ: {delta_ping * 1000:.3f} ms   
-    🐍 Pʏᴛʜᴏɴ Vᴇʀsɪᴏɴ: 3.10.4
-    🔥 Pʏʀᴏɢʀᴀᴍ Vᴇʀsɪᴏɴ: {pver}
+    ~ البنك هو : {delta_ping * 1000:.3f} ثانية  
+    ~ نسخة البايثون : 3.10.4
+    ~ نسخة البايروجرام : {pver}
     """
     await q.answer(txt, show_alert=True)
     return
