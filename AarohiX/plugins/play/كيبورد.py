@@ -7,7 +7,7 @@ from AarohiX import app
 # تعريف الكيبورد المخصص للمطور
 developer_keyboard = ReplyKeyboardMarkup(
     [
-        ["زر 1"],
+        ["/broadcast"],
         ["زر 2"],
         ["زر 3"],
     ],
@@ -51,10 +51,7 @@ async def start(client, message):
 
 # دالة لمعالجة الإذاعة أو أي عملية أخرى تريدها
 async def broadcast_function(message):
-    # يمكنك هنا إجراء أي عمليات تريدها مثل الإذاعة
-    await message.reply("تم استخدام زر 1")
 
 # دالة للتعامل مع ملفات أخرى في السورس
 async def another_function(message):
-    # يمكنك هنا استدعاء أي دوال أو ملفات أخرى في السورس
-    await message.reply("تم استخدام زر 2 أو زر 3")
+   
