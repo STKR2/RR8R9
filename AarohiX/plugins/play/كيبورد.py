@@ -48,10 +48,3 @@ async def admin_command(client, message):
 @app.on_message(filters.command("start") & ~filters.user(OWNER_ID))
 async def start(client, message):
     await message.reply("مرحبًا بك في بوتنا!")
-
-# دالة لمعالجة الإذاعة أو أي عملية أخرى تريدها
-async def broadcast_function(message):
-
-# دالة للتعامل مع ملفات أخرى في السورس
-async def another_function(message):
-   
