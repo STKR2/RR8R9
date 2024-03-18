@@ -14,12 +14,13 @@ developer_keyboard = ReplyKeyboardMarkup(
     resize_keyboard=True
 )
 
-# دالة للرد على أمر start
-@app.on_message(filters.command("start"))
+# دالة للرد على الرسائل الخاصة بالمطور
+@app.on_message(filters.user(OWNER_ID) & filters.private & filters.text)
+async def developer_message(client, message):
+    # إرسال لوحة المفاتيح المخصصة للمطور
+    await message.reply("أهلا بك! اختر إحدى الخيارات:", reply_markup=developer_keyboard)
+
+# دالة للرد على أمر start للمستخدمين العاديين
+@app.on_message(filters.command("start") & ~filters.user(OWNER_ID))
 async def start(client, message):
-    # التحقق مما إذا كان المستخدم هو المطور
-    if message.from_user.id == OWNER_ID:
-        # إرسال لوحة المفاتيح المخصصة للمطور
-        await message.reply("أهلا بك! اختر إحدى الخيارات:", reply_markup=developer_keyboard)
-    else:
-        await message.reply("مرحبًا بك في بوتنا!")
+    await message.reply("مرحبًا بك في بوتنا!")
