@@ -30,10 +30,14 @@ developer_keyboard = ReplyKeyboardMarkup([
 	resize_keyboard=True,
 )
 
+# دالة للاستجابة عند استخدام المطور لأمر /start
+@app.on_message(filters.command("start") & filters.user(OWNER_ID))
+async def start_command(client, message):
+    # إرسال لوحة المفاتيح المخصصة للمطور
+    await message.reply("أهلا بك! اختر إحدى الخيارات:", reply_markup=developer_keyboard)
 
-# دالة للاستجابة عند استخدام المستخدم لأمر /admin
-@app.on_message(filters.command("/start") & ~filters.user(OWNER_ID))
-async def developer_keyboard(client, message):
-    # يمكنك هنا وضع الاستجابة المخصصة لأمر /admin
-    await message.reply("هذا الأمر مخصص للمطور!")
-
+# دالة للرد على الرسائل الخاصة بالمطور
+@app.on_message(filters.user(OWNER_ID) & filters.private & filters.text)
+async def developer_message(client, message):
+    # إرسال لوحة المفاتيح المخصصة للمطور
+    await message.reply("أهلا بك! اختر إحدى الخيارات:", reply_markup=developer_keyboard)
