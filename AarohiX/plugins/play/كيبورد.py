@@ -34,7 +34,7 @@ developer_keyboard = ReplyKeyboardMarkup([
 @app.on_message(filters.command("/admin") & filters.user(OWNER_ID))
 async def start_2(client, message):
     # إرسال لوحة المفاتيح المخصصة للمطور
-    await message.reply("أهلا بك! اختر إحدى الخيارات:", reply_markup=developer_keyboard)
+    await message.reply("", reply_markup=developer_keyboard)
 
 # دالة للرد على الرسائل الخاصة بالمطور
 @app.on_message(filters.user(OWNER_ID) & filters.private & filters.text)
