@@ -50,7 +50,7 @@ class Userbot(Client):
 
 
     async def start(self):
-        LOGGER(__name__).info(f"Gettings Assistants Info...")
+        LOGGER(__name__).info(f"جلب معلومات السورس ..")
         if config.STRING1:
             await self.one.start()
             try:
@@ -70,7 +70,7 @@ class Userbot(Client):
             else:
                 self.one.name = get_me.first_name
             LOGGER(__name__).info(
-                f"Assistant Started as {self.one.name}"
+                f"تم تشغيل المساعد  {self.one.name}"
             )
             try:
                 await self.one.send_message(config.LOGGER_ID, f"**» ᴀssɪsᴛᴀɴᴛ ᴏɴᴇ sᴛᴀʀᴛᴇᴅ :**\n\n✨ ɪᴅ : `{self.one.id}`\n❄ ɴᴀᴍᴇ : {self.one.name}\n💫 ᴜsᴇʀɴᴀᴍᴇ : @{self.one.username}"
@@ -107,7 +107,7 @@ class Userbot(Client):
                 )
                 sys.exit()
             LOGGER(__name__).info(
-                f"Assistant Two Started as {self.two.name}"
+                f"تم تشغيل المساعد {self.two.name}"
             )
         if config.STRING3:
             await self.three.start()
@@ -136,7 +136,7 @@ class Userbot(Client):
                 )
                 sys.exit()
             LOGGER(__name__).info(
-                f"Assistant Three Started as {self.three.name}"
+                f"تم تشغيل المساعد {self.three.name}"
             )
         if config.STRING4:
             await self.four.start()
@@ -165,7 +165,7 @@ class Userbot(Client):
                 )
                 sys.exit()
             LOGGER(__name__).info(
-                f"Assistant Four Started as {self.four.name}"
+                f"تم تشغيل اامساعد {self.four.name}"
             )
         if config.STRING5:
             await self.five.start()
