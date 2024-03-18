@@ -62,13 +62,6 @@ async def play_commnd(
     user_id = message.from_user.id if message.from_user else "1121532100"
     user_name = message.from_user.first_name if message.from_user else None
 
-# بعد ذلك، قم بتعديل الرسالة التي تحتوي على اسم المستخدم لتضيف الرابط:
-if user_name:
-    user_link = f'<a href="tg://user?id={user_id}">{user_name}</a>'
-else:
-    user_link = "المستخدم غير معروف"
-
-# ثم استخدم user_link في الرسالة التي تظهر بعد تشغيل الأغنية أو الفيديو.
     audio_telegram = (
         (message.reply_to_message.audio or message.reply_to_message.voice)
         if message.reply_to_message
