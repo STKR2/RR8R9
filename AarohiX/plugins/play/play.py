@@ -2,6 +2,7 @@ import random
 import string
 from strings.filters import command
 from pyrogram import filters
+from pyrogram.errors import UserNotParticipant
 from config import Muntazer
 from pyrogram.types import InlineKeyboardMarkup, InputMediaPhoto, Message
 from pytgcalls.exceptions import NoActiveGroupCall
