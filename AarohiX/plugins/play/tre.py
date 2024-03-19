@@ -10,8 +10,6 @@ from AarohiX import app
 from pyrogram.errors import FloodWait 
 botdb = DB('botdb.sqlite')
 
-bot.start()
-
 STARTKEY = InlineKeyboardMarkup(
        [
          [
