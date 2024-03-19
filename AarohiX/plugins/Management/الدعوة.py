@@ -19,18 +19,16 @@ async def brah2(_, msg):
 
 
 @app.on_message(filters.video_chat_members_invited)
-async def brah3(app: Client, message: Message):
+async def brah3(client, message):
     text = f"- قام {message.from_user.mention}\n - بدعوة : "
-    x = 0
-    
-    for user in message.video_chat_members_invited:
-        try:
-            text += f"[{user.first_name}](tg://user?id={user.id}) "
-            x += 1
-        except Exception:
-            pass
-    
     try:
-        await message.reply(f"{text}")
+        for user in message.video_chat_members_invited:
+            text += f"[{user.first_name}](tg://user?id={user.id}) "
+    except Exception as e:
+        print(f"An error occurred: {e}")
+    try:
+        await message.reply(text)
     except:
         pass
+
+app.run()
