@@ -19,27 +19,27 @@ async def must_join_channel(app: Client, msg: Message):
                 link = chat_info.invite_link
 
             try:
-    if BOT_IMAGE:
-        # إذا كانت الصورة متوفرة
-        await msg.reply_photo(
-            photo=BOT_IMAGE,
-            caption=f"~︙عزيزي {msg.from_user.mention} \n~︙عليك الأشتراك في قناة البوت \n~︙قناة البوت : @{Muntazer}.",
-            disable_web_page_preview=True,
-            reply_markup=InlineKeyboardMarkup([
-                [InlineKeyboardButton("< Team Freedom >", url=link)]
-            ])
-        )
-    else:
-        # إذا لم تكن الصورة متوفرة
-        await msg.reply(
-            f"~︙عزيزي {msg.from_user.mention} \n~︙عليك الأشتراك في قناة البوت \n~︙قناة البوت : @{Muntazer}.",
-            disable_web_page_preview=True,
-            reply_markup=InlineKeyboardMarkup([
-                [InlineKeyboardButton("< Team Freedom >", url=link)]
-            ])
-        )
-    await msg.stop_propagation()
-except ChatWriteForbidden:
-    pass
-except ChatAdminRequired:
-    print(f"I'm not admin in the MUST_JOIN chat {Muntazer}!")
+                if BOT_IMAGE:
+                    # إذا كانت الصورة متوفرة
+                    await msg.reply_photo(
+                        photo=BOT_IMAGE,
+                        caption=f"~︙عزيزي {msg.from_user.mention} \n~︙عليك الأشتراك في قناة البوت \n~︙قناة البوت : @{Muntazer}.",
+                        disable_web_page_preview=True,
+                        reply_markup=InlineKeyboardMarkup([
+                            [InlineKeyboardButton("< Team Freedom >", url=link)]
+                        ])
+                    )
+                else:
+                    # إذا لم تكن الصورة متوفرة
+                    await msg.reply(
+                        f"~︙عزيزي {msg.from_user.mention} \n~︙عليك الأشتراك في قناة البوت \n~︙قناة البوت : @{Muntazer}.",
+                        disable_web_page_preview=True,
+                        reply_markup=InlineKeyboardMarkup([
+                            [InlineKeyboardButton("< Team Freedom >", url=link)]
+                        ])
+                    )
+                await msg.stop_propagation()
+            except ChatWriteForbidden:
+                pass
+    except ChatAdminRequired:
+        print(f"I'm not admin in the MUST_JOIN chat {Muntazer}!")
