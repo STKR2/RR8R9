@@ -27,15 +27,15 @@ from pytgcalls.__version__ import __version__ as pytgver
 
 import config
 from config import OWNER_ID
-from config import BANNED_USERS
-from AarohiX import YouTube, app
-from AarohiX import app as Client
-from AarohiX.core.userbot import assistants
-from AarohiX.misc import SUDOERS, mongodb
-from AarohiX.plugins import ALL_MODULES
-from AarohiX.utils.database import get_served_chats, get_served_users, get_sudoers
-from AarohiX.utils.decorators.language import language, languageCB
-from AarohiX.utils.inline.stats import back_stats_buttons, stats_buttons
+from config import BANNED_USERS, MUSIC_BOT_NAME
+from ZeMusic import YouTube, app
+from ZeMusic import app as Client
+from ZeMusic.core.userbot import assistants
+from ZeMusic.misc import SUDOERS, mongodb
+from ZeMusic.plugins import ALL_MODULES
+from ZeMusic.utils.database import get_served_chats, get_served_users, get_sudoers
+from ZeMusic.utils.decorators.language import language, languageCB
+from ZeMusic.utils.inline.stats import back_stats_buttons, stats_buttons
 
 loop = asyncio.get_running_loop()
 
@@ -54,7 +54,7 @@ async def stats_global(client, message: Message, _):
     )
     await message.reply_photo(
         photo=config.STATS_IMG_URL,
-        caption=_["gstats_11"].format,
+        caption=_["gstats_11"].format(config.MUSIC_BOT_NAME),
         reply_markup=upl,
     )
 
@@ -63,7 +63,7 @@ async def stats_global(client, message: Message, _):
     filters.command(["《hsjsnsnsnj》"], "")
     & SUDOERS
 )
-@app.on_message(filters.command(["/sezar", "رجوع"], "") & filters.private)
+@app.on_message(filters.command(["/start", "رجوع"], "") & filters.private)
 async def kep(client, message):
   kep = ReplyKeyboardMarkup([["《قسم الاذاعه》"], ["《قسم الحساب المساعد》"], ["《قسم الادمنيه》", "《قسم الكولات》"], ["《معلومات السيرفر》", "《فحص سرعه البوت》"], ["المحظورين عام🚨", "المحظورين ميوزك❌"], ["《الاحصائيات والتواصل》"], ["《قسم الاشتراك الاجباري》"], ["نقل ملكية البوت"], ["《قسم النسخه الاحتياطيه》"], ["《قسم السورس》"], ["《الغاء》", "《تنظيف》"], ["《قفل الكيبورد🔒》"]], resize_keyboard=True)
   await message.reply_text("╮⦿ اهـلا بڪ عزيـزي المطـور الاساسـي │⎋ اليك كيب التحكم بالبوت في سورس الميوزك❤️‍🔥", reply_markup=kep)
@@ -122,7 +122,7 @@ async def gstats_global(client, message: Message, _):
         vidid,
     ) = await YouTube.details(videoid, True)
     title = title.title()
-    final = f"Top Most Played Track on \n\n**Title:** {title}\n\nPlayed** {co} **times"
+    final = f"Top Most Played Track on {MUSIC_BOT_NAME}\n\n**Title:** {title}\n\nPlayed** {co} **times"
     upl = get_stats_markup(
         _, True if message.from_user.id in SUDOERS else False
     )
@@ -203,6 +203,7 @@ async def top_users_ten(client, CallbackQuery: CallbackQuery, _):
             temp = (
                 _["gstats_4"].format(
                     queries,
+                    config.MUSIC_BOT_NAME,
                     len(stats),
                     total_count,
                     limit,
@@ -241,9 +242,9 @@ async def top_users_ten(client, CallbackQuery: CallbackQuery, _):
             limit += 1
             msg += f"🔗`{extract}` played {count} times on bot.\n\n"
         temp = (
-            _["gstats_5"].format(limit)
+            _["gstats_5"].format(limit, MUSIC_BOT_NAME)
             if what == "Chats"
-            else _["gstats_6"].format(limit)
+            else _["gstats_6"].format(limit, MUSIC_BOT_NAME)
         )
         msg = temp + msg
     med = InputMediaPhoto(media=config.GLOBAL_IMG_URL, caption=msg)
@@ -798,7 +799,7 @@ async def serverinfoo(client: Client, message):
 
     await sysrep.edit_text(
         f"""
-➻ <u>** sʏsᴛᴇᴍ sᴛᴀᴛs**</u>
+➻ <u>**{MUSIC_BOT_NAME} sʏsᴛᴇᴍ sᴛᴀᴛs**</u>
 
 **ᴩʏᴛʜᴏɴ :** {pyver.split()[0]}
 **ᴩʏʀᴏɢʀᴀᴍ :** {pyrover}
