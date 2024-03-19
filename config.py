@@ -11,6 +11,8 @@ API_ID = int(getenv("API_ID", ""))
 
 API_HASH = getenv("API_HASH", "")
 
+BOT_IMAGE = getenv("BOT_IMAGE", "https://graph.org/file/8882cbd7cc786826d9ecb.jpg")
+
 BOT_TOKEN = getenv("BOT_TOKEN", "")
 
 Muntazer = getenv("muntazer", "vvyvv6")
