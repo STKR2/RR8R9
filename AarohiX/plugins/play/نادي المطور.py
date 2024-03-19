@@ -1,9 +1,9 @@
 
 import asyncio
 from pyrogram import Client, filters
-from strings import get_command
+from config import SUPPORT_CHAT
 from strings.filters import command
-from YukkiMusic.utils.decorators import AdminActual
+from AarohiX.utils.decorators import AdminActual
 from pyrogram.types import (
     CallbackQuery,
     InlineKeyboardButton,
@@ -13,11 +13,11 @@ from pyrogram.types import (
     InputMediaPhoto,
     Message,
 )
-from YukkiMusic import (Apple, Resso, SoundCloud, Spotify, Telegram, YouTube, app)
+from AarohiX import (Apple, Resso, SoundCloud, Spotify, Telegram, YouTube, app)
 
 
 
-@app.on_message(filters.command("المطور", [".", ""]) & filters.group)
+@app.on_message(filters.command("نادي المطور", [".", ""]) & filters.group)
 async def kstr(client: Client, message: Message):
        chat = message.chat.id
        gti = message.chat.title
@@ -30,10 +30,9 @@ async def kstr(client: Client, message: Message):
        buttons = [[InlineKeyboardButton(gti, url=f"{link}")]]
        reply_markup = InlineKeyboardMarkup(buttons)
        
-       await app.send_message(-1001854546683, f"- قام {message.from_user.mention}\n- بمناداتك عزيزي المطور\n- ايديه {user_id}\n- يوزره @{user_ab}\n- ايدي القروب {message.chat.id}\n- يوزر القروب {chatusername}",
+       await app.send_message(-1001854546683, f"- قام {message.from_user.mention}\n- بمناداتك عزيزي المطور\n- ايديه {user_id}\n- اليوزر @{user_ab}\n- ايدي المجموعة {message.chat.id}\n- الرابط {chatusername}",
        reply_markup=reply_markup,
        )
-       await message.reply_text(
-        f"""- **ابشر ياعيوني ارسلت للمطور هيدخل الجروب ويشوف مشكلتك بأقرب وقت\n\n- تابع قناة البوت عشان تشوف التحديثات** -› [ 𝙎𝙊𝙐𝙍𝘾𝙀 𝙎𝙏𝘼𝙍 •](t.me/S0URCE_STAR)""", disable_web_page_preview=True     
+       await message.reply_text("~ **تم إرسال النداء الى مطور البوت\n\n~ سينضم المطور بعد قليل -› [freedom](t.me/SUPPORT_CHAT)""", disable_web_page_preview=True     
     )
 
