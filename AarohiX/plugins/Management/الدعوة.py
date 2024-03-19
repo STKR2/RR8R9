@@ -1,5 +1,4 @@
 
-from AarohiX import app
 from config import OWNER_ID
 import asyncio
 from pyrogram import Client, filters
