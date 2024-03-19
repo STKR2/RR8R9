@@ -27,7 +27,7 @@ from pytgcalls.__version__ import __version__ as pytgver
 
 import config
 from config import OWNER_ID
-from config import BANNED_USERS, MUSIC_BOT_NAME
+from config import BANNED_USERS
 from AnonXMusic import YouTube, app
 from AnonXMusic import app as Client
 from AnonXMusic.core.userbot import assistants
@@ -203,7 +203,6 @@ async def top_users_ten(client, CallbackQuery: CallbackQuery, _):
             temp = (
                 _["gstats_4"].format(
                     queries,
-                    config.MUSIC_BOT_NAME,
                     len(stats),
                     total_count,
                     limit,
@@ -242,9 +241,9 @@ async def top_users_ten(client, CallbackQuery: CallbackQuery, _):
             limit += 1
             msg += f"🔗`{extract}` played {count} times on bot.\n\n"
         temp = (
-            _["gstats_5"].format(limit, MUSIC_BOT_NAME)
+            _["gstats_5"].format(limit)
             if what == "Chats"
-            else _["gstats_6"].format(limit, MUSIC_BOT_NAME)
+            else _["gstats_6"].format(limit)
         )
         msg = temp + msg
     med = InputMediaPhoto(media=config.GLOBAL_IMG_URL, caption=msg)
@@ -799,7 +798,7 @@ async def serverinfoo(client: Client, message):
 
     await sysrep.edit_text(
         f"""
-➻ <u>**{MUSIC_BOT_NAME} sʏsᴛᴇᴍ sᴛᴀᴛs**</u>
+➻ <u>** sʏsᴛᴇᴍ sᴛᴀᴛs**</u>
 
 **ᴩʏᴛʜᴏɴ :** {pyver.split()[0]}
 **ᴩʏʀᴏɢʀᴀᴍ :** {pyrover}
