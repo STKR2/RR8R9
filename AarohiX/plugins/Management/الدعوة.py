@@ -4,7 +4,7 @@ from AarohiX import app
 from strings.filters import command
 from AarohiX.core.call import Dil
 from AarohiX.utils.database import *
-from pyrogram.types import Message, VoiceChatStarted, VoiceChatEnded
+from pyrogram.error import Message, VoiceChatStarted, VoiceChatEnded
 from config import OWNER_ID
 
 
