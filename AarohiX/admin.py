@@ -2,6 +2,7 @@ from pyrogram import Client, filters
 from pyrogram.types import Message, CallbackQuery,InlineKeyboardMarkup as Keyboard, InlineKeyboardButton as Button 
 from Bot.funcs import read, write
 import pyrogram, os
+from AarohiX import app
 
 # @BENN_DEV & @BENfiles
 users_db = "strings/users.json"
@@ -16,7 +17,7 @@ channels = read(channels_db)
 banned = read(banned_db)
 
 
-@Client.on_message(filters.command("admin") & filters.private)
+@app.on_message(filters.command("admin") & filters.private)
 async def admin(client: Client, message: Message):
     user_id = message.from_user.id
     if user_id not in admins:
@@ -34,7 +35,7 @@ async def admin(client: Client, message: Message):
     )
     # @BENN_DEV & @BENfiles
 
-@Client.on_message(filters.regex(r"^(حظر)") & filters.private)
+@app.on_message(filters.regex(r"^(حظر)") & filters.private)
 async def ban(client: Client, message: Message):
     user_id = message.from_user.id
     if user_id not in admins:
@@ -60,7 +61,7 @@ async def ban(client: Client, message: Message):
     )
     # @BENN_DEV & @BENfiles
 
-@Client.on_message(filters.regex(r"^(رفع حظر)") & filters.private)
+@app.on_message(filters.regex(r"^(رفع حظر)") & filters.private)
 async def unban(client: Client, message: Message):
     user_id = message.from_user.id
     if user_id not in admins:
@@ -81,7 +82,7 @@ async def unban(client: Client, message: Message):
     )
     
 
-@Client.on_message(filters.regex(r"^(رفع ادمن)") & filters.private)
+@app.on_message(filters.regex(r"^(رفع ادمن)") & filters.private)
 async def ban(client: Client, message: Message):
     user_id = message.from_user.id
     if user_id not in admins:
@@ -107,7 +108,7 @@ async def ban(client: Client, message: Message):
     )
     
     
-@Client.on_message(filters.regex(r"^(تنزيل ادمن)") & filters.private)
+@app.on_message(filters.regex(r"^(تنزيل ادمن)") & filters.private)
 async def ban(client: Client, message: Message):
     user_id = message.from_user.id
     if user_id not in admins:
@@ -128,7 +129,7 @@ async def ban(client: Client, message: Message):
     )
 
 
-@Client.on_callback_query(filters.regex(r"^(forward_from_users)$|^(new_members_notice)$"))
+@app.on_callback_query(filters.regex(r"^(forward_from_users)$|^(new_members_notice)$"))
 async def redefine(client: Client, callback: CallbackQuery):
     data = callback.data
     others["options"][data] = True if not others["options"][data] else False
@@ -140,7 +141,7 @@ async def redefine(client: Client, callback: CallbackQuery):
     )
 
 
-@Client.on_callback_query(filters.regex(r"^(add_channel)$"))
+@app.on_callback_query(filters.regex(r"^(add_channel)$"))
 async def add_channel(client: Client, callback: CallbackQuery):
     response = await callback.message.chat.ask("أرسل معرف القناه مع مبدوء ب @", filters.regex(r"^(@)"))
     channel = response.text
@@ -163,7 +164,7 @@ async def add_channel(client: Client, callback: CallbackQuery):
     )
 
 
-@Client.on_callback_query(filters.regex(r"^(remove_channel)$"))
+@app.on_callback_query(filters.regex(r"^(remove_channel)$"))
 async def remove_channel(client: Client, callback: CallbackQuery):
     response = await callback.message.chat.ask("أرسل معرف القناه مع مبدوء ب @", filters.regex(r"^(@)"))
     channel = response.text
@@ -179,7 +180,7 @@ async def remove_channel(client: Client, callback: CallbackQuery):
     )
 
 
-@Client.on_callback_query(filters.regex(r"^(current_channels)$"))
+@app.on_callback_query(filters.regex(r"^(current_channels)$"))
 async def current_channels(client: Client, callback: CallbackQuery):
     caption = "- القنوات الحاليه :\n"
     text = "\n".join(channels)
@@ -187,7 +188,7 @@ async def current_channels(client: Client, callback: CallbackQuery):
     await client.answer_callback_query(callback_query_id=callback.id , text = caption, show_alert=True)
 
 
-@Client.on_callback_query(filters.regex(r"^(send_storage)$"))
+@app.on_callback_query(filters.regex(r"^(send_storage)$"))
 async def send_storage(client: Client, callback: CallbackQuery):
     files_path = "Bot/database"
     files = os.listdir(files_path)
