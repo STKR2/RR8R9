@@ -3,8 +3,9 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from AarohiX import app
 import asyncio
 from pytgcalls import PyTgCalls, StreamType
-from pytgcalls.types.input_stream import AudioPiped, AudioVideoPiped
-from AarohiX.utils.database import *
+from pytgcalls.types.input_stream import AudioPiped
+from AarohiX.core.call import AarohiX
+from AarohiX.utils.database import group_assistant
 from pytgcalls.exceptions import NoActiveGroupCall, TelegramServerError, AlreadyJoinedError
 import config
 
@@ -18,7 +19,7 @@ async def strcall(client, message):
         k = 0
         for participant in participants:
             info = participant
-            if info.muted == False:
+            if not info.muted:
                 mut = "~ جاي يمسلت "
             else:
                 mut = "~ ساد المايك "
@@ -32,20 +33,20 @@ async def strcall(client, message):
             [InlineKeyboardButton("- قناة البوت . ", url=config.SUPPORT_CHANNEL)],
         ])      
 
-        await message.reply(f"{text}", reply_markup=inline_keyboard)
+        await message.reply(text, reply_markup=inline_keyboard)
         await asyncio.sleep(7)
         await assistant.leave_group_call(message.chat.id)
     except NoActiveGroupCall:
-        await message.reply(f"- ماكو شي مشتغل")
+        await message.reply("- ماكو شي مشتغل")
     except TelegramServerError:
-        await message.reply(f"- حدث خطأ.")
+        await message.reply("- حدث خطأ.")
     except AlreadyJoinedError:
         text = "~ الصاعدين :\n\n"
         participants = await assistant.get_participants(message.chat.id)
         k = 0
         for participant in participants:
             info = participant
-            if info.muted == False:
+            if not info.muted:
                 mut = "~ جاي يمسلت "
             else:
                 mut = "~ ساد المايك "
@@ -58,4 +59,4 @@ async def strcall(client, message):
         inline_keyboard = InlineKeyboardMarkup([
             [InlineKeyboardButton("- قناة البوت . ", url=config.SUPPORT_CHANNEL)],
         ])
-        await message.reply(f"{text}", reply_markup=inline_keyboard)
+        await message.reply(text, reply_markup=inline_keyboard)
