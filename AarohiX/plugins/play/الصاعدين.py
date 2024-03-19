@@ -2,14 +2,18 @@ from pyrogram import filters, Client
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from AarohiX import app
 import asyncio
+from strings.filters import command
 from pytgcalls import PyTgCalls, StreamType
 from pytgcalls.types.input_stream import AudioPiped
-from AarohiX.core.call import AarohiX
+from AarohiX.core.call
+import AarohiX
 from AarohiX.utils.database import group_assistant
 from pytgcalls.exceptions import NoActiveGroupCall, TelegramServerError, AlreadyJoinedError
 import config
 
-@app.on_message(filters.regex("^الصاعدين$"))
+@app.on_message(
+    command(["صاعد", "الصاعدين"])
+)
 async def strcall(client, message):
     assistant = await group_assistant(AarohiX, message.chat.id)
     try:
