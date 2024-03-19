@@ -86,25 +86,25 @@ clean = {}
 autoclean = []
 
 START_IMG_URL = getenv(
-    "START_IMG_URL", "https://te.legra.ph/file/5fdd8da2461c05d893189.jpg"
+    "START_IMG_URL", "https://te.legra.ph/file/407ce4c57a645c11f65c0.jpg"
 )
 PING_IMG_URL = getenv(
-    "PING_IMG_URL", "https://te.legra.ph/file/5fdd8da2461c05d893189.jpg"
+    "PING_IMG_URL", "https://te.legra.ph/file/407ce4c57a645c11f65c0.jpg"
 )
 PLAYLIST_IMG_URL = getenv(
-    "PLAYLIST_IMG_URL", "https://te.legra.ph/file/5fdd8da2461c05d893189.jpg"
+    "PLAYLIST_IMG_URL", "https://te.legra.ph/file/407ce4c57a645c11f65c0.jpg"
 )                          
 STATS_IMG_URL = getenv(
-    "STATS_IMG_URL", "https://te.legra.ph/file/5fdd8da2461c05d893189.jpg"
+    "STATS_IMG_URL", "https://te.legra.ph/file/407ce4c57a645c11f65c0.jpg"
 )                       
 TELEGRAM_AUDIO_URL = getenv(
-    "TELEGRAM_AUDIO_URL", "https://te.legra.ph/file/5fdd8da2461c05d893189.jpg"
+    "TELEGRAM_AUDIO_URL", "https://te.legra.ph/file/407ce4c57a645c11f65c0.jpg"
 )                            
 TELEGRAM_VIDEO_URL = getenv(
-    "TELEGRAM_VIDEO_URL", "https://te.legra.ph/file/5fdd8da2461c05d893189.jpg"
+    "TELEGRAM_VIDEO_URL", "https://te.legra.ph/file/407ce4c57a645c11f65c0.jpg"
 )
 STREAM_IMG_URL = getenv(
-    "STREAM_IMG_URL","https://te.legra.ph/file/5fdd8da2461c05d893189.jpg"
+    "STREAM_IMG_URL","https://te.legra.ph/file/407ce4c57a645c11f65c0.jpg"
 )
 SOUNCLOUD_IMG_URL = getenv(
     "SOUNCLOUD_IMG_URL", "https://te.legra.ph/file/5fdd8da2461c05d893189.jpg"
