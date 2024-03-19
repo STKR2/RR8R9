@@ -1,4 +1,3 @@
-
 import re
 import os
 import asyncio
@@ -8,9 +7,8 @@ from AarohiX.core.userbot import assistants
 from AarohiX.misc import SUDOERS, mongodb
 
 
-   
 @app.on_message(filters.command(["تغير الاسم الاول 🪧", "الاسم الاول"], "") & SUDOERS)
-async def changefisrt(client: Client, message):
+async def changefisrt(client: app, message):
    try:
     if message.text == "تغير الاسم الاول 🪧":
       return await message.reply_text("• الان قم بالرد علي الاسم الجديد باستخدام كلمه الاسم الاول •")
@@ -23,7 +21,7 @@ async def changefisrt(client: Client, message):
 
 
 @app.on_message(filters.command(["تغير الاسم التاني 📝", "الاسم التاني"], "") & SUDOERS)
-async def changelast(client: Client, message):
+async def changelast(client: app, message):
    try:
     if message.text == "تغير الاسم التاني 📝":
       return await message.reply_text("• الان قم بالرد علي الاسم الجديد باستخدام كلمه الاسم التاني •")
@@ -36,7 +34,7 @@ async def changelast(client: Client, message):
 
 
 @app.on_message(filters.command(["تغير البايو 🔖", "البايو الجديد"], "") & SUDOERS)
-async def changebio(client: Client, message):
+async def changebio(client: app, message):
    try:
     if message.text == "تغير البايو 🔖":
       return await message.reply_text("• الان قم بالرد علي البايو الجديد باستخدام كلمة البايو الجديد •")
@@ -49,7 +47,7 @@ async def changebio(client: Client, message):
 
 
 @app.on_message(filters.command(["تغير اسم المستخدم 🔰", "اليوزر"], "") & SUDOERS)
-async def changeusername(client: Client, message):
+async def changeusername(client: app, message):
    try:
     if message.text == "تغير اسم المستخدم 🔰":
       return await message.reply_text("• الان قم بالرد علي اليوزر الجديد بدون علامة @ باستخدام كلمه اليوزر •")
@@ -62,7 +60,7 @@ async def changeusername(client: Client, message):
 
 
 @app.on_message(filters.command(["اضافه صوره 🖼️", "الصوره الجديده"], "") & SUDOERS)
-async def changephoto(client: Client, message):
+async def changephoto(client: app, message):
    try:
     if message.text == "اضافه صوره 🖼️":
       return await message.reply_text("• الان قم بالرد علي الصورة الجديدة بكلمه الصوره الجديده •")
@@ -75,7 +73,7 @@ async def changephoto(client: Client, message):
      await message.reply_text(f" حدث خطأ أثناء تغير الصوره")
 
 @app.on_message(filters.command(["• ازاله صوره •"], "") & SUDOERS)
-async def changephotos(client: Client, message):
+async def changephotos(client: app, message):
        try:
         client = await get_client(1)
         photos = await client.get_profile_photos("me")
