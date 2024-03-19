@@ -5,17 +5,17 @@ from AarohiX import app
 from config import Muntazer
 
 @app.on_message(filters.incoming & filters.private, group=-1)
-async def must_join_channel(bot: Client, msg: Message):
+async def must_join_channel(app: Client, msg: Message):
     if not Muntazer:
         return
     try:
         try:
-            chat_id = await bot.resolve_peer(Muntazer)
-            await bot.get_chat_member(chat_id,msg.from_user.id)
+            await app.get_chat_member(Muntazer, msg.from_user.id)
         except UserNotParticipant:
             if Muntazer.isalpha():
-                link = f"https://t.me/{Muntazer}"
+                link = "https://t.me/" + Muntazer
             else:
+                chat_info = await app.get_chat(Muntazer)
                 link = chat_info.invite_link
             try:
                 await msg.reply(
