@@ -10,8 +10,9 @@ async def must_join_channel(bot: Client, msg: Message):
         return
     try:
         try:
-            chat_info = await bot.get_chat(muntazer)
-            await bot.get_chat_member(chat_info.id, msg.from_user.id)  # تم تحديث هذا السطر
+            chat_id = await bot.resolve_peer(muntazer)
+            chat_info = await bot.get_chat(chat_id)
+            await bot.get_chat_member(chat_id, msg.from_user.id)
         except UserNotParticipant:
             if muntazer.isalpha():
                 link = f"https://t.me/{muntazer}"
