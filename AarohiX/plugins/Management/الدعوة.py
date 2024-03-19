@@ -2,7 +2,7 @@
 from config import OWNER_ID
 import asyncio
 from pyrogram import Client, filters
-from AnonX.utils.database import get_assistant
+from AarohiX.utils.database import get_assistant
 from strings.filters import command
 from pyrogram.types import Message, VoiceChatStarted, VoiceChatEnded
 from AarohiX import (Apple, Resso, SoundCloud, Spotify, Telegram, YouTube, app)
