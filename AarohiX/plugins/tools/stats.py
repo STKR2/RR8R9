@@ -28,7 +28,7 @@ from pytgcalls.__version__ import __version__ as pytgver
 import config
 from config import OWNER_ID
 from config import BANNED_USERS
-from AnonXMusic import YouTube, app
+from AarohiX import YouTube, app
 from AarohiX import app as Client
 from AarohiX.core.userbot import assistants
 from AarohiX.misc import SUDOERS, mongodb
