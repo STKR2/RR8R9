@@ -1,30 +1,28 @@
-from pyrogram import Client, filters
+
 from pyrogram.types import Message
 from AarohiX import app
 from strings.filters import command
 from AarohiX.core.call import Dil
 from AarohiX.utils.database import *
 from config import OWNER_ID
+from pyrogram import Client, filters
+from pyrogram.types import Message
 
-
-
-@app.on_message(filters.voice_chat_members_invited)
+@app.on_message(filters.voice_chat_started)
 async def zoharyy(client: Client, message: Message): 
-           text = f"- قام {message.from_user.mention}\n - بدعوة : "
-           x = 0
-           for user in message.voice_chat_members_invited.users:
-             try:
-               text += f"[{user.first_name}](tg://user?id={user.id}) "
-               x += 1
-             except Exception:
-               pass
-           try:
-             await message.reply(f"{text} ")
-           except:
-             pass
-
-
-
+    text = f"- قام {message.from_user.mention}\n - بدعوة : "
+    
+    if message.voice_chat_started.members:
+        for user in message.voice_chat_started.members:
+            try:
+                text += f"[{user.first_name}](tg://user?id={user.id}) "
+            except Exception:
+                pass
+            
+        try:
+            await message.reply(text)
+        except:
+            pass
 
 
 @app.on_message(filters.video_chat_started)
@@ -50,7 +48,7 @@ def calculate_math(client, message):
     message.reply(response)
 
 
-@app.on_message(filters.command(["spg"], ["/", "!", "."]))
+@app.on_message(command(["spg"], ["/", "!", "."]))
 async def search(event):
     msg = await event.respond("Searching...")
     async with aiohttp.ClientSession() as session:
