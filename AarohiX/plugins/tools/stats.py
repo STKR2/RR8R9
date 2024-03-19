@@ -29,13 +29,13 @@ import config
 from config import OWNER_ID
 from config import BANNED_USERS
 from AnonXMusic import YouTube, app
-from AnonXMusic import app as Client
-from AnonXMusic.core.userbot import assistants
-from AnonXMusic.misc import SUDOERS, mongodb
-from AnonXMusic.plugins import ALL_MODULES
-from AnonXMusic.utils.database import get_served_chats, get_served_users, get_sudoers
-from AnonXMusic.utils.decorators.language import language, languageCB
-from AnonXMusic.utils.inline.stats import back_stats_buttons, stats_buttons
+from AarohiX import app as Client
+from AarohiX.core.userbot import assistants
+from AarohiX.misc import SUDOERS, mongodb
+from AarohiX.plugins import ALL_MODULES
+from AarohiX.utils.database import get_served_chats, get_served_users, get_sudoers
+from AarohiX.utils.decorators.language import language, languageCB
+from AarohiX.utils.inline.stats import back_stats_buttons, stats_buttons
 
 loop = asyncio.get_running_loop()
 
