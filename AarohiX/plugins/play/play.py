@@ -1,6 +1,6 @@
+
 import random
 import string
-from strings.filters import command
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardMarkup, InputMediaPhoto, Message
 from pytgcalls.exceptions import NoActiveGroupCall
@@ -22,11 +22,38 @@ from AarohiX.utils.inline import (
 )
 from AarohiX.utils.logger import play_logs
 from AarohiX.utils.stream.stream import stream
-from config import BANNED_USERS, lyrical
+
+
+# Function to check if the user has joined the required channel
+async def must_join_channel(client, message):
+    if not config.Muntazer:  
+        return
+    try:
+        try:
+            await client.get_chat_member(config.Muntazer, message.from_user.id)
+        except UserNotParticipant:
+            if config.Muntazer.isalpha():
+                link = "https://t.me/" + config.Muntazer
+            else:
+                chat_info = await client.get_chat(config.Muntazer)
+                link = chat_info.invite_link
+            try:
+                await message.reply(
+                    f"~︙Dear {message.from_user.mention},\n~︙You must subscribe to the bot channel.\n~︙Bot channel : @{config.Muntazer}.",
+                    disable_web_page_preview=True,
+                    reply_markup=InlineKeyboardMarkup([
+                        [InlineKeyboardButton("< Team Freedom >", url=link)]
+                    ])
+                )
+                await message.stop_propagation()
+            except ChatWriteForbidden:
+                pass
+    except ChatAdminRequired:
+        print(f"I m not admin in the MUST_JOIN chat {config.Muntazer}!")
 
 
 @app.on_message(
-    command(
+    filters.command(
         [
             "تشغيل",
             "vplay",
@@ -38,7 +65,7 @@ from config import BANNED_USERS, lyrical
             "cvplayforce",
         ]
     )
-    & ~BANNED_USERS
+    & ~config.BANNED_USERS
 )
 @PlayWrapper
 async def play_commnd(
@@ -52,6 +79,9 @@ async def play_commnd(
     url,
     fplay,
 ):
+    # Check if the user has joined the required channel before playing the song
+    await must_join_channel(client, message)
+
     mystic = await message.reply_text(
         _["play_2"].format(channel) if channel else _["play_1"]
     )
@@ -173,7 +203,7 @@ async def play_commnd(
                 img = config.PLAYLIST_IMG_URL
                 cap = _["play_9"]
             elif "https://youtu.be" in url:
-                videoid = url.split("/")[-1].split("?")[0]
+                videoid = url.split("/")("/")[-1].split("?")[0]
                 details, track_id = await YouTube.track(f"https://www.youtube.com/watch?v={videoid}")
                 streamtype = "youtube"
                 img = details["thumb"]
