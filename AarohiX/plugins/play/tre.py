@@ -1,14 +1,24 @@
 
+token = "5793326527:AAG6SAhaSO1oEmwG89ZMoFJvAevIlNb1FLc"
+ownerID = int("1854384004")
 
 import asyncio 
 from pyrogram import Client, filters, idle
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, BotCommand
 from kvsqlite.sync import Client as DB
 from datetime import date
-from config import OWNER_ID
 from AarohiX import app
 from pyrogram.errors import FloodWait 
 botdb = DB('botdb.sqlite')
+
+bot = Client(
+  'bot'+token.split(":")[0],
+  9398500, 
+ 'ad2977d673006bed6e5007d953301e13',
+  bot_token=token, in_memory=True
+)
+
+bot.start()
 
 STARTKEY = InlineKeyboardMarkup(
        [
