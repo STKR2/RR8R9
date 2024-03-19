@@ -21,19 +21,22 @@ async def must_join_channel(app: Client, msg: Message):
             try:
                 if BOT_IMAGE:
                     # إذا كانت الصورة متوفرة
-                    await msg.reply_photo(
-                        photo=BOT_IMAGE,
-                        caption=f"~︙عزيزي {msg.from_user.mention} \n~︙عليك الأشتراك في قناة البوت \n~︙قناة البوت : @{Muntazer}.",
-                        disable_web_page_preview=True,
+                    await msg.reply(
+                        f"~︙عزيزي {msg.from_user.mention} \n~︙عليك الأشتراك في قناة البوت \n~︙قناة البوت : @{Muntazer}.",
                         reply_markup=InlineKeyboardMarkup([
                             [InlineKeyboardButton("< Team Freedom >", url=link)]
                         ])
+                    )
+                    await app.send_photo(
+                        chat_id=msg.chat.id,
+                        photo=BOT_IMAGE,
+                        caption=" ",
+                        reply_to_message_id=msg.message_id
                     )
                 else:
                     # إذا لم تكن الصورة متوفرة
                     await msg.reply(
                         f"~︙عزيزي {msg.from_user.mention} \n~︙عليك الأشتراك في قناة البوت \n~︙قناة البوت : @{Muntazer}.",
-                        disable_web_page_preview=True,
                         reply_markup=InlineKeyboardMarkup([
                             [InlineKeyboardButton("< Team Freedom >", url=link)]
                         ])
