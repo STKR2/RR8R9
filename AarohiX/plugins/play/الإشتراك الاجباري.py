@@ -2,24 +2,24 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
 from pyrogram.errors import ChatAdminRequired, UserNotParticipant, ChatWriteForbidden
 from AarohiX import app
-from config import CHANNEL_LINK
+from config import SUPPORT_CHAT
 
 @app.on_message(filters.incoming & filters.private, group=-1)
 async def must_join_channel(bot: Client, msg: Message):
-    if not CHANNEL_LINK:
+    if not SUPPORT_CHAT:
         return
     try:
         try:
-            await bot.get_chat_member(CHANNEL_LINK, msg.from_user.id)
+            await bot.get_chat_member(SUPPORT_CHAT, msg.from_user.id)
         except UserNotParticipant:
-            if CHANNEL_LINK.isalpha():
+            if SUPPORT_CHAT.isalpha():
                 link = CHANNEL_LINK
             else:
-                chat_info = await bot.get_chat(CHANNEL_LINK)
+                chat_info = await bot.get_chat(SUPPORT_CHAT)
                 link = chat_info.invite_link
             try:
                 await msg.reply(
-                    f"~︙اولا عليك  {msg.from_user.mention} \n~︙الأشتراك بقناة البوت \n~︙قناة البوت : {CHANNEL_LINK}.",
+                    f"~︙اولا عليك  {msg.from_user.mention} \n~︙الأشتراك بقناة البوت \n~︙قناة البوت : {SUPPORT_CHAT}.",
                     disable_web_page_preview=True,
                     reply_markup=InlineKeyboardMarkup([
                         [InlineKeyboardButton("< Team Freedom >", url=link)]
@@ -29,4 +29,4 @@ async def must_join_channel(bot: Client, msg: Message):
             except ChatWriteForbidden:
                 pass
     except ChatAdminRequired:
-        print(f"I m not admin in the MUST_JOIN chat {CHANNEL_LINK}!")
+        print(f"I m not admin in the MUST_JOIN chat {SUPPORT_CHAT}!")
