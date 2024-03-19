@@ -1,0 +1,6 @@
+{
+  "options": {
+    "forward_from_users": true,
+    "new_members_notice": true
+  }
+}
