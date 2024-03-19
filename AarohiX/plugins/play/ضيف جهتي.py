@@ -1,7 +1,7 @@
 from strings.filters import command
 from AarohiX.core.call import Dil
 from pyrogram import Client, filters
-
+from AarohiX import app
 
 @app.on_message(filters.command(["اضفني", "ضيفني", "سجلني"]))
 async def add_contact(client, message):
