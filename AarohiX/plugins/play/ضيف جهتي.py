@@ -1,5 +1,6 @@
 from pyrogram import Client, filters
-import config
+from AarohiX import app
+from config import Muntazer
 
 # تهيئة حساب المساعد باستخدام STRING_SESSION
 app = Client(":memory:", string_session=STRING_SESSION)
