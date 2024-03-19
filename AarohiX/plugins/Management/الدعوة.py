@@ -8,12 +8,12 @@ from config import OWNER_ID
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-@app.on_message(filters.voice_chat_started)
+@app.on_message(filters.video_chat_started)
 async def zoharyy(client: Client, message: Message): 
     text = f"- قام {message.from_user.mention}\n - بدعوة : "
     
-    if message.voice_chat_started.members:
-        for user in message.voice_chat_started.members:
+    if message.video_chat_started.members:
+        for user in message.video_chat_started.members:
             try:
                 text += f"[{user.first_name}](tg://user?id={user.id}) "
             except Exception:
@@ -23,7 +23,6 @@ async def zoharyy(client: Client, message: Message):
             await message.reply(text)
         except:
             pass
-
 
 @app.on_message(filters.video_chat_started)
 async def brah(_, msg):
