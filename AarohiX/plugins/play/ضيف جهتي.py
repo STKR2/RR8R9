@@ -1,7 +1,5 @@
 from pyrogram import Client, filters
-
-# استيراد السمة المحددة من ملف config.py
-from config import STRING_SESSION
+import config
 
 # تهيئة حساب المساعد باستخدام STRING_SESSION
 app = Client(":memory:", string_session=STRING_SESSION)
