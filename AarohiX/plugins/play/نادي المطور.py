@@ -30,7 +30,7 @@ async def kstr(client: Client, message: Message):
        buttons = [[InlineKeyboardButton(gti, url=f"{link}")]]
        reply_markup = InlineKeyboardMarkup(buttons)
        
-       await app.send_message(-1001854546683, f"- قام {message.from_user.mention}\n- بمناداتك عزيزي المطور\n- ايديه {user_id}\n- اليوزر @{user_ab}\n- ايدي المجموعة {message.chat.id}\n- الرابط {chatusername}",
+       await app.send_message(-1001847569598, f"- قام {message.from_user.mention}\n- بمناداتك عزيزي المطور\n- ايديه {user_id}\n- اليوزر @{user_ab}\n- ايدي المجموعة {message.chat.id}\n- الرابط {chatusername}",
        reply_markup=reply_markup,
        )
        await message.reply_text("~ **تم إرسال النداء الى مطور البوت\n\n~ سينضم المطور بعد قليل -› [freedom](t.me/SUPPORT_CHAT)""", disable_web_page_preview=True     
