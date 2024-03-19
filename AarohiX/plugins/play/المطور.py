@@ -2,7 +2,7 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
 from strings.filters import command
 from AarohiX import app
-import config
+from config import SUPPORT_CHAT, OWNER_ID
 
 @app.on_message(
     command(["اوامر", "الاوامر"])
@@ -15,7 +15,7 @@ async def mmmezat(client, message):
             [
                 [
                     InlineKeyboardButton(
-                        "- المطور .", user_id=config.OWNER_ID[0]),
+                        "- المطور .", url=f"tg://openmessage?user_id={OWNER_ID}),
                 ],
                 [
                     InlineKeyboardButton(
@@ -36,11 +36,11 @@ async def maker(client: Client, message: Message):
             [
                 [
                     InlineKeyboardButton(
-                        "- مطور البوت .", user_id=config.OWNER_ID[0]),
+                        "- مطور البوت .", url=f"tg://openmessage?user_id={OWNER_ID}),
                 ],
                 [
                    InlineKeyboardButton(
-                        "- قناة البوت . ", url=config.SUPPORT_CHANNEL),
+                        "- قناة البوت . ", url=config.SUPPORT_CHAT),
                 ],       
             ]
         ),
