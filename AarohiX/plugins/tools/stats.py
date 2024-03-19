@@ -28,14 +28,14 @@ from pytgcalls.__version__ import __version__ as pytgver
 import config
 from config import OWNER_ID
 from config import BANNED_USERS, MUSIC_BOT_NAME
-from ZeMusic import YouTube, app
-from ZeMusic import app as Client
-from ZeMusic.core.userbot import assistants
-from ZeMusic.misc import SUDOERS, mongodb
-from ZeMusic.plugins import ALL_MODULES
-from ZeMusic.utils.database import get_served_chats, get_served_users, get_sudoers
-from ZeMusic.utils.decorators.language import language, languageCB
-from ZeMusic.utils.inline.stats import back_stats_buttons, stats_buttons
+from AarohiX import YouTube, app
+from AarohiX import app as Client
+from AarohiX.core.userbot import assistants
+from AarohiX.misc import SUDOERS, mongodb
+from AarohiX.plugins import ALL_MODULES
+from AarohiX.utils.database import get_served_chats, get_served_users, get_sudoers
+from AarohiX.utils.decorators.language import language, languageCB
+from AarohiX.utils.inline.stats import back_stats_buttons, stats_buttons
 
 loop = asyncio.get_running_loop()
 
