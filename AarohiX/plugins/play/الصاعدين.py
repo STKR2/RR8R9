@@ -5,7 +5,7 @@ import asyncio
 from pytgcalls import PyTgCalls, StreamType
 from pytgcalls.types.input_stream import AudioPiped
 from AarohiX.core.call import Aarohi 
-from pytgcalls.exceptions import NoActiveGroupCall, TelegramServerError)
+from pytgcalls.exceptions import NoActiveGroupCall, TelegramServerError
 import config
 
 @app.on_message(
