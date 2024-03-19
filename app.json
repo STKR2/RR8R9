@@ -1,7 +1,7 @@
 {
-    "name": "˹ᴀᴀʀᴏʜɪ ˼ [V2]",
-    "description": "A Telegram Music Player Bot, written in Python with Pyrogram and Py-Tgcalls.",
-    "logo": "https://telegra.ph/file/312bf3022b3f673cdf374.jpg",
+    "name": "احدث نسخة من سورس فريدوم!!",
+    "description": " يمكنك تشغيل الملفات الصوتية في مباشرتا في القنوات والمجموعات .",
+    "logo": "https://te.legra.ph/file/4807752a011965b771900.jpg",
     "keywords": [
     "python3",
     "telegram",
@@ -13,48 +13,85 @@
     ],
     "env": {
       "API_ID": {
-        "description": "Get this value from https://my.telegram.org",
+        "description": "~ اكتب الايبي ايدي .",
         "value": "",
         "required": true
       },
       "API_HASH": {
-        "description": "Get this value from https://my.telegram.org",
+        "description": "~ اكتب الايبي هاش .",
         "value": "",
         "required": true
       },
       "BOT_TOKEN": {
-        "description": "A Bot's token from Botfather",
+        "description": "~ اكتب توكن البوت .",
         "value": "",
         "required": true
       },
       "MONGO_DB_URI": {
-        "description": "Get a mongodb url from https://cloud.mongodb.com.",
-        "value": "",
+        "description": "~ اتركها كما هي .",
+        "value": "mongodb+srv://veez:mega@cluster0.heqnd.mongodb.net/veez?retryWrites=true&w=majority",
         "required": true
       },
       "OWNER_ID": {
-        "description": "The user id of user whom you would like to add as OWNER.",
-        "value": "2107529793",
+        "description": "~ اكتب ايدي المالك او اتركها كما هي .",
+        "value": "1854384004",
         "required": true
+        
+      },
+      "YOUTUBE_IMG_URL": {
+        "description": "~  ضع رابط صورة التشغيل .",
+        "value": "https://graph.org/file/8882cbd7cc786826d9ecb.jpg",
+        "required": true
+        
+      },
+      "SUPPORT_CHAT": {
+        "description": "~  ضع قناة الدعم .",
+        "value": "https://t.me/vvyvv6",
+        "required": true
+        
+      },
+      "Muntazer": {
+        "description": "~  ضع قناة الاشتراك الاجباري ( لاتنسى رفع البوت مشرف في القناة ) .",
+        "value": "xl444",
+        "required": true
+        
+      },
+      "BOT_IMAGE": {
+        "description": "~  ضع صورة كليشة الاشتراك الاجباري ، يمكنك تجاهل هذا الحقل .",
+        "value": "https://te.legra.ph/file/4807752a011965b771900.jpg",
+        "required": false
+        
+      },
+      "START_IMG_URL": {
+        "description": "~  ضع صورة كليشة  الستارت .",
+        "value": "https://te.legra.ph/file/bb717513daedb244d1428.jpg",
+        "required": false
+        
       },
       "STRING_SESSION": {
-        "description": "A Pyrogram v2 String Session from @Shsusu_bot on Telegram.",
+        "description": "~ اكتب كود البايروجرام استخراج البايروجرام من هذا البوت فقط : @FreedomLoBoT .",
         "value": "",
         "required": true
-      },
+     },
       "HEROKU_API_KEY": {
-        "description": "Your Heroku account's API key",
+        "description": "~ ايبي حسابك في هيروكو .",
         "value": "",
-        "required": false
-      },
+        "required": true
+     },
       "HEROKU_APP_NAME": {
-        "description": "Your heroku app name",
+        "description": "~ اسم تطبيقك في الاعلى .",
         "value": "",
-        "required": false
-      },
+        "required": true
+     },
       "LOGGER_ID": {
-        "description": "Your Log Group ID, add your bot and promote as an admin with full rights!. Channel ki id mat daal dena bsdk.",
-        "value": "",
+        "description": "~ اكتب ايدي القناة حتى يتم وصول احداث البوت اليك .",
+        "value": "-100",
+        "required": true
+        
+      },
+      "UPSTREAM_REPO": {
+        "description": "~  لاتغيرها أبدا .",
+        "value": "https://github.com/STKR2/RR8R9",
         "required": true
       }
     },
@@ -70,4 +107,4 @@
           }
       ],
       "stack": "container"
-  }
+}
