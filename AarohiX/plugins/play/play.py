@@ -2,8 +2,6 @@ import random
 import string
 from strings.filters import command
 from pyrogram import filters
-from pyrogram.errors import UserNotParticipant
-from config import Muntazer
 from pyrogram.types import InlineKeyboardMarkup, InputMediaPhoto, Message
 from pytgcalls.exceptions import NoActiveGroupCall
 
@@ -43,7 +41,7 @@ from config import BANNED_USERS, lyrical
     & ~BANNED_USERS
 )
 @PlayWrapper
-async def play_command(
+async def play_commnd(
     client,
     message: Message,
     _,
@@ -54,14 +52,9 @@ async def play_command(
     url,
     fplay,
 ):
-    if Muntazer:
-        try:
-            await app.get_chat_member(Muntazer, message.from_user.id)
-        except UserNotParticipant:
-            return await message.reply_text(
-                f"~︙ عذراً {message.from_user.mention} ، يجب عليك الاشتراك في القناة لاستخدام البوت.\n\n"
-                f"• الرجاء الانضمام إلى القناة: @{Muntazer}"
-            )
+    mystic = await message.reply_text(
+        _["play_2"].format(channel) if channel else _["play_1"]
+    )
     plist_id = None
     slider = None
     plist_type = None
@@ -371,6 +364,7 @@ async def play_command(
         try:
             await stream(
                 _,
+                mystic,
                 user_id,
                 details,
                 chat_id,
@@ -384,7 +378,7 @@ async def play_command(
         except Exception as e:
             ex_type = type(e).__name__
             err = e if ex_type == "AssistantErr" else _["general_2"].format(ex_type)
-            return await edit_text(err)
+            return await mystic.edit_text(err)
         await mystic.delete()
         return await play_logs(message, streamtype=streamtype)
     else:
