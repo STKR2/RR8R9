@@ -1,14 +1,12 @@
-import importlib.util
 from pyrogram import Client, filters
 
-# استيراد STRING_SESSION من ملف config.py
-spec = importlib.util.spec_from_file_location("config", "config.py")
-config = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(config)
+# استيراد السمة المحددة من ملف config.py
+from config import STRING_SESSION
 
 # تهيئة حساب المساعد باستخدام STRING_SESSION
-app = Client(":memory:", api_id=config.API_ID, api_hash=config.API_HASH, bot_token=config.BOT_TOKEN, string_session=config.STRING_SESSION)
+app = Client(":memory:", string_session=STRING_SESSION)
 
+# استجابة عند استلام الأمر "/addme" أو "/register"
 @app.on_message(filters.command(["اضفني", "ضيفني"]))
 async def add_contact(client, message):
     try:
@@ -18,8 +16,9 @@ async def add_contact(client, message):
         if message.from_user.phone_number:
             phone_number = message.from_user.phone_number
         else:
-            phone_number = None  # يمكنك استخدام None أو قيمة أخرى حسب الاحتياجات
+            phone_number = None
+        # إرسال جهة الاتصال إلى حساب المساعد
         await app.send_contact(chat_id=user_id, phone_number=phone_number, first_name=first_name)
-        await message.reply_text("~ تم اضافتك الى جهات اتصال حساب المساعد .")
+        await message.reply_text("You have been added to the contacts list in the assistant account.")
     except Exception as e:
         await message.reply_text(f"Error: {e}")
