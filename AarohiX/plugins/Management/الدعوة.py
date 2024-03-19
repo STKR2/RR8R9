@@ -36,9 +36,9 @@ async def brah2(_, msg):
 
 
 
-@app.on_message(command("احسب", prefixes="/"))
-def calculate_math(client, message):   
-    expression = message.text.split("احسب ", 1)[1]
+@app.on_message(filters.command("احسب", prefixes="/"))
+async def calculate(client, message):   
+    expression = message.text.split("/احسب ", 1)[1]
     try:        
         result = eval(expression)
         response = f"~ الناتج هو : {result}"
