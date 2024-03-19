@@ -20,14 +20,25 @@ async def brah2(_, msg):
 
 @app.on_message(filters.video_chat_members_invited)
 async def brah3(client, message):
-    from_user = message.from_user
-    text = f"- قام {from_user.mention}\n - بدعوة : "
     try:
-        for user in message.video_chat_members_invited:
-            text += f"[{user.first_name}](tg://user?id={user.id}) "
+        inviter_id = message.sender_chat_member.inviter_id
+        inviter = await client.get_users(inviter_id)
+        inviter_text = f"- قام {inviter.mention} بدعوة: "
     except Exception as e:
-        print(f"An error occurred: {e}")
+        print(f"An error occurred while fetching inviter: {e}")
+        inviter_text = "- لم يتم العثور على معلومات المُدعو."
+
+    try:
+        invited_text = ""
+        for user in message.video_chat_members_invited:
+            invited_text += f"[{user.first_name}](tg://user?id={user.id}) "
+    except Exception as e:
+        print(f"An error occurred while fetching invited users: {e}")
+        invited_text = "- لم يتم العثور على المستخدمين المُدعوين."
+
+    text = inviter_text + invited_text
+
     try:
         await message.reply(text)
-    except:
-        pass
+    except Exception as e:
+        print(f"An error occurred while replying to message: {e}")
