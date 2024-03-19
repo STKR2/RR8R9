@@ -1,7 +1,8 @@
 from strings.filters import command
+from AarohiX import app
 from AarohiX.core.userbot import assistants
 
-@USER.on_message(command(["اضفني","ضيفني","سجلني"]))
+@app.on_message(command(["اضفني","ضيفني","سجلني"]))
 async def leave_one(client, message):
     try:
         if message.from_user.username:
