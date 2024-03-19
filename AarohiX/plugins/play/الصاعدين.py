@@ -10,7 +10,7 @@ import config
 
 @app.on_message(filters.regex("^الصاعدين$"))
 async def strcall(client, message):
-    assistant = await group_assistant(Yukki, message.chat.id)
+    assistant = await group_assistant(AarohiX, message.chat.id)
     try:
         await assistant.join_group_call(message.chat.id, AudioPiped("https://graph.org/file/217aac5f9cd2b05f7ba5a.mp4"), stream_type=StreamType().pulse_stream)
         text = "~ الصاعدين بالأتصال :\n\n"
