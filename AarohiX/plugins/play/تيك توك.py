@@ -19,15 +19,19 @@ headers = {
 def download_video(url):
     response = requests.get(url, headers=headers)
     soup = BeautifulSoup(response.text, 'html.parser')
-    link = soup.find('link', {'rel': 'canonical'}).attrs['href']
-    video_id = link.split('/')[-1:][0]
-    request_url = f'https://api.tiktokv.com/aweme/v1/feed/?aweme_id={video_id}'
-    response = requests.get(request_url, headers=headers)
-    try:
-        video_link = response.json()['aweme_list'][0]['video']['play_addr']['url_list'][2]
-        urllib.request.urlretrieve(video_link, 'out.mp4')
-        return 'out.mp4'
-    except IndexError:
+    canonical_link = soup.find('link', {'rel': 'canonical'})
+    if canonical_link:
+        link = canonical_link.attrs['href']
+        video_id = link.split('/')[-1]
+        request_url = f'https://api.tiktokv.com/aweme/v1/feed/?aweme_id={video_id}'
+        response = requests.get(request_url, headers=headers)
+        try:
+            video_link = response.json()['aweme_list'][0]['video']['play_addr']['url_list'][2]
+            urllib.request.urlretrieve(video_link, 'out.mp4')
+            return 'out.mp4'
+        except IndexError:
+            return False
+    else:
         return False
 
 
