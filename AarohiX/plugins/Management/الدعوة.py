@@ -30,5 +30,3 @@ async def brah3(client, message):
         await message.reply(text)
     except:
         pass
-
-app.run()
