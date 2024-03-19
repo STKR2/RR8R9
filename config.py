@@ -13,7 +13,7 @@ API_HASH = getenv("API_HASH", "")
 
 BOT_TOKEN = getenv("BOT_TOKEN", "")
 
-muntazer = getenv("muntazer", "https://t.me/vvyvv6")
+Muntazer = getenv("muntazer", "vvyvv6")
 
 MONGO_DB_URI = getenv("MONGO_DB_URI", "")
 
