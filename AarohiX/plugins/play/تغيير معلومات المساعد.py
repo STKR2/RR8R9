@@ -2,6 +2,7 @@ import re
 import os
 import asyncio
 from AarohiX import app
+from pyrogram import Client, filters
 from datetime import datetime
 from AarohiX.core.userbot import assistants
 from AarohiX.misc import SUDOERS, mongodb
