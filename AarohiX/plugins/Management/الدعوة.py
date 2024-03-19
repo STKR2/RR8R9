@@ -7,7 +7,6 @@ from strings.filters import command
 from pyrogram.types import Message, VoiceChatStarted, VoiceChatEnded
 from AarohiX import (Apple, Resso, SoundCloud, Spotify, Telegram, YouTube, app)
 from AarohiX.core.call import Dil
-from AarohiX.utils.database import get_assistant
 
 
 @app.on_message(filters.video_chat_started)
