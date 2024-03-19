@@ -47,7 +47,7 @@ async def calculate(client, message):
     message.reply(response)
 
 
-@app.on_message(command(["spg"], ["/", "!", "."]))
+@app.on_message(filters.command(["spg"], prefixes=["/", "!", "."]))
 async def search(event):
     msg = await event.respond("Searching...")
     async with aiohttp.ClientSession() as session:
