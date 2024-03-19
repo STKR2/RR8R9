@@ -18,17 +18,17 @@ async def brah2(_, msg):
        await msg.reply("**‹ تم انهاء المحادثة ›**")
 
 
-@app.on_message(filters.voice_chat_members_invited)
-async def zoharyy(client: Client, message: Message): 
-           text = f"- قام {message.from_user.mention}\n - بدعوة : "
+@app.on_message(filters.video_chat_members_invited)
+async def brah3(app :app, message:Message):
+           text = f"~ قام {message.from_user.mention} "
            x = 0
-           for user in message.voice_chat_members_invited.users:
+           for user in message.video_chat_members_invited.users:
              try:
-               text += f"[{user.first_name}](tg://user?id={user.id}) "
+               text += f"~ بدعوة :[{user.first_name}](tg://user?id={user.id}) "
                x += 1
              except Exception:
                pass
            try:
-             await message.reply(f"{text} ")
+             await message.reply(f"{text}")
            except:
              pass
