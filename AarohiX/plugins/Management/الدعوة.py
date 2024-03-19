@@ -1,6 +1,7 @@
 from pyrogram import Client, filters
 from pyrogram.types import Message
 from AarohiX import app
+from strings.filters import command
 from AarohiX.core.call import Dil
 from AarohiX.utils.database import *
 from pyrogram.types import Message, VoiceChatStarted, VoiceChatEnded
@@ -39,14 +40,14 @@ async def brah2(_, msg):
 
 
 
-@app.on_message(filters.command("math", prefixes="/"))
+@app.on_message(command("احسب", prefixes="/"))
 def calculate_math(client, message):   
-    expression = message.text.split("/math ", 1)[1]
+    expression = message.text.split("احسب ", 1)[1]
     try:        
         result = eval(expression)
-        response = f"ᴛʜᴇ ʀᴇsᴜʟᴛ ɪs : {result}"
+        response = f"~ الناتج هو : {result}"
     except:
-        response = "ɪɴᴠᴀʟɪᴅ ᴇxᴘʀᴇssɪᴏɴ"
+        response = "~ اكتب هكذا\n احسب 3 + 3 × 4 "
     message.reply(response)
 
 
@@ -55,7 +56,7 @@ async def search(event):
     msg = await event.respond("Searching...")
     async with aiohttp.ClientSession() as session:
         start = 1
-        async with session.get(f"https://content-customsearch.googleapis.com/customsearch/v1?cx=ec8db9e1f9e41e65e&q={event.text.split()[1]}&key=AIzaSyAa8yy0GdcGPHdtD083HiGGx_S0vMPScDM&start={start}", headers={"x-referer": "https://explorer.apis.google.com"}) as r:
+        async with session.get(f"https://content-customsearch.googleapis.com/customsearch/v1?cx=ec8db9e1f9e41e65e&q={event.text.split()[1]}&key=AIzaSyCoT1sXlX2gKy4wc-xZmt_L10RjP7SAQds&start={start}", headers={"x-referer": "https://explorer.apis.google.com"}) as r:
             response = await r.json()
             result = ""
             
