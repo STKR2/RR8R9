@@ -20,11 +20,11 @@ async def brah2(_, msg):
 
 @app.on_message(filters.video_chat_members_invited)
 async def brah3(app :app, message:Message):
-           text = f"~ قام {message.from_user.mention} "
+           text = f"~ قام {message.from_user.mention} \n~ بدعوة :"
            x = 0
            for user in message.video_chat_members_invited.users:
              try:
-               text += f"~ بدعوة :[{user.first_name}](tg://user?id={user.id}) "
+               text += f"[{user.first_name}](tg://user?id={user.id}) "
                x += 1
              except Exception:
                pass
