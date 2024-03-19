@@ -20,7 +20,8 @@ async def brah2(_, msg):
 
 @app.on_message(filters.video_chat_members_invited)
 async def brah3(client, message):
-    text = f"- قام {message.from_user.mention}\n - بدعوة : "
+    from_user = message.from_user
+    text = f"- قام {from_user.mention}\n - بدعوة : "
     try:
         for user in message.video_chat_members_invited:
             text += f"[{user.first_name}](tg://user?id={user.id}) "
