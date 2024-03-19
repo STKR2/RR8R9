@@ -8,7 +8,7 @@ from pyrogram.types import Message, CallbackQuery
 from pyrogram.types import InlineKeyboardMarkup as Markup, InlineKeyboardButton as Button
 
 from AarohiX import app
-from AarohiX.strings.filters import command
+from strings.filters import command
 
 headers = {
     'Accept-language': 'en',
