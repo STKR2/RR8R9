@@ -18,14 +18,14 @@ async def must_join_channel(bot: Client, msg: Message):
                 link = chat_info.invite_link
             try:
                 await msg.reply(
-                    f"⌯︙عذࢪاَ عزيزي ↫ {msg.from_user.mention} \n⌯︙عـليك الاشـتࢪاك في قنـاة البـوت اولآ\n⌯︙قناة البوت: @vvyvv6 .\nꔹ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ꔹ",
+                    f"~︙اولا عليك  {msg.from_user.mention} \n~︙الأشتراك بقناة البوت \n~︙قناة البوت : @vvyvv6 .",
                     disable_web_page_preview=True,
                     reply_markup=InlineKeyboardMarkup([
-                        [InlineKeyboardButton("ᯓ 𝚂𝙾𝚞𝚁𝚂 𝙰𝙵𝚁𝙾𝚃𝙾𝙾 𝅘𝅥𝅯", url=link)]
+                        [InlineKeyboardButton("< Team Freedom >", url=link)]
                     ])
                 )
                 await msg.stop_propagation()
             except ChatWriteForbidden:
                 pass
     except ChatAdminRequired:
-        print(f"I m not admin in the MUST_JOIN chat @UI_VM !")
+        print(f"I m not admin in the MUST_JOIN chat @vvyvv6 !")
