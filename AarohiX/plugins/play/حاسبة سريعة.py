@@ -4,7 +4,7 @@ from AarohiX import app
 from strings.filters import command
 from config import OWNER_ID
 
-@app.on_message(command("احسب", prefixes="/"))
+@app.on_message(command("احسب"))
 def calculate_math(client, message):   
     expression = message.text.split("احسب ", 1)[1]
     try:        
