@@ -1,7 +1,5 @@
 
 import asyncio
-from pyrogram import Client, filters
-from config import SUPPORT_CHAT
 from strings.filters import command
 from AarohiX.utils.decorators import AdminActual
 from pyrogram.types import (
@@ -14,8 +12,9 @@ from pyrogram.types import (
     Message,
 )
 from AarohiX import (Apple, Resso, SoundCloud, Spotify, Telegram, YouTube, app)
-
-
+from pyrogram import Client, filters
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from config import LOGGER_ID, SUPPORT_CHAT
 
 @app.on_message(filters.command("نادي المطور", [".", ""]) & filters.group)
 async def kstr(client: Client, message: Message):
@@ -30,9 +29,10 @@ async def kstr(client: Client, message: Message):
        buttons = [[InlineKeyboardButton(gti, url=f"{link}")]]
        reply_markup = InlineKeyboardMarkup(buttons)
        
-       await app.send_message(-1001847569598, f"- قام {message.from_user.mention}\n- بمناداتك عزيزي المطور\n- ايديه {user_id}\n- اليوزر @{user_ab}\n- ايدي المجموعة {message.chat.id}\n- الرابط {chatusername}",
+       await app.send_message(LOGGER_ID, f"- قام {message.from_user.mention}\n- بمناداتك عزيزي المطور\n- ايديه {user_id}\n- اليوزر @{user_ab}\n- ايدي المجموعة {message.chat.id}\n- الرابط {chatusername}",
        reply_markup=reply_markup,
        )
-       await message.reply_text("~ **تم إرسال النداء الى مطور البوت\n\n~ سينضم المطور بعد قليل -› [freedom](t.me/SUPPORT_CHAT)""", disable_web_page_preview=True     
-    )
-
+       await message.reply_text(f"~ **تم إرسال النداء الى مطور البوت\n\n~ سينضم المطور بعد قليل {SUPPORT_CHAT}""", disable_web_page_preview=True  
+                                
+       )
+   
