@@ -1,6 +1,7 @@
 from pyrogram import filters, Client
 from AarohiX import app
 import asyncio
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.types import VideoChatEnded, Message
 from pytgcalls import PyTgCalls, StreamType
 from pytgcalls.types.input_stream import AudioPiped, AudioVideoPiped
