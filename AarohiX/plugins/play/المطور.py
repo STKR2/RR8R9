@@ -31,7 +31,7 @@ async def mmmezat(client, message):
 )
 async def maker(client: Client, message: Message):
     await message.reply_photo(
-        photo="https://te.legra.ph/file/402c519808f75bd9b1803.jpg",
+        photo="https://te.legra.ph/file/08cec0a2a844713e1624a.jpg",
         caption="~ Team freedom \n~ Dav Source",
         reply_markup=InlineKeyboardMarkup(
             [
