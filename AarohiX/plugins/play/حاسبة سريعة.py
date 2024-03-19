@@ -1,6 +1,7 @@
 from pyrogram import Client, filters
 from pyrogram.types import Message
 from AarohiX import app
+from strings.filters import command
 from config import OWNER_ID
 
 @app.on_message(command("احسب", prefixes="/"))
