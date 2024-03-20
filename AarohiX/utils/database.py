@@ -41,7 +41,6 @@ count = {}
 cleanmode = []
 channelconnect = {}
 langm = {}
-vlimit = []
 loop = {}
 maintenance = []
 nonadmin = {}
@@ -707,23 +706,3 @@ async def get_queries() -> int:
     if not mode:
         return 0
     return mode["mode"]
-
-async def set_queries(mode: int):
-    chat_id = 98324
-    queries = await queriesdb.find_one({"chat_id": chat_id})
-    if queries:
-        mode = queries["mode"] + mode
-    return await queriesdb.updatasync def get_video_limit() -> str:
-    chat_id = 123456
-    if not vlimit:
-        dblimit = await videodb.find_one({"chat_id": chat_id})
-        if not dblimit:
-            limit = config.VIDEO_STREAM_LIMIT
-        else:
-            limit = dblimit["limit"]
-    else:
-        limit = vlimit[0]
-    return limite_one(
-        {"chat_id": chat_id}, {"$set": {"mode": mode}}, upsert=True
-    )        
-
