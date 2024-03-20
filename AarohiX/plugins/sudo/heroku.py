@@ -34,7 +34,7 @@ async def is_heroku():
 
 
 
-@app.on_message(command(["‹ الداينو ›"]) & filters.user(OWNER_ID))
+@app.on_message(command(["‹ الداينو ›"]) & (OWNER_ID))
 @language
 async def usage_dynos(client, message, _):
     ### Credits CatUserbot
@@ -89,7 +89,7 @@ async def usage_dynos(client, message, _):
     return await dyno.edit(text)
 
 
-@app.on_message(command(["‹ تحديث السورس ›"]) & filters.user(OWNER_ID))
+@app.on_message(command(["‹ تحديث السورس ›"]) & (OWNER_ID))
 @language
 async def update_(client, message, _):
     if await is_heroku():
@@ -189,7 +189,7 @@ async def update_(client, message, _):
         exit()
 
 
-@app.on_message(command(["‹ اعادة تشغيل البوت ›"]) & filters.user(OWNER_ID))
+@app.on_message(command(["‹ اعادة تشغيل البوت ›"]) & (OWNER_ID))
 @language
 async def restart_(_, message):
     response = await message.reply_text("~ جاري اعادة تشغيل .")
