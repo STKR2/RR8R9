@@ -1,17 +1,26 @@
 from pyrogram import Client, filters
-import config
-from AarohiX import app
 
-@app.on_message(filters.command("تفعيل_التواصل") & filters.user(config.OWNER_ID))
+from config import OWNER_ID
+
+# تمكين/تعطيل التواصل
+communication_enabled = True
+
+@app.on_message(filters.private & ~filters.command(["تفعيل", "disable"]))
+def reply_to_private_messages(client, message):
+    global communication_enabled
+    if communication_enabled:
+        message.reply_text("شكرًا لرسالتك، سأقوم بالرد عليك في أقرب وقت ممكن.")
+    else:
+        message.reply_text("عذراً، حالياً تم تعطيل التواصل مع البوت.")
+
+@app.on_message(filters.command(["تفعيل"]) & filters.user(OWNER_ID))
 def enable_communication(client, message):
-    message.reply_text("تم تفعيل التواصل مع الأعضاء")
+    global communication_enabled
+    communication_enabled = True
+    message.reply_text("تم تمكين التواصل.")
 
-@app.on_message(filters.command("تعطيل_التواصل") & filters.user(config.OWNER_ID))
+@app.on_message(filters.command(["تعطيل"]) & filters.user(OWNER_ID))
 def disable_communication(client, message):
-    message.reply_text("تم تعطيل التواصل مع الأعضاء")
-
-
-@app.on_message(filters.command & filters.reply & filters.private)
-def reply_to_message(client, message):
-    replied_message = message.reply_to_message
-    message.reply_text(f"لقد ردت على الرسالة التي تم استقبالها: {replied_message.text}")
+    global communication_enabled
+    communication_enabled = False
+    message.reply_text("تم تعطيل التواصل.")
