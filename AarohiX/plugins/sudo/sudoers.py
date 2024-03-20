@@ -52,7 +52,7 @@ GAMDOP = "https://te.legra.ph/file/08cec0a2a844713e1624a.jpg"
 async def sudoers_list(client, message: Message):
     keyboard = [[InlineKeyboardButton(" ~ المطورين . ", callback_data="check_sudo_list")]]
     reply_markups = InlineKeyboardMarkup(keyboard)
-    await message.reply_photo(photo=GAMDOP, caption="~ اهلا عزيزي المطور الاساسي .\n\n <u><b>عزيزي المطور</b></u> ~ لرؤية قائمة مطورين البوت .\n\n~ اضغط على الزر الأسفل  ", reply_markup=reply_markups)
+    await message.reply_photo(photo=GAMDOP, caption="~ اهلا عزيزي المطور الاساسي .\n\n عزيزي المطور ~ لرؤية قائمة مطورين البوت .\n\n~ اضغط على الزر الأسفل  ", reply_markup=reply_markups)
 
 
 @app.on_callback_query(filters.regex("^check_sudo_list$"))
