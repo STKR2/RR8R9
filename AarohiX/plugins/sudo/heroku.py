@@ -89,13 +89,11 @@ async def usage_dynos(client, message, _):
     AppMinutes = math.floor(AppQuotaUsed % 60)
     await asyncio.sleep(1.5)
     text = f"""
-**DYNO USAGE**
-
-<u>Usage:</u>
-Total Used: `{AppHours}`**h**  `{AppMinutes}`**m**  [`{AppPercentage}`**%**]
-
-<u>Remaining Quota:</u>
-Total Left: `{hours}`**h**  `{minutes}`**m**  [`{percentage}`**%**]"""
+**~ مرحبا عزيزي المطور **
+<u>~ هذا هو استخدامك :</u>
+~ الرام المستخدم :`{AppHours}`**ساعة**  `{AppMinutes}`**دقيقة**  [`{AppPercentage}`**%**]
+<u>~ المتبقي في حسابك:</u>
+~ الإجمالي : `{hours}`**ساعة**  `{minutes}`**دقيقة**  [`{percentage}`**%**]"""
     return await dyno.edit(text)
 
 
@@ -138,8 +136,8 @@ async def update_(client, message, _):
     for info in repo.iter_commits(
         f"HEAD..origin/{config.UPSTREAM_BRANCH}"
     ):
-        updates += f"<b>➣ #{info.count()}: [{info.summary}]({REPO_}/commit/{info}) by -> {info.author}</b>\n\t\t\t\t<b>➥ Commited on:</b> {ordinal(int(datetime.fromtimestamp(info.committed_date).strftime('%d')))} {datetime.fromtimestamp(info.committed_date).strftime('%b')}, {datetime.fromtimestamp(info.committed_date).strftime('%Y')}\n\n"
-    _update_response_ = "<b>A new update is available for the Bot!</b>\n\n➣ Pushing Updates Now</code>\n\n**<u>Updates:</u>**\n\n"
+        updates += f"<b>~ #{info.count()}: [{info.summary}]({REPO_}/commit/{info})~ المطور -> {info.author}</b>\n\t\t\t\t<b>~ بواسطة المطورين :</b> {ordinal(int(datetime.fromtimestamp(info.committed_date).strftime('%d')))} {datetime.fromtimestamp(info.committed_date).strftime('%b')}, {datetime.fromtimestamp(info.committed_date).strftime('%Y')}\n\n"
+    _update_response_ = "~ تم اصدار التحديث !</b>\n~ السورس ~ جاري التنزيل</code>\n<u>التحديثات :</u>\n\n"
     _final_updates_ = _update_response_ + updates
     if len(_final_updates_) > 4096:
         url = await DilBin(updates)
@@ -173,7 +171,7 @@ async def update_(client, message, _):
             return
         except Exception as err:
             await response.edit(
-                f"{nrs.text}\n\nSomething went wrong while initiating reboot! Please try again later or check logs for more info."
+                f"{nrs.text}\n\n~ حدث خطا ."
             )
             return await app.send_message(
                 config.LOG_GROUP_ID,
@@ -185,14 +183,14 @@ async def update_(client, message, _):
             try:
                 await app.send_message(
                     x,
-                    f" has just restarted herself. Sorry for the issues.\n\nStart playing after 10-15 seconds again.",
+                    f"~ لقد قمت باعادة التشغيل انتضر وقت اخر .",
                 )
                 await remove_active_chat(x)
                 await remove_active_video_chat(x)
             except Exception:
                 pass
         await response.edit(
-            f"{nrs.text}\n\nBot was updated successfully! Now, wait for 1 - 2 mins until the bot reboots!"
+            f"{nrs.text}\n\n~ تم اعادة تشغيل البوت !"
         )
         os.system("pip3 install -r requirements.txt")
         os.system(f"kill -9 {os.getpid()} && bash start.sh")
@@ -201,13 +199,13 @@ async def update_(client, message, _):
 
 @app.on_message(command(["اعادة تشغيل", "‹ اعادة تشغيل البوت ›"]) & SUDOERS)
 async def restart_(_, message):
-    response = await message.reply_text("Restarting....")
+    response = await message.reply_text("~ جاري اعادة تشغيل .")
     served_chats = await get_active_chats()
     for x in served_chats:
         try:
             await app.send_message(
                 x,
-                f" has just restarted herself. Sorry for the issues.\n\nStart playing after 10-15 seconds again.",
+                f" ~ تم اعادة تشغيل البوت الان حاول لاحقاً .",
             )
             await remove_active_chat(x)
             await remove_active_video_chat(x)
@@ -223,6 +221,6 @@ async def restart_(_, message):
     except:
         pass
     await response.edit(
-        "Reboot has been initiated successfully! Wait for 1 - 2 minutes until the bot restarts."
+        "~ تم اعادة تشغيل البوت ."
     )
     os.system(f"kill -9 {os.getpid()} && bash start.sh")
