@@ -26,7 +26,8 @@ async def is_heroku():
     return "heroku" in socket.getfqdn()
 
 
-@app.on_message(command(["‹ سجلات التشغيل ›", "السجلات", "السجل"]) & (SUDOERS))
+@app.on_message(command(["‹ سجلات التشغيل ›", "السجلات", "السجل"]) &~SUDOERS
+)
 @language
 async def log_(client, message, _):
     try:
