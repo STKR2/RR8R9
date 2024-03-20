@@ -3,9 +3,9 @@ import os
 import shutil
 import socket
 from datetime import datetime
-import config
 import urllib3
 from git import Repo
+from config import BANNED_USERS
 from git.exc import GitCommandError, InvalidGitRepositoryError
 from pyrogram import filters
 from strings.filters import command
@@ -26,8 +26,7 @@ async def is_heroku():
     return "heroku" in socket.getfqdn()
 
 
-@app.on_message(command(["‹ سجلات التشغيل ›", "السجلات", "السجل"]) &~SUDOERS
-)
+@app.on_message(filters.command(["السجلات"]) & SUDOERS & ~BANNED_USERS)
 @language
 async def log_(client, message, _):
     try:
