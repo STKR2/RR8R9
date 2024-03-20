@@ -3,6 +3,7 @@ from pyrogram import Client, filters
 from pyrogram.types import ReplyKeyboardMarkup, KeyboardButton
 from config import OWNER_ID
 from AarohiX import app
+from strings.filters import command
 
 # تعريف الكيبورد الخاص بالمطور
 admin_keyboard = ReplyKeyboardMarkup([
@@ -21,8 +22,7 @@ admin_keyboard = ReplyKeyboardMarkup([
     resize_keyboard=True,
 )
 
-# دالة للتعامل مع الأمر /admin
-@app.on_message(filters.command("admin") & (OWNER_ID))
+@app.on_message(command("كيبورد") & filters.user(OWNER_ID))
 async def admin(client, message):
     if message.from_user.id == OWNER_ID:
         await message.reply("لوحة الكيبورد الخاصة بالمطور", reply_markup=admin_keyboard)
@@ -30,7 +30,6 @@ async def admin(client, message):
         pass
 
 # دالة للتعامل مع الأوامر المرتبطة بباقي السورس
-@app.on_message(filters.text & ~filters.command("admin") & (OWNER_ID))
+@app.on_message(filters.text & ~filters.command("admin") & filters.user(OWNER_ID))
 async def handle_commands(client, message):
-    # ادخل هنا التحكم بالأوامر المرتبطة بباقي السورس
     pass
