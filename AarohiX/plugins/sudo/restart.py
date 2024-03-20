@@ -3,7 +3,7 @@ import os
 import shutil
 import socket
 from datetime import datetime
-from config import OWNER_ID
+import config
 import urllib3
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError
