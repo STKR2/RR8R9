@@ -15,7 +15,7 @@ from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError
 from pyrogram import filters
 from strings.filters import command
-from config import OWNER_ID 
+import config
 from AarohiX import app
 from AarohiX.misc import HAPP, SUDOERS, XCB
 from AarohiX.utils.database import (get_active_chats,
@@ -34,7 +34,8 @@ async def is_heroku():
 
 
 
-@app.on_message(command(["الداينو", "‹ الداينو ›"]) & (SUDOERS))
+@app.on_message(command(["الداينو", "‹ الداينو ›"]) &~ SUDOERS
+)
 @language
 async def usage_dynos(client, message, _):
     ### Credits CatUserbot
@@ -89,7 +90,8 @@ async def usage_dynos(client, message, _):
     return await dyno.edit(text)
 
 
-@app.on_message(command(["‹ تحديث السورس ›", "تحديث السورس"]) & OWNER_ID)
+@app.on_message(command(["‹ تحديث السورس ›", "تحديث السورس"]) &~SUDOERS
+)
 @language
 async def update_(client, message, _):
     if await is_heroku():
@@ -189,7 +191,8 @@ async def update_(client, message, _):
         exit()
 
 
-@app.on_message(command(["اعادة تشغيل", "‹ اعادة تشغيل البوت ›"]) & SUDOERS)
+@app.on_message(command(["اعادة تشغيل", "‹ اعادة تشغيل البوت ›"]) &~SUDOERS
+)
 async def restart_(_, message):
     response = await message.reply_text("~ جاري اعادة تشغيل .")
     served_chats = await get_active_chats()
