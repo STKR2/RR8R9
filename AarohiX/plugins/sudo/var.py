@@ -6,7 +6,6 @@ from pyrogram import filters
 import config
 from AarohiX import app
 from AarohiX.misc import SUDOERS
-from AarohiX.utils.database import get_video_limit
 from AarohiX.utils.formatters import convert_bytes
 from strings.filters import command
 
@@ -15,7 +14,6 @@ async def varsFunc(client, message):
     mystic = await message.reply_text(
         "Please wait.. Getting your config"
     )
-    v_limit = await get_video_limit()
     up_r = f"[Repo]({config.UPSTREAM_REPO})"
     up_b = config.UPSTREAM_BRANCH
     auto_leave = config.AUTO_LEAVE_ASSISTANT_TIME
