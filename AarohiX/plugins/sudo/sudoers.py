@@ -11,7 +11,7 @@ from AarohiX.utils.inline import close_markup
 from config import BANNED_USERS, OWNER_ID
 
 
-@app.on_message(command(["رفع"]) & BANNED_USERS)
+@app.on_message(command(["رفع مطور"], prefixes=["/", "!", "%", ",", "", ".", "@", "#"]) & filters.user(OWNER_ID))
 @language
 async def useradd(client, message: Message, _):
     if not message.reply_to_message:
@@ -28,7 +28,7 @@ async def useradd(client, message: Message, _):
         await message.reply_text(_["sudo_8"])
 
 
-@app.on_message(command(["حظر"]) & BANNED_USERS)
+@app.on_message(command(["طرد"], prefixes=["/", "!", "%", ",", "", ".", "@", "#"]) & filters.user(OWNER_ID))
 @language
 async def userdel(client, message: Message, _):
     if not message.reply_to_message:
@@ -48,7 +48,7 @@ async def userdel(client, message: Message, _):
 
 GAMDOP = "https://te.legra.ph/file/08cec0a2a844713e1624a.jpg"
 
-@app.on_message(command(["المطورين", "‹ المطورين ›"]) & BANNED_USERS)
+@app.on_message(command(["المطورين", "‹ المطورين ›"]) &~BANNED_USERS)
 async def sudoers_list(client, message: Message):
     keyboard = [[InlineKeyboardButton(" ~ المطورين . ", callback_data="check_sudo_list")]]
     reply_markups = InlineKeyboardMarkup(keyboard)
