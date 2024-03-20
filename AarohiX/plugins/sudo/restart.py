@@ -3,13 +3,12 @@ import os
 import shutil
 import socket
 from datetime import datetime
-
+from config import OWNER_ID
 import urllib3
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError
 from pyrogram import filters
 from strings.filters import command
-import config
 from AarohiX import app
 from AarohiX.misc import HAPP, SUDOERS, XCB
 from AarohiX.utils.database import (
