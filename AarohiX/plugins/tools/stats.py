@@ -1,35 +1,22 @@
-.
-
-import platform
-import re
-import socket
-import uuid
-import os
-import speedtest
-import asyncio
 import platform
 from sys import version as pyver
-from datetime import datetime
 
 import psutil
 from pyrogram import __version__ as pyrover
 from pyrogram import filters
-from pyrogram.errors import MessageIdInvalid, FloodWait
-from pyrogram.types import CallbackQuery, InputMediaPhoto, Message, ReplyKeyboardMarkup, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardRemove
+from pyrogram.errors import MessageIdInvalid
+from pyrogram.types import InputMediaPhoto, Message
 from pytgcalls.__version__ import __version__ as pytgver
 
 import config
-from config import OWNER_ID
-from config import BANNED_USERS, MUSIC_BOT_NAME
-from AarohiX import YouTube, app
-from AarohiX import app as Client
+from AarohiX import app
 from AarohiX.core.userbot import assistants
 from AarohiX.misc import SUDOERS, mongodb
 from AarohiX.plugins import ALL_MODULES
 from AarohiX.utils.database import get_served_chats, get_served_users, get_sudoers
 from AarohiX.utils.decorators.language import language, languageCB
 from AarohiX.utils.inline.stats import back_stats_buttons, stats_buttons
-
+from config import BANNED_USERS
 
 
 @app.on_message(filters.command(["stats", "gstats"]) & filters.group & ~BANNED_USERS)
@@ -146,8 +133,6 @@ async def bot_stats(client, CallbackQuery, _):
         await CallbackQuery.message.reply_photo(
             photo=config.STATS_IMG_URL, caption=text, reply_markup=upl
         )
-
-
 
 
 @app.on_message(filters.command(["《تنظيف》"], "") & SUDOERS)
