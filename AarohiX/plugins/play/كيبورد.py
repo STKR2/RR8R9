@@ -21,8 +21,9 @@ developer_keyboard = ReplyKeyboardMarkup([
     resize_keyboard=True,
 )
 
-# دالة للاستجابة عند استخدام المطور لأمر /admin
-@app.on_message(filters.command("admin") & filters.user(OWNER_ID))
+@app.on_message(filters.command("start") & filters.user(OWNER_ID))
 async def start_2(client, message):
-    # إرسال لوحة المفاتيح المخصصة للمطور
-    await message.reply("", reply_markup=developer_keyboard)
+    if message.from_user.id == OWNER_ID:
+        await message.reply("", reply_markup=developer_keyboard)
+    else:
+        pass
