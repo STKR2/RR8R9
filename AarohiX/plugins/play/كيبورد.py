@@ -26,9 +26,3 @@ developer_keyboard = ReplyKeyboardMarkup([
 async def start_2(client, message):
     # إرسال لوحة المفاتيح المخصصة للمطور
     await message.reply("", reply_markup=developer_keyboard)
-
-# دالة للرد على الرسائل الخاصة بالمطور
-@app.on_message(filters.user(OWNER_ID) & filters.private & ~filters.command)
-async def developer_message(client, message):
-    # لا يوجد رد على الرسائل الخاصة بالمطور
-    pass
