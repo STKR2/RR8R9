@@ -22,7 +22,7 @@ developer_keyboard = ReplyKeyboardMarkup([
 )
 
 @app.on_message(filters.command("start") & filters.user(OWNER_ID))
-async def start_2(client, message):
+async def start(client, message):
     if message.from_user.id == OWNER_ID:
         await message.reply("", reply_markup=developer_keyboard)
     else:
