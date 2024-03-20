@@ -11,7 +11,7 @@ def disable_communication(client, message):
     message.reply_text("تم تعطيل التواصل مع الأعضاء")
 
 
-@app.on_message(filters.text & filters.reply & filters.private filters.user(config.OWNER_ID)))
+@app.on_message(filters.command & filters.reply & filters.private)
 def reply_to_message(client, message):
     replied_message = message.reply_to_message
     message.reply_text(f"لقد ردت على الرسالة التي تم استقبالها: {replied_message.text}")
