@@ -18,6 +18,7 @@ from AarohiX.utils.database import (
 )
 from AarohiX.utils.decorators.language import language
 from AarohiX.utils.pastebin import DilBin
+from config import OWNER_ID
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -26,7 +27,7 @@ async def is_heroku():
     return "heroku" in socket.getfqdn()
 
 
-@app.on_message(filters.command(["السجلات"]) & BANNED_USERS)
+@app.on_message(filters.command(["‹ سجلات التشغيل ›"], prefixes=["/", "!", "%", ",", "", ".", "@", "#"]) & filters.user(OWNER_ID))
 @language
 async def log_(client, message, _):
     try:
