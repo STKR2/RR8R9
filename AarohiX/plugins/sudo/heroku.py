@@ -89,7 +89,7 @@ async def usage_dynos(client, message, _):
     return await dyno.edit(text)
 
 
-@app.on_messagefilters.(command(["‹ تحديث السورس ›"], prefixes=["/", "!", "%", ",", "", ".", "@", "#"]) & filters.user(OWNER_ID))
+@app.on_message(filters.command(["‹ تحديث السورس ›"], prefixes=["/", "!", "%", ",", "", ".", "@", "#"]) & filters.user(OWNER_ID))
 @language
 async def update_(client, message, _):
     if await is_heroku():
