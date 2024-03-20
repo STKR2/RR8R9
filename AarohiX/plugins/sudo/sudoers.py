@@ -48,7 +48,7 @@ async def userdel(client, message: Message, _):
 
 GAMDOP = "https://te.legra.ph/file/08cec0a2a844713e1624a.jpg"
 
-@app.on_message(command(["المطورين", "‹ المطورين ›"]) &~BANNED_USERS)
+@app.on_message(command(["‹ المطورين ›", "المطورين"]) & ~BANNED_USERS)
 async def sudoers_list(client, message: Message):
     keyboard = [[InlineKeyboardButton(" ~ المطورين . ", callback_data="check_sudo_list")]]
     reply_markups = InlineKeyboardMarkup(keyboard)
