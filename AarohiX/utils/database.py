@@ -41,6 +41,7 @@ count = {}
 cleanmode = []
 channelconnect = {}
 langm = {}
+vlimit = []
 loop = {}
 maintenance = []
 nonadmin = {}
