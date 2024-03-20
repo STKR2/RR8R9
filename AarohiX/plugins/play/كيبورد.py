@@ -3,7 +3,6 @@ from pyrogram import Client, filters
 from pyrogram.types import ReplyKeyboardMarkup, KeyboardButton
 from config import OWNER_ID
 from AarohiX import app
-from strings.filters import command
 
 # تعريف الكيبورد الخاص بالمطور
 admin_keyboard = ReplyKeyboardMarkup([
@@ -14,7 +13,6 @@ admin_keyboard = ReplyKeyboardMarkup([
     [('تفعيل اليوتيوب'), ('تعطيل اليوتيوب'), ('حاله اليوتيوب')],
     [('حذف الاعضاء الفيك'), ('حذف الجروبات الفيك')],
     [('الاصدار'), ('تحديث السورس'), ('سرعه السيرفر')],
-    [('اذاعه للمستخدمين'), ('اذاعه للجروبات')],
     [('اذاعه للمطورين'), ('اذاعه للاساسيين'), ('اذاعه للقنوات')],
     [('اذاعه للكل'), ('توجيه للكل')],
     [('توجيه للمستخدمين'), ('توجيه للجروبات'), ('توجيه للقنوات')],
@@ -22,7 +20,7 @@ admin_keyboard = ReplyKeyboardMarkup([
     resize_keyboard=True,
 )
 
-@app.on_message(command("كيبورد") & filters.user(OWNER_ID))
+@app.on_message(filters.command("/admin") & filters.user(OWNER_ID))
 async def admin(client, message):
     if message.from_user.id == OWNER_ID:
         await message.reply("لوحة الكيبورد الخاصة بالمطور", reply_markup=admin_keyboard)
