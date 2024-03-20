@@ -35,7 +35,7 @@ async def is_heroku():
 
 
 @app.on_message(command(["الداينو", "‹ الداينو ›"]) &~ SUDOERS
-)
+& ~BANNED_USERS)
 @language
 async def usage_dynos(client, message, _):
     ### Credits CatUserbot
@@ -91,7 +91,7 @@ async def usage_dynos(client, message, _):
 
 
 @app.on_message(command(["‹ تحديث السورس ›", "تحديث السورس"]) &~SUDOERS
-)
+& ~BANNED_USERS)
 @language
 async def update_(client, message, _):
     if await is_heroku():
@@ -192,7 +192,7 @@ async def update_(client, message, _):
 
 
 @app.on_message(command(["اعادة تشغيل", "‹ اعادة تشغيل البوت ›"]) &~SUDOERS
-)
+& ~BANNED_USERS)
 async def restart_(_, message):
     response = await message.reply_text("~ جاري اعادة تشغيل .")
     served_chats = await get_active_chats()
