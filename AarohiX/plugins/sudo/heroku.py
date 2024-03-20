@@ -22,9 +22,8 @@ import urllib3
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError
 from pyrogram import filters
-
-import config
-from strings import get_command
+from strings.filters import command
+import config 
 from AarohiX import app
 from AarohiX.misc import HAPP, SUDOERS, XCB
 from AarohiX.utils.database import (get_active_chats,
@@ -41,7 +40,7 @@ async def is_heroku():
     return "heroku" in socket.getfqdn()
 
 
-@app.on_message(filters.command(GETLOG_COMMAND) & SUDOERS)
+@app.on_message(command(["السجلات", "‹ سجلات التشغيل ›"]) & SUDOERS)
 @language
 async def log_(client, message, _):
     try:
@@ -71,65 +70,9 @@ async def log_(client, message, _):
         await message.reply_text(_["heroku_2"])
 
 
-@app.on_message(filters.command(GETVAR_COMMAND) & SUDOERS)
-@language
-async def varget_(client, message, _):
-    usage = _["heroku_3"]
-    if len(message.command) != 2:
-        return await message.reply_text(usage)
-    check_var = message.text.split(None, 2)[1]
-    if await is_heroku():
-        if HAPP is None:
-            return await message.reply_text(_["heroku_1"])
-        heroku_config = HAPP.config()
-        if check_var in heroku_config:
-            return await message.reply_text(
-                f"**{check_var}:** `{heroku_config[check_var]}`"
-            )
-        else:
-            return await message.reply_text(_["heroku_4"])
-    else:
-        path = dotenv.find_dotenv()
-        if not path:
-            return await message.reply_text(_["heroku_5"])
-        output = dotenv.get_key(path, check_var)
-        if not output:
-            await message.reply_text(_["heroku_4"])
-        else:
-            return await message.reply_text(
-                f"**{check_var}:** `{str(output)}`"
-            )
 
 
-@app.on_message(filters.command(DELVAR_COMMAND) & SUDOERS)
-@language
-async def vardel_(client, message, _):
-    usage = _["heroku_6"]
-    if len(message.command) != 2:
-        return await message.reply_text(usage)
-    check_var = message.text.split(None, 2)[1]
-    if await is_heroku():
-        if HAPP is None:
-            return await message.reply_text(_["heroku_1"])
-        heroku_config = HAPP.config()
-        if check_var in heroku_config:
-            await message.reply_text(_["heroku_7"].format(check_var))
-            del heroku_config[check_var]
-        else:
-            return await message.reply_text(_["heroku_4"])
-    else:
-        path = dotenv.find_dotenv()
-        if not path:
-            return await message.reply_text(_["heroku_5"])
-        output = dotenv.unset_key(path, check_var)
-        if not output[0]:
-            return await message.reply_text(_["heroku_4"])
-        else:
-            await message.reply_text(_["heroku_7"].format(check_var))
-            os.system(f"kill -9 {os.getpid()} && bash start.sh")
-
-
-@app.on_message(filters.command(SETVAR_COMMAND) & SUDOERS)
+@app.on_message(command(["فارات", "‹ الفارات ›"]) & SUDOERS)
 @language
 async def set_var(client, message, _):
     usage = _["heroku_8"]
@@ -158,7 +101,7 @@ async def set_var(client, message, _):
         os.system(f"kill -9 {os.getpid()} && bash start.sh")
 
 
-@app.on_message(filters.command(USAGE_COMMAND) & SUDOERS)
+@app.on_message(command(["الداينو", "‹ الداينو ›"]) & SUDOERS)
 @language
 async def usage_dynos(client, message, _):
     ### Credits CatUserbot
@@ -215,7 +158,7 @@ Total Left: `{hours}`**h**  `{minutes}`**m**  [`{percentage}`**%**]"""
     return await dyno.edit(text)
 
 
-@app.on_message(filters.command(UPDATE_COMMAND) & SUDOERS)
+@app.on_message(command(["تحديث", "‹ السورس ›"]) & SUDOERS)
 @language
 async def update_(client, message, _):
     if await is_heroku():
@@ -315,7 +258,7 @@ async def update_(client, message, _):
         exit()
 
 
-@app.on_message(filters.command(REBOOT_COMMAND) & SUDOERS)
+@app.on_message(command(["اعادة تشغيل", "‹ ريست ›"]) & SUDOERS)
 async def restart_(_, message):
     response = await message.reply_text("Restarting....")
     served_chats = await get_active_chats()
