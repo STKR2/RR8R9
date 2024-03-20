@@ -34,7 +34,7 @@ async def is_heroku():
 
 
 
-@app.on_message(command(["الداينو", "‹ الداينو ›"]) & OWNER_ID)
+@app.on_message(command(["الداينو", "‹ الداينو ›"]) & (OWNER_ID))
 @language
 async def usage_dynos(client, message, _):
     ### Credits CatUserbot
