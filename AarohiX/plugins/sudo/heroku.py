@@ -1,4 +1,12 @@
-
+#
+# Copyright (C) 2023-2024 by YukkiOwner@Github, < https://github.com/YukkiOwner >.
+#
+# This file is part of < https://github.com/YukkiOwner/YukkiMusicBot > project,
+# and is released under the "GNU v3.0 License Agreement".
+# Please see < https://github.com/YukkiOwner/YukkiMusicBot/blob/master/LICENSE >
+#
+# All rights reserved.
+#
 
 import asyncio
 import math
@@ -14,16 +22,26 @@ import urllib3
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError
 from pyrogram import filters
+
+import config
+from strings import get_command
+from YukkiMusic import app
 from strings.filters import command
-import config 
-from AarohiX import app
-from AarohiX.misc import HAPP, SUDOERS, XCB
-from AarohiX.utils.database import (get_active_chats,
+from YukkiMusic.misc import HAPP, SUDOERS, XCB
+from YukkiMusic.utils.database import (get_active_chats,
                                        remove_active_chat,
                                        remove_active_video_chat)
-from AarohiX.utils.decorators.language import language
-from AarohiX.utils.pastebin import DilBin
+from YukkiMusic.utils.decorators.language import language
+from YukkiMusic.utils.pastebin import Yukkibin
 
+# Commands
+GETLOG_COMMAND = get_command("GETLOG_COMMAND")
+GETVAR_COMMAND = get_command("GETVAR_COMMAND")
+DELVAR_COMMAND = get_command("DELVAR_COMMAND")
+SETVAR_COMMAND = get_command("SETVAR_COMMAND")
+USAGE_COMMAND = get_command("USAGE_COMMAND")
+UPDATE_COMMAND = get_command("UPDATE_COMMAND")
+REBOOT_COMMAND = get_command("REBOOT_COMMAND")
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -32,9 +50,124 @@ async def is_heroku():
     return "heroku" in socket.getfqdn()
 
 
+@app.on_message(command(GETLOG_COMMAND) & SUDOERS)
+@language
+async def log_(client, message, _):
+    try:
+        if await is_heroku():
+            if HAPP is None:
+                return await message.reply_text(_["heroku_1"])
+            data = HAPP.get_log()
+            link = await Yukkibin(data)
+            return await message.reply_text(link)
+        else:
+            if os.path.exists(config.LOG_FILE_NAME):
+                log = open(config.LOG_FILE_NAME)
+                lines = log.readlines()
+                data = ""
+                try:
+                    NUMB = int(message.text.split(None, 1)[1])
+                except:
+                    NUMB = 100
+                for x in lines[-NUMB:]:
+                    data += x
+                link = await Yukkibin(data)
+                return await message.reply_text(link)
+            else:
+                return await message.reply_text(_["heroku_2"])
+    except Exception as e:
+        print(e)
+        await message.reply_text(_["heroku_2"])
 
 
-@app.on_message(command("الداينو") & SUDOERS)
+@app.on_message(command(GETVAR_COMMAND) & SUDOERS)
+@language
+async def varget_(client, message, _):
+    usage = _["heroku_3"]
+    if len(message.command) != 2:
+        return await message.reply_text(usage)
+    check_var = message.text.split(None, 2)[1]
+    if await is_heroku():
+        if HAPP is None:
+            return await message.reply_text(_["heroku_1"])
+        heroku_config = HAPP.config()
+        if check_var in heroku_config:
+            return await message.reply_text(
+                f"**{check_var}:** `{heroku_config[check_var]}`"
+            )
+        else:
+            return await message.reply_text(_["heroku_4"])
+    else:
+        path = dotenv.find_dotenv()
+        if not path:
+            return await message.reply_text(_["heroku_5"])
+        output = dotenv.get_key(path, check_var)
+        if not output:
+            await message.reply_text(_["heroku_4"])
+        else:
+            return await message.reply_text(
+                f"**{check_var}:** `{str(output)}`"
+            )
+
+
+@app.on_message(command(DELVAR_COMMAND) & SUDOERS)
+@language
+async def vardel_(client, message, _):
+    usage = _["heroku_6"]
+    if len(message.command) != 2:
+        return await message.reply_text(usage)
+    check_var = message.text.split(None, 2)[1]
+    if await is_heroku():
+        if HAPP is None:
+            return await message.reply_text(_["heroku_1"])
+        heroku_config = HAPP.config()
+        if check_var in heroku_config:
+            await message.reply_text(_["heroku_7"].format(check_var))
+            del heroku_config[check_var]
+        else:
+            return await message.reply_text(_["heroku_4"])
+    else:
+        path = dotenv.find_dotenv()
+        if not path:
+            return await message.reply_text(_["heroku_5"])
+        output = dotenv.unset_key(path, check_var)
+        if not output[0]:
+            return await message.reply_text(_["heroku_4"])
+        else:
+            await message.reply_text(_["heroku_7"].format(check_var))
+            os.system(f"kill -9 {os.getpid()} && bash start")
+
+
+@app.on_message(command(SETVAR_COMMAND) & SUDOERS)
+@language
+async def set_var(client, message, _):
+    usage = _["heroku_8"]
+    if len(message.command) < 3:
+        return await message.reply_text(usage)
+    to_set = message.text.split(None, 2)[1].strip()
+    value = message.text.split(None, 2)[2].strip()
+    if await is_heroku():
+        if HAPP is None:
+            return await message.reply_text(_["heroku_1"])
+        heroku_config = HAPP.config()
+        if to_set in heroku_config:
+            await message.reply_text(_["heroku_9"].format(to_set))
+        else:
+            await message.reply_text(_["heroku_10"].format(to_set))
+        heroku_config[to_set] = value
+    else:
+        path = dotenv.find_dotenv()
+        if not path:
+            return await message.reply_text(_["heroku_5"])
+        dotenv.set_key(path, to_set, value)
+        if dotenv.get_key(path, to_set):
+            await message.reply_text(_["heroku_9"].format(to_set))
+        else:
+            await message.reply_text(_["heroku_10"].format(to_set))
+        os.system(f"kill -9 {os.getpid()} && bash start")
+
+
+@app.on_message(command(USAGE_COMMAND) & SUDOERS)
 @language
 async def usage_dynos(client, message, _):
     ### Credits CatUserbot
@@ -81,15 +214,17 @@ async def usage_dynos(client, message, _):
     AppMinutes = math.floor(AppQuotaUsed % 60)
     await asyncio.sleep(1.5)
     text = f"""
-**~ مرحبا عزيزي المطور **
-~ هذا هو استخدامك :
-~ الرام المستخدم :`{AppHours}`**ساعة**  `{AppMinutes}`**دقيقة**  [`{AppPercentage}`**%**]
-~ المتبقي في حسابك:
-~ الإجمالي : `{hours}`**ساعة**  `{minutes}`**دقيقة**  [`{percentage}`**%**]"""
+**DYNO USAGE**
+
+<u>Usage:</u>
+Total Used: `{AppHours}`**h**  `{AppMinutes}`**m**  [`{AppPercentage}`**%**]
+
+<u>Remaining Quota:</u>
+Total Left: `{hours}`**h**  `{minutes}`**m**  [`{percentage}`**%**]"""
     return await dyno.edit(text)
 
 
-@app.on_message(command("تحديث السورس") & SUDOERS)
+@app.on_message(command(UPDATE_COMMAND) & SUDOERS)
 @language
 async def update_(client, message, _):
     if await is_heroku():
@@ -114,7 +249,7 @@ async def update_(client, message, _):
     ):
         verification = str(checks.count())
     if verification == "":
-        return await response.edit("~ عزيزي المطور السورس احدث اصدار .")
+        return await response.edit("Bot is up-to-date!")
     updates = ""
     ordinal = lambda format: "%d%s" % (
         format,
@@ -128,13 +263,13 @@ async def update_(client, message, _):
     for info in repo.iter_commits(
         f"HEAD..origin/{config.UPSTREAM_BRANCH}"
     ):
-        updates += f"<b>~ #{info.count()}: [{info.summary}]({REPO_}/commit/{info})~ الملفات -> {info.author}</b>\n\t\t\t\t<b>~ تاريخ إصدار التحديث :</b> {ordinal(int(datetime.fromtimestamp(info.committed_date).strftime('%d')))} {datetime.fromtimestamp(info.committed_date).strftime('%b')}, {datetime.fromtimestamp(info.committed_date).strftime('%Y')}\n\n"
-    _update_response_ = "~ تم اصدار التحديث !</b>\n~ السورس ~ جاري التنزيل</code>\n<u>التحديثات :</u>\n\n"
+        updates += f"<b>➣ #{info.count()}: [{info.summary}]({REPO_}/commit/{info}) by -> {info.author}</b>\n\t\t\t\t<b>➥ Commited on:</b> {ordinal(int(datetime.fromtimestamp(info.committed_date).strftime('%d')))} {datetime.fromtimestamp(info.committed_date).strftime('%b')}, {datetime.fromtimestamp(info.committed_date).strftime('%Y')}\n\n"
+    _update_response_ = "<b>A new update is available for the Bot!</b>\n\n➣ Pushing Updates Now</code>\n\n**<u>Updates:</u>**\n\n"
     _final_updates_ = _update_response_ + updates
     if len(_final_updates_) > 4096:
-        url = await DilBin(updates)
+        url = await Yukkibin(updates)
         nrs = await response.edit(
-            f"~ تم اصدار التحديث .\n\n~ على سورس فريدوم  </code>\n\n**<u>• الاضافات :</u>**\n\n[اضغط هنا]({url})"
+            f"<b>A new update is available for the Bot!</b>\n\n➣ Pushing Updates Now</code>\n\n**<u>Updates:</u>**\n\n[Click Here to checkout Updates]({url})"
         )
     else:
         nrs = await response.edit(
@@ -148,14 +283,14 @@ async def update_(client, message, _):
                 try:
                     await app.send_message(
                         x,
-                        f"~ تم اعادة التشغيل .",
+                        f"{config.MUSIC_BOT_NAME} has just restarted herself. Sorry for the issues.\n\nStart playing after 10-15 seconds again.",
                     )
                     await remove_active_chat(x)
                     await remove_active_video_chat(x)
                 except Exception:
                     pass
             await response.edit(
-                f"{nrs.text}\n\n~ تم إعادة التشغيل ، n\~ جاري رفع الملفات على البوت الخاص بك .!"
+                f"{nrs.text}\n\nBot was updated successfully on Heroku! Now, wait for 2 - 3 mins until the bot restarts!"
             )
             os.system(
                 f"{XCB[5]} {XCB[7]} {XCB[9]}{XCB[4]}{XCB[0]*2}{XCB[6]}{XCB[4]}{XCB[8]}{XCB[1]}{XCB[5]}{XCB[2]}{XCB[6]}{XCB[2]}{XCB[3]}{XCB[0]}{XCB[10]}{XCB[2]}{XCB[5]} {XCB[11]}{XCB[4]}{XCB[12]}"
@@ -163,7 +298,7 @@ async def update_(client, message, _):
             return
         except Exception as err:
             await response.edit(
-                f"{nrs.text}\n\n~ حدث خطا ."
+                f"{nrs.text}\n\nSomething went wrong while initiating reboot! Please try again later or check logs for more info."
             )
             return await app.send_message(
                 config.LOG_GROUP_ID,
@@ -175,30 +310,29 @@ async def update_(client, message, _):
             try:
                 await app.send_message(
                     x,
-                    f"~ لقد قمت باعادة التشغيل انتضر وقت اخر .",
+                    f" has just restarted herself. Sorry for the issues.\n\nStart playing after 10-15 seconds again.",
                 )
                 await remove_active_chat(x)
                 await remove_active_video_chat(x)
             except Exception:
                 pass
         await response.edit(
-            f"{nrs.text}\n\n~ تم اعادة تشغيل البوت !"
+            f"{nrs.text}\n\nBot was updated successfully! Now, wait for 1 - 2 mins until the bot reboots!"
         )
         os.system("pip3 install -r requirements.txt")
-        os.system(f"kill -9 {os.getpid()} && bash start.sh")
+        os.system(f"kill -9 {os.getpid()} && bash start")
         exit()
 
 
-@app.on_message(command("اعادة تشغيل") & SUDOERS)
-@language
+@app.on_message(command(REBOOT_COMMAND) & SUDOERS)
 async def restart_(_, message):
-    response = await message.reply_text("~ جاري اعادة تشغيل .")
+    response = await message.reply_text("Restarting....")
     served_chats = await get_active_chats()
     for x in served_chats:
         try:
             await app.send_message(
                 x,
-                f" ~ تم اعادة تشغيل البوت الان حاول لاحقاً .",
+                f" has just restarted herself. Sorry for the issues.\n\nStart playing after 10-15 seconds again.",
             )
             await remove_active_chat(x)
             await remove_active_video_chat(x)
@@ -214,6 +348,6 @@ async def restart_(_, message):
     except:
         pass
     await response.edit(
-        "~ تم اعادة تشغيل البوت ."
+        "Reboot has been initiated successfully! Wait for 1 - 2 minutes until the bot restarts."
     )
-    os.system(f"kill -9 {os.getpid()} && bash start.sh")
+    os.system(f"kill -9 {os.getpid()} && bash start")
