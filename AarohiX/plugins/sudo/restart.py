@@ -1,13 +1,15 @@
 import asyncio
 import os
 import shutil
+imporimport asyncio
+import os
+import shutil
 import socket
 from datetime import datetime
 
 import urllib3
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError
-from strings.filters import command
 from pyrogram import filters
 
 import config
@@ -19,11 +21,9 @@ from AarohiX.utils.database import (
     remove_active_video_chat,
 )
 from AarohiX.utils.decorators.language import language
-from AarohiX.utils.pastebin import ZelzalyBin
+from AarohiX.utils.pastebin import DilBin
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-
-
 async def is_heroku():
     return "heroku" in socket.getfqdn()
 
