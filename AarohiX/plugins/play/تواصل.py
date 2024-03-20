@@ -1,5 +1,5 @@
 from pyrogram import Client, filters
-
+from AarohiX import app
 from config import OWNER_ID
 
 # تمكين/تعطيل التواصل
