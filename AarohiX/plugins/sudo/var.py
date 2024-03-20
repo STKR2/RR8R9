@@ -6,7 +6,7 @@ from pyrogram import filters
 import config
 from AarohiX import app
 from AarohiX.misc import SUDOERS
-from AarohiX.utils.database.memorydatabase import get_video_limit
+from AarohiX.utils.database import get_video_limit
 from AarohiX.utils.formatters import convert_bytes
 from strings.filters import command
 
