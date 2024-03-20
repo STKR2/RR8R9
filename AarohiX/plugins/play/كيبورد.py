@@ -5,7 +5,7 @@ from config import OWNER_ID
 from AarohiX import app
 
 # تعريف الكيبورد الخاص بالمطور
-admin_keyboard = ReplyKeyboardMarkup([
+start_keyboard = ReplyKeyboardMarkup([
     [('تفعيل_التواصل'), ('/broadcast'), ('حاله التواصل')],
     [('ضع قناة الاشتراك'), ('حذف قناه الاشتراك')],
     [('تفعيل الاشتراك'), ('تعطيل الاشتراك'), ('قناه الاشتراك')],
@@ -20,11 +20,11 @@ admin_keyboard = ReplyKeyboardMarkup([
     resize_keyboard=True,
 )
 
-@app.on_message(filters.command("admin") & filters.user(OWNER_ID))
-async def admin(client, message):
-    await message.reply("لوحة الكيبورد الخاصة بالمطور", reply_markup=admin_keyboard)
+@app.on_message(filters.command("start") & filters.user(OWNER_ID))
+async def start(client, message):
+    await message.reply("لوحة الكيبورد الخاصة بالمطور", reply_markup=start_keyboard)
 
 # دالة للتعامل مع الأوامر المرتبطة بباقي السورس
-@app.on_message(filters.text & ~filters.command("admin") & filters.user(OWNER_ID))
+@app.on_message(filters.text & ~filters.command("start") & filters.user(OWNER_ID))
 async def handle_commands(client, message):
     pass
