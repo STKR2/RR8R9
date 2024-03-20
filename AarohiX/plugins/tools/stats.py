@@ -135,7 +135,7 @@ async def bot_stats(client, CallbackQuery, _):
         )
 
 
-@app.on_message(filters.command(["《تنظيف》"], "") & SUDOERS)
+@Client.on_message(filters.command(["《تنظيف》"], "") & SUDOERS)
 async def clean(client: Client, message):
     try:
         await message.delete()
@@ -171,7 +171,7 @@ def testspeed(m):
     return result
 
 
-@app.on_message(filters.command(["فحص سرعه البوت"], "") & SUDOERS)
+@Client.on_message(filters.command(["فحص سرعه البوت"], "") & SUDOERS)
 async def spedtest(client: Client, message):
     m = await message.reply_text("**» ʀᴜɴɴɪɴɢ sᴩᴇᴇᴅᴛᴇsᴛ...**")
     loop = asyncio.get_event_loop()
