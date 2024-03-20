@@ -2,7 +2,7 @@ import os
 import glob
 import asyncio
 import time
-from config import SUDOERS
+from config import OWNER_ID
 from AarohiX import app
 from pyrogram import Client, filters
 
@@ -25,7 +25,7 @@ async def delete_temp_files():
 
             last_cleanup_time = current_time
 
-@app.on_message(filters.command(["تنظيف"], "") & filters.user(SUDOERS))
+@app.on_message(filters.command(["تنظيف"], "") & filters.user(OWNER_ID))
 async def clean(client: Client, message):
     global last_cleanup_time
 
