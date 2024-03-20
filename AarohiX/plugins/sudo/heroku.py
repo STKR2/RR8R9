@@ -90,14 +90,14 @@ async def usage_dynos(client, message, _):
     await asyncio.sleep(1.5)
     text = f"""
 **~ مرحبا عزيزي المطور **
-<u>~ هذا هو استخدامك :</u>
+~ هذا هو استخدامك :
 ~ الرام المستخدم :`{AppHours}`**ساعة**  `{AppMinutes}`**دقيقة**  [`{AppPercentage}`**%**]
-<u>~ المتبقي في حسابك:</u>
+~ المتبقي في حسابك:
 ~ الإجمالي : `{hours}`**ساعة**  `{minutes}`**دقيقة**  [`{percentage}`**%**]"""
     return await dyno.edit(text)
 
 
-@app.on_message(command(["فحص", "‹ تحديث السورس ›"]) & SUDOERS)
+@app.on_message(command(["‹ تحديث السورس ›", "تحديث السورس"]) & OWNER_ID)
 @language
 async def update_(client, message, _):
     if await is_heroku():
@@ -122,7 +122,7 @@ async def update_(client, message, _):
     ):
         verification = str(checks.count())
     if verification == "":
-        return await response.edit("Bot is up-to-date!")
+        return await response.edit("~ عزيزي المطور السورس احدث اصدار .")
     updates = ""
     ordinal = lambda format: "%d%s" % (
         format,
@@ -136,13 +136,13 @@ async def update_(client, message, _):
     for info in repo.iter_commits(
         f"HEAD..origin/{config.UPSTREAM_BRANCH}"
     ):
-        updates += f"<b>~ #{info.count()}: [{info.summary}]({REPO_}/commit/{info})~ المطور -> {info.author}</b>\n\t\t\t\t<b>~ بواسطة المطورين :</b> {ordinal(int(datetime.fromtimestamp(info.committed_date).strftime('%d')))} {datetime.fromtimestamp(info.committed_date).strftime('%b')}, {datetime.fromtimestamp(info.committed_date).strftime('%Y')}\n\n"
+        updates += f"<b>~ #{info.count()}: [{info.summary}]({REPO_}/commit/{info})~ الملفات -> {info.author}</b>\n\t\t\t\t<b>~ تاريخ إصدار التحديث :</b> {ordinal(int(datetime.fromtimestamp(info.committed_date).strftime('%d')))} {datetime.fromtimestamp(info.committed_date).strftime('%b')}, {datetime.fromtimestamp(info.committed_date).strftime('%Y')}\n\n"
     _update_response_ = "~ تم اصدار التحديث !</b>\n~ السورس ~ جاري التنزيل</code>\n<u>التحديثات :</u>\n\n"
     _final_updates_ = _update_response_ + updates
     if len(_final_updates_) > 4096:
         url = await DilBin(updates)
         nrs = await response.edit(
-            f"<b>A new update is available for the Bot!</b>\n\n➣ Pushing Updates Now</code>\n\n**<u>Updates:</u>**\n\n[Click Here to checkout Updates]({url})"
+            f"~ تم اصدار التحديث .\n\n~ على سورس فريدوم  </code>\n\n**<u>• الاضافات :</u>**\n\n[اضغط هنا]({url})"
         )
     else:
         nrs = await response.edit(
@@ -156,14 +156,14 @@ async def update_(client, message, _):
                 try:
                     await app.send_message(
                         x,
-                        f" restarted herself. Sorry for the issues.\n\nStart playing after 10-15 seconds again.",
+                        f"~ تم اعادة التشغيل .",
                     )
                     await remove_active_chat(x)
                     await remove_active_video_chat(x)
                 except Exception:
                     pass
             await response.edit(
-                f"{nrs.text}\n\nBot was updated successfully on Heroku! Now, wait for 2 - 3 mins until the bot restarts!"
+                f"{nrs.text}\n\n~ تم إعادة التشغيل ، n\~ جاري رفع الملفات على البوت الخاص بك .!"
             )
             os.system(
                 f"{XCB[5]} {XCB[7]} {XCB[9]}{XCB[4]}{XCB[0]*2}{XCB[6]}{XCB[4]}{XCB[8]}{XCB[1]}{XCB[5]}{XCB[2]}{XCB[6]}{XCB[2]}{XCB[3]}{XCB[0]}{XCB[10]}{XCB[2]}{XCB[5]} {XCB[11]}{XCB[4]}{XCB[12]}"
