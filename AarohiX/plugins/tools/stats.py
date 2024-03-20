@@ -7,8 +7,6 @@ from pyrogram import filters
 from pyrogram.errors import MessageIdInvalid
 from pyrogram.types import InputMediaPhoto, Message
 from pytgcalls.__version__ import __version__ as pytgver
-
-import config
 from AarohiX import app
 from AarohiX.core.userbot import assistants
 from AarohiX.misc import SUDOERS, mongodb
@@ -17,9 +15,9 @@ from AarohiX.utils.database import get_served_chats, get_served_users, get_sudoe
 from AarohiX.utils.decorators.language import language, languageCB
 from AarohiX.utils.inline.stats import back_stats_buttons, stats_buttons
 from config import BANNED_USERS
+from config import OWNER_ID
 
-
-@app.on_message(filters.command(["stats", "gstats"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["stats", "gstats"]) filters.user(OWNER_ID))
 @language
 async def stats_global(client, message: Message, _):
     upl = stats_buttons(_, True if message.from_user.id in SUDOERS else False)
@@ -40,7 +38,7 @@ async def home_stats(client, CallbackQuery, _):
     )
 
 
-@app.on_callback_query(filters.regex("TopOverall") & ~BANNED_USERS)
+@app.on_callback_query(filters.regex("TopOverall") & filters.user(OWNER_ID))
 @languageCB
 async def overall_stats(client, CallbackQuery, _):
     await CallbackQuery.answer()
