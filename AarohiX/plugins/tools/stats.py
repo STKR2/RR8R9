@@ -22,7 +22,7 @@ from config import BANNED_USERS
 @app.on_message(filters.command(["stats", "gstats"]) & ~BANNED_USERS)
 @language
 async def stats_global(client, message: Message, _):
-    upl = stats_buttons(_, True if message.from_user.id not in SUDOERS:
+    upl = stats_buttons(_, True if not message.from_user.id in SUDOERS)
         return
     await message.reply_photo(
         photo=config.STATS_IMG_URL,
@@ -34,7 +34,7 @@ async def stats_global(client, message: Message, _):
 @app.on_callback_query(filters.regex("stats_back") & ~BANNED_USERS)
 @languageCB
 async def home_stats(client, CallbackQuery, _):
-    upl = stats_buttons(_, True  if CallbackQuery.from_user.id not in SUDOERS:
+    upl = stats_buttons(_, True  if not CallbackQuery.from_user.id in SUDOERS)
     await CallbackQuery.edit_message_text(
         text=_["gstats_2"].format(app.mention),
         reply_markup=upl,
