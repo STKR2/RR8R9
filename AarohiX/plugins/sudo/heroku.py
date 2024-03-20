@@ -15,7 +15,7 @@ from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError
 from pyrogram import filters
 from strings.filters import command
-import config
+from config import BANNED_USERS
 from AarohiX import app
 from AarohiX.misc import HAPP, SUDOERS, XCB
 from AarohiX.utils.database import (get_active_chats,
