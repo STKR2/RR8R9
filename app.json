@@ -82,6 +82,13 @@
         "description": "~ اسم تطبيقك في الاعلى .",
         "value": "",
         "required": true
+
+     },
+      "UPSTREAM_BRANCH": {
+        "description": "~ اتركها كما هي .",
+        "value": "main",
+        "required": true
+          
      },
       "LOGGER_ID": {
         "description": "~ اكتب ايدي القناة حتى يتم وصول احداث البوت اليك .",
