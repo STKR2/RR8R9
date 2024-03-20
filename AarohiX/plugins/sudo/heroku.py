@@ -25,14 +25,14 @@ from pyrogram import filters
 
 import config
 from strings import get_command
-from YukkiMusic import app
-from strings.filters import command
-from YukkiMusic.misc import HAPP, SUDOERS, XCB
-from YukkiMusic.utils.database import (get_active_chats,
+from AarohiX import app
+from AarohiX.filters import command
+from AarohiX.misc import HAPP, SUDOERS, XCB
+from AarohiX.utils.database import (get_active_chats,
                                        remove_active_chat,
                                        remove_active_video_chat)
-from YukkiMusic.utils.decorators.language import language
-from YukkiMusic.utils.pastebin import Yukkibin
+from AarohiX.utils.decorators.language import language
+from AarohiX.utils.pastebin import Yukkibin
 
 # Commands
 GETLOG_COMMAND = get_command("GETLOG_COMMAND")
