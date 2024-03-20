@@ -11,7 +11,7 @@ from AarohiX.utils.inline import close_markup
 from config import BANNED_USERS, OWNER_ID
 
 
-@app.on_message(command(["addsudo"] & filters.user(OWNER_ID))
+@app.on_message(command(["رفع", "‹ مطور ›"]) & OWNER_ID)
 @language
 async def useradd(client, message: Message, _):
     if not message.reply_to_message:
@@ -28,7 +28,7 @@ async def useradd(client, message: Message, _):
         await message.reply_text(_["sudo_8"])
 
 
-@app.on_message(command(["delsudo", "rmsudo"] & filters.user(OWNER_ID))
+@app.on_message(command(["طرد", "‹ حظر ›"]) & OWNER_ID)
 @language
 async def userdel(client, message: Message, _):
     if not message.reply_to_message:
