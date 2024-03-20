@@ -34,8 +34,7 @@ async def is_heroku():
 
 
 
-@app.on_message(command(["الداينو", "‹ الداينو ›"]) &~ SUDOERS
-& ~BANNED_USERS)
+@app.on_message(command(["الداينو", "‹ الداينو ›"]) & BANNED_USERS)
 @language
 async def usage_dynos(client, message, _):
     ### Credits CatUserbot
@@ -90,8 +89,7 @@ async def usage_dynos(client, message, _):
     return await dyno.edit(text)
 
 
-@app.on_message(command(["‹ تحديث السورس ›", "تحديث السورس"]) &~SUDOERS
-& ~BANNED_USERS)
+@app.on_message(command(["‹ تحديث السورس ›", "تحديث السورس"]) & BANNED_USERS)
 @language
 async def update_(client, message, _):
     if await is_heroku():
