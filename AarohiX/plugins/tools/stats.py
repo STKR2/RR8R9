@@ -7,6 +7,8 @@ from pyrogram import filters
 from pyrogram.errors import MessageIdInvalid
 from pyrogram.types import InputMediaPhoto, Message
 from pytgcalls.__version__ import __version__ as pytgver
+
+import config
 from AarohiX import app
 from AarohiX.core.userbot import assistants
 from AarohiX.misc import SUDOERS, mongodb
@@ -15,12 +17,13 @@ from AarohiX.utils.database import get_served_chats, get_served_users, get_sudoe
 from AarohiX.utils.decorators.language import language, languageCB
 from AarohiX.utils.inline.stats import back_stats_buttons, stats_buttons
 from config import BANNED_USERS
-from config import OWNER_ID
 
-@app.on_message(filters.command(["stats", "gstats"])  & ~BANNED_USERS & filters.user(OWNER_ID))
+
+@app.on_message(filters.command(["stats", "gstats"]) & filters.group & ~BANNED_USERS)
 @language
 async def stats_global(client, message: Message, _):
-    upl = stats_buttons(_, True if message.from_user.id in SUDOERS else False)
+    upl = stats_buttons(_, True if message.from_user.id not in SUDOERS:
+        return
     await message.reply_photo(
         photo=config.STATS_IMG_URL,
         caption=_["gstats_2"].format(app.mention),
@@ -31,14 +34,14 @@ async def stats_global(client, message: Message, _):
 @app.on_callback_query(filters.regex("stats_back") & ~BANNED_USERS)
 @languageCB
 async def home_stats(client, CallbackQuery, _):
-    upl = stats_buttons(_, True if CallbackQuery.from_user.id in SUDOERS else False)
+    upl = stats_buttons(_, True  if CallbackQuery.from_user.id not in SUDOERS:
     await CallbackQuery.edit_message_text(
         text=_["gstats_2"].format(app.mention),
         reply_markup=upl,
     )
 
 
-@app.on_callback_query(filters.regex("TopOverall")  & ~BANNED_USERS & filters.user(OWNER_ID))
+@app.on_callback_query(filters.regex("TopOverall") & ~BANNED_USERS)
 @languageCB
 async def overall_stats(client, CallbackQuery, _):
     await CallbackQuery.answer()
@@ -131,4 +134,3 @@ async def bot_stats(client, CallbackQuery, _):
         await CallbackQuery.message.reply_photo(
             photo=config.STATS_IMG_URL, caption=text, reply_markup=upl
         )
-
