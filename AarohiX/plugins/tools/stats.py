@@ -17,7 +17,7 @@ from AarohiX.utils.inline.stats import back_stats_buttons, stats_buttons
 from config import BANNED_USERS
 from config import OWNER_ID
 
-@app.on_message(filters.command(["stats", "gstats"]) filters.user(OWNER_ID))
+@app.on_message(filters.command(["stats", "gstats"])  & ~BANNED_USERS & filters.user(OWNER_ID))
 @language
 async def stats_global(client, message: Message, _):
     upl = stats_buttons(_, True if message.from_user.id in SUDOERS else False)
@@ -38,7 +38,7 @@ async def home_stats(client, CallbackQuery, _):
     )
 
 
-@app.on_callback_query(filters.regex("TopOverall") & filters.user(OWNER_ID))
+@app.on_callback_query(filters.regex("TopOverall")  & ~BANNED_USERS & filters.user(OWNER_ID))
 @languageCB
 async def overall_stats(client, CallbackQuery, _):
     await CallbackQuery.answer()
