@@ -26,7 +26,7 @@ async def is_heroku():
     return "heroku" in socket.getfqdn()
 
 
-@app.on_message(filters.command(["السجلات"]) & SUDOERS & ~BANNED_USERS)
+@app.on_message(filters.command(["السجلات"]) & BANNED_USERS)
 @language
 async def log_(client, message, _):
     try:
