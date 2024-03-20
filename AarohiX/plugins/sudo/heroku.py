@@ -40,65 +40,6 @@ async def is_heroku():
     return "heroku" in socket.getfqdn()
 
 
-@app.on_message(command(["السجلات", "‹ سجلات التشغيل ›"]) & SUDOERS)
-@language
-async def log_(client, message, _):
-    try:
-        if await is_heroku():
-            if HAPP is None:
-                return await message.reply_text(_["heroku_1"])
-            data = HAPP.get_log()
-            link = await DilBin(data)
-            return await message.reply_text(link)
-        else:
-            if os.path.exists(config.LOG_FILE_NAME):
-                log = open(config.LOG_FILE_NAME)
-                lines = log.readlines()
-                data = ""
-                try:
-                    NUMB = int(message.text.split(None, 1)[1])
-                except:
-                    NUMB = 100
-                for x in lines[-NUMB:]:
-                    data += x
-                link = await DilBin(data)
-                return await message.reply_text(link)
-            else:
-                return await message.reply_text(_["heroku_2"])
-    except Exception as e:
-        print(e)
-        await message.reply_text(_["heroku_2"])
-
-
-
-
-@app.on_message(command(["فارات", "‹ الفارات ›"]) & SUDOERS)
-@language
-async def set_var(client, message, _):
-    usage = _["heroku_8"]
-    if len(message.command) < 3:
-        return await message.reply_text(usage)
-    to_set = message.text.split(None, 2)[1].strip()
-    value = message.text.split(None, 2)[2].strip()
-    if await is_heroku():
-        if HAPP is None:
-            return await message.reply_text(_["heroku_1"])
-        heroku_config = HAPP.config()
-        if to_set in heroku_config:
-            await message.reply_text(_["heroku_9"].format(to_set))
-        else:
-            await message.reply_text(_["heroku_10"].format(to_set))
-        heroku_config[to_set] = value
-    else:
-        path = dotenv.find_dotenv()
-        if not path:
-            return await message.reply_text(_["heroku_5"])
-        dotenv.set_key(path, to_set, value)
-        if dotenv.get_key(path, to_set):
-            await message.reply_text(_["heroku_9"].format(to_set))
-        else:
-            await message.reply_text(_["heroku_10"].format(to_set))
-        os.system(f"kill -9 {os.getpid()} && bash start.sh")
 
 
 @app.on_message(command(["الداينو", "‹ الداينو ›"]) & SUDOERS)
@@ -217,7 +158,7 @@ async def update_(client, message, _):
                 try:
                     await app.send_message(
                         x,
-                        f"{config.MUSIC_BOT_NAME} has just restarted herself. Sorry for the issues.\n\nStart playing after 10-15 seconds again.",
+                        f" restarted herself. Sorry for the issues.\n\nStart playing after 10-15 seconds again.",
                     )
                     await remove_active_chat(x)
                     await remove_active_video_chat(x)
