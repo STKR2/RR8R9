@@ -64,8 +64,8 @@ async def check_sudo_list(client, callback_query: CallbackQuery):
         user = await app.get_users(OWNER_ID)
 
         user_mention = (user.first_name if not user.mention else user.mention)
-        caption = f"<u><b>~ المطور الأساسي :</b></u>\n • {user_mention}\n\n"
-        sudo_users_caption = "<u><b>~ المطورين :</b></u>\n"
+        "~ المطور الأساسي : \n • {user_mention}\n\n"
+        sudo_users_caption = "~ المطورين : \n"
 
         keyboard.append([InlineKeyboardButton(" ~ المطور الأساسي .", url=f"tg://openmessage?user_id={OWNER_ID}")])
         keyboard.append([InlineKeyboardButton("‹ تنظيف ›",callback_data="close_data")])
