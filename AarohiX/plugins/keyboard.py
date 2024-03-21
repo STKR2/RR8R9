@@ -14,13 +14,6 @@ admin_keyboard = ReplyKeyboardMarkup([
     ['اخفاء الكيبورد ⚒️']
 ], resize_keyboard=True)
 
-# دالة للتعامل مع أمر /admin
-@app.on_message(filters.command("admin") & filters.user(OWNER_ID))
-async def admin(client, message):
+@app.on_message(filters.command("adm") & filters.user(OWNER_ID))
+async def show_admin_keyboard(client, message):
     await message.reply("لوحة المفاتيح الخاصة بالمطور", reply_markup=admin_keyboard)
-
-# دالة للتعامل مع الأوامر الأخرى
-@app.on_message(filters.text & ~filters.command("admin") & filters.user(OWNER_ID))
-async def handle_commands(client, message):
-    # أدخل الكود الخاص بمعالجة الأوامر الأخرى هنا
-    pass
