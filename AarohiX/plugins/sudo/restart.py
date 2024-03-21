@@ -3,7 +3,7 @@ import os
 import shutil
 import socket
 from datetime import datetime
-
+from pyrogram import filters
 import urllib3
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError
@@ -26,7 +26,7 @@ async def is_heroku():
     return "heroku" in socket.getfqdn()
 
 
-@app.on_message(filters.command(["update", "gitpull"]) & filters.private & filters.user([OWNER_ID]) & filters.user(SUDOERS))
+@app.on_message(filters.command(["getlog", "logs", "getlogs"]) & filters.private & filters.user([OWNER_ID]) & filters.user(SUDOERS))
 @language
 async def log_(client, message, _):
     try:
