@@ -5,8 +5,7 @@ from AarohiX import app
 from AarohiX.core.call import Dil
 from AarohiX.utils.database import set_loop
 from AarohiX.utils.decorators import AdminRightsCheck
-from AarohiX.utils.inline import close_markup
-from config 
+from AarohiX.utils.inline import close_markup 
 
 
 @app.on_message(
