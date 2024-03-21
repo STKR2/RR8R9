@@ -1,6 +1,6 @@
 from pyrogram import filters
 from pyrogram.types import Message
-
+from strings.filters import command
 from AarohiX import app
 from AarohiX.core.call import Dil
 from AarohiX.utils.database import is_music_playing, music_off
