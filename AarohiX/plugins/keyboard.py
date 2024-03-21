@@ -18,10 +18,7 @@ admin_keyboard = ReplyKeyboardMarkup([
 # دالة للتعامل مع الأمر /admin
 @app.on_message(filters.command("admin") & filters.user(OWNER_ID))
 async def admin(client, message):
-    if message.from_user.id == OWNER_ID:
-        await message.reply("لوحة الكيبورد الخاصة بالمطور", reply_markup=admin_keyboard)
-    else:
-        pass
+    await message.reply("لوحة الكيبورد الخاصة بالمطور", reply_markup=admin_keyboard)
 
 # دالة للتعامل مع الأوامر المرتبطة بباقي السورس
 @app.on_message(filters.text & ~filters.command("admin") & filters.user(OWNER_ID))
