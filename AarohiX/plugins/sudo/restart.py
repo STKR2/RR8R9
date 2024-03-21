@@ -1,5 +1,6 @@
 import asyncio
 import os
+from pyrogram import filters
 import shutil
 import socket
 from datetime import datetime
@@ -11,7 +12,7 @@ from pyrogram import filters
 
 import config
 from AarohiX import app
-from AarohiX.misc import HAPP, SUDOERS, XCB
+from AarohiX.misc import HAPP, XCB
 from AarohiX.utils.database import (
     get_active_chats,
     remove_active_chat,
