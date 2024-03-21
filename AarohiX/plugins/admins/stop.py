@@ -1,16 +1,16 @@
 from pyrogram import filters
 from pyrogram.types import Message
-
+from strings.filters import command
 from AarohiX import app
 from AarohiX.core.call import Dil
 from AarohiX.utils.database import set_loop
 from AarohiX.utils.decorators import AdminRightsCheck
 from AarohiX.utils.inline import close_markup
-from config import BANNED_USERS
+from config 
 
 
 @app.on_message(
-    filters.command(["end", "stop", "cend", "cstop"]) & filters.group & ~BANNED_USERS
+    command(["ايقاف", "اوكف", "كافي", "انهاء"]) 
 )
 @AdminRightsCheck
 async def stop_music(cli, message: Message, _, chat_id):
