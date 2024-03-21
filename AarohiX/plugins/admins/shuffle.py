@@ -2,16 +2,15 @@ import random
 
 from pyrogram import filters
 from pyrogram.types import Message
-
+from strings.filters import command
 from AarohiX import app
 from AarohiX.misc import db
 from AarohiX.utils.decorators import AdminRightsCheck
 from AarohiX.utils.inline import close_markup
-from config import BANNED_USERS
 
 
 @app.on_message(
-    filters.command(["shuffle", "cshuffle"]) & filters.group & ~BANNED_USERS
+    command(["تكرار", "cshuffle"]) 
 )
 @AdminRightsCheck
 async def admins(Client, message: Message, _, chat_id):
