@@ -1,14 +1,13 @@
 from pyrogram import filters
 from pyrogram.types import Message
-
+from strings.filters import command
 from AarohiX import app
 from AarohiX.utils.database import get_loop, set_loop
 from AarohiX.utils.decorators import AdminRightsCheck
 from AarohiX.utils.inline import close_markup
-from config import BANNED_USERS
 
 
-@app.on_message(filters.command(["loop", "cloop"]) & filters.group & ~BANNED_USERS)
+@app.on_message(command(["عشوائي", "cloop"]))
 @AdminRightsCheck
 async def admins(cli, message: Message, _, chat_id):
     usage = _["admin_17"]
