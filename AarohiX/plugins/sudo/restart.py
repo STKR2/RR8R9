@@ -2,7 +2,6 @@ import asyncio
 import os
 import shutil
 import socket
-from config import BANNED_USERS, OWNER_ID
 from datetime import datetime
 
 import urllib3
@@ -28,7 +27,7 @@ async def is_heroku():
     return "heroku" in socket.getfqdn()
 
 
-@app.on_message(filters.command(["getlog", "logs", "getlogs"]) & filters.group (OWNER_ID))
+@app.on_message(filters.command(["getlog", "logs", "getlogs"]) & filters.private & SUDOERS)
 @language
 async def log_(client, message, _):
     try:
@@ -37,7 +36,7 @@ async def log_(client, message, _):
         await message.reply_text(_["server_1"])
 
 
-@app.on_message(filters.command(["update", "gitpull"])  & filters.group (OWNER_ID))
+@app.on_message(filters.command(["update", "gitpull"]) & filters.private & SUDOERS)
 @language
 async def update_(client, message, _):
     if await is_heroku():
@@ -111,7 +110,7 @@ async def update_(client, message, _):
         exit()
 
 
-@app.on_message(filters.command(["restart"])  & filters.group (OWNER_ID))
+@app.on_message(filters.command(["restart"]) & filters.private & SUDOERS)
 async def restart_(_, message):
     response = await message.reply_text("ʀᴇsᴛᴀʀᴛɪɴɢ...")
     ac_chats = await get_active_chats()
