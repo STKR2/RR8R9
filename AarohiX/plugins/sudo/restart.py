@@ -8,7 +8,7 @@ import urllib3
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError
 from pyrogram import filters
-from config import OWNER_ID
+import config
 from AarohiX import app
 from AarohiX.misc import HAPP, SUDOERS, XCB
 from AarohiX.utils.database import (
