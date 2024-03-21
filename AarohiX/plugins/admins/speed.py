@@ -8,15 +8,12 @@ from AarohiX.utils import AdminRightsCheck
 from AarohiX.utils.database import is_active_chat, is_nonadmin_chat
 from AarohiX.utils.decorators.language import languageCB
 from AarohiX.utils.inline import close_markup, speed_markup
-from config import BANNED_USERS, adminlist
-
+import config  
 checker = []
 
 
 @app.on_message(
-    filters.command(["cspeed", "speed", "cslow", "slow", "playback", "cplayback"])
-    & filters.group
-    & ~BANNED_USERS
+    filters.command(["تقديم", "speed", "cslow", "slow", "playback", "cplayback"])
 )
 @AdminRightsCheck
 async def playback(cli, message: Message, _, chat_id):
