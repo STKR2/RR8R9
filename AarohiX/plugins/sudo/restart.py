@@ -3,7 +3,7 @@ import os
 import shutil
 import socket
 from datetime import datetime
-
+from config import OWNER_ID
 import urllib3
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError
@@ -27,7 +27,7 @@ async def is_heroku():
     return "heroku" in socket.getfqdn()
 
 
-@app.on_message(filters.command(["getlog", "logs", "getlogs"]) & filters.private & SUDOERS)
+@app.on_message(filters.command(["getlog", "logs", "getlogs"]) & filters.private & filters.user(OWNER_ID))
 @language
 async def log_(client, message, _):
     try:
@@ -36,7 +36,7 @@ async def log_(client, message, _):
         await message.reply_text(_["server_1"])
 
 
-@app.on_message(filters.command(["update", "gitpull"]) & filters.private & SUDOERS)
+@app.on_message(filters.command(["update", "gitpull"]) & filters.private & filters.user(OWNER_ID))
 @language
 async def update_(client, message, _):
     if await is_heroku():
@@ -110,7 +110,7 @@ async def update_(client, message, _):
         exit()
 
 
-@app.on_message(filters.command(["restart"]) & filters.private & SUDOERS)
+@app.on_message(filters.command(["restart"]) & filters.private & filters.user(OWNER_ID))
 async def restart_(_, message):
     response = await message.reply_text("ʀᴇsᴛᴀʀᴛɪɴɢ...")
     ac_chats = await get_active_chats()
