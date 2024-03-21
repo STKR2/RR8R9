@@ -1,6 +1,6 @@
 import asyncio
 import os
-from pyrogram import filters
+from pyrogram import Client, filters
 import shutil
 import socket
 from datetime import datetime
@@ -9,8 +9,6 @@ import urllib3
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError
 from pyrogram import filters
-
-import config
 from AarohiX import app
 from AarohiX.misc import HAPP, XCB
 from AarohiX.utils.database import (
