@@ -1,16 +1,17 @@
 import asyncio
 import os
-from pyrogram import Client, filters
 import shutil
 import socket
 from datetime import datetime
-from config import OWNER_ID
+
 import urllib3
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError
 from pyrogram import filters
+
+import config
 from AarohiX import app
-from AarohiX.misc import HAPP, XCB
+from AarohiX.misc import HAPP, SUDOERS, XCB
 from AarohiX.utils.database import (
     get_active_chats,
     remove_active_chat,
@@ -26,7 +27,7 @@ async def is_heroku():
     return "heroku" in socket.getfqdn()
 
 
-@app.on_message(filters.command(["getlog", "logs", "getlogs"]) & filters.private & filters.user(OWNER_ID))
+@app.on_message(filters.command(["getlog", "logs", "getlogs"]) & filters.private & SUDOERS)
 @language
 async def log_(client, message, _):
     try:
@@ -35,7 +36,7 @@ async def log_(client, message, _):
         await message.reply_text(_["server_1"])
 
 
-@app.on_message(filters.command(["update", "gitpull"]) & filters.private & filters.user(OWNER_ID))
+@app.on_message(filters.command(["update", "gitpull"]) & filters.private & SUDOERS)
 @language
 async def update_(client, message, _):
     if await is_heroku():
@@ -109,7 +110,7 @@ async def update_(client, message, _):
         exit()
 
 
-@app.on_message(filters.command(["restart"]) & filters.private & filters.user(OWNER_ID))
+@app.on_message(filters.command(["restart"]) & filters.private & SUDOERS)
 async def restart_(_, message):
     response = await message.reply_text("ʀᴇsᴛᴀʀᴛɪɴɢ...")
     ac_chats = await get_active_chats()
