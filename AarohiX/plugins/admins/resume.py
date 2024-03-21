@@ -1,15 +1,14 @@
 from pyrogram import filters
 from pyrogram.types import Message
-
+from strings.filters import command
 from AarohiX import app
 from AarohiX.core.call import Dil
 from AarohiX.utils.database import is_music_playing, music_on
 from AarohiX.utils.decorators import AdminRightsCheck
 from AarohiX.utils.inline import close_markup
-from config import BANNED_USERS
 
 
-@app.on_message(filters.command(["resume", "cresume"]) & filters.group & ~BANNED_USERS)
+@app.on_message(command(["استمرار", "cresume"]))
 @AdminRightsCheck
 async def resume_com(cli, message: Message, _, chat_id):
     if await is_music_playing(chat_id):
