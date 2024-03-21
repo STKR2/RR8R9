@@ -1,18 +1,15 @@
 from pyrogram import filters
 from pyrogram.types import Message
-
+from strings.filters import command
 from AarohiX import YouTube, app
 from AarohiX.core.call import Dil
 from AarohiX.misc import db
 from AarohiX.utils import AdminRightsCheck, seconds_to_min
 from AarohiX.utils.inline import close_markup
-from config import BANNED_USERS
 
 
 @app.on_message(
-    filters.command(["seek", "cseek", "seekback", "cseekback"])
-    & filters.group
-    & ~BANNED_USERS
+    command(["تقديم", "cseek", "seekback", "cseekback"])
 )
 @AdminRightsCheck
 async def seek_comm(cli, message: Message, _, chat_id):
