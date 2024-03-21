@@ -19,26 +19,6 @@ from strings import get_string
 from ..formatters import int_to_alpha
 
 
-def AdminRightsCheck(mystic):
-    async def wrapper(client, message):
-        if await is_maintenance() is False:
-            if message.from_user.id not in SUDOERS:
-                return await message.reply_text(
-                    text=f"{app.mention} ɪs ᴜɴᴅᴇʀ ᴍᴀɪɴᴛᴇɴᴀɴᴄᴇ, ᴠɪsɪᴛ <a href={SUPPORT_CHAT}>sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ</a> ғᴏʀ ᴋɴᴏᴡɪɴɢ ᴛʜᴇ ʀᴇᴀsᴏɴ.",
-                    disable_web_page_preview=True,
-                )
-
-        try:
-            await message.delete()
-        except:
-            pass
-
-        try:
-            language = await get_lang(message.chat.id)
-            _ = get_string(language)
-        except:
-            _ = get_string("en")
-        
         if message.command[0][0] == "c":
             chat_id = await get_cmode(message.chat.id)
             if chat_id is None:
@@ -100,40 +80,6 @@ def AdminRightsCheck(mystic):
                             return await message.reply_text(_["admin_14"])
 
         return await mystic(client, message, _, chat_id)
-
-    return wrapper
-
-
-def AdminActual(mystic):
-    async def wrapper(client, message):
-        if await is_maintenance() is False:
-            if message.from_user.id not in SUDOERS:
-                return await message.reply_text(
-                    text=f"{app.mention} ɪs ᴜɴᴅᴇʀ ᴍᴀɪɴᴛᴇɴᴀɴᴄᴇ, ᴠɪsɪᴛ <a href={SUPPORT_CHAT}>sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ</a> ғᴏʀ ᴋɴᴏᴡɪɴɢ ᴛʜᴇ ʀᴇᴀsᴏɴ.",
-                    disable_web_page_preview=True,
-                )
-
-        try:
-            await message.delete()
-        except:
-            pass
-
-        try:
-            language = await get_lang(message.chat.id)
-            _ = get_string(language)
-        except:
-            _ = get_string("en")
-     
-        if message.from_user.id not in SUDOERS:
-            try:
-                member = (
-                    await app.get_chat_member(message.chat.id, message.from_user.id)
-                ).privileges
-            except:
-                return
-            if not member.can_manage_video_chats:
-                return await message.reply(_["general_4"])
-        return await mystic(client, message, _)
 
     return wrapper
 
