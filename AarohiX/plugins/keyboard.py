@@ -6,22 +6,21 @@ from AarohiX import app
 
 # تعريف الكيبورد الخاص بالمطور
 admin_keyboard = ReplyKeyboardMarkup([
-    [('تفعيل_التواصل'), ('/broadcast'), ('حاله التواصل')],
-    [('ضع قناة الاشتراك'), ('حذف قناه الاشتراك')],
-    [('اذاعه للمطورين'), ('اذاعه للاساسيين'), ('اذاعه للقنوات')],
-    [('اذاعه للكل'), ('توجيه للكل')],
-    [('توجيه للمستخدمين'), ('توجيه للجروبات'), ('توجيه للقنوات')],
-    [('اخفاء الكيبورد ⚒️')]],
-    resize_keyboard=True,
-)
+    ['تفعيل التواصل', '/broadcast', 'حالة التواصل'],
+    ['ضع قناة الاشتراك', 'حذف قناة الاشتراك'],
+    ['اذاعة للمطورين', 'اذاعة للأساسيين', 'اذاعة للقنوات'],
+    ['اذاعة للكل', 'توجيه للكل'],
+    ['توجيه للمستخدمين', 'توجيه للجروبات', 'توجيه للقنوات'],
+    ['اخفاء الكيبورد ⚒️']
+], resize_keyboard=True)
 
-# دالة للتعامل مع الأمر /admin
+# دالة للتعامل مع أمر /admin
 @app.on_message(filters.command("admin") & filters.user(OWNER_ID))
 async def admin(client, message):
-    await message.reply("لوحة الكيبورد الخاصة بالمطور", reply_markup=admin_keyboard)
+    await message.reply("لوحة المفاتيح الخاصة بالمطور", reply_markup=admin_keyboard)
 
-# دالة للتعامل مع الأوامر المرتبطة بباقي السورس
+# دالة للتعامل مع الأوامر الأخرى
 @app.on_message(filters.text & ~filters.command("admin") & filters.user(OWNER_ID))
 async def handle_commands(client, message):
-    # ادخل هنا التحكم بالأوامر المرتبطة بباقي السورس
+    # أدخل الكود الخاص بمعالجة الأوامر الأخرى هنا
     pass
