@@ -10,7 +10,6 @@ from AarohiX.utils.decorators import AdminRightsCheck
 from AarohiX.utils.inline import close_markup, stream_markup
 from AarohiX.utils.stream.autoclear import auto_clean
 from AarohiX.utils.thumbnails import get_thumb
-from config import BANNED_USERS
 
 
 @app.on_message(
