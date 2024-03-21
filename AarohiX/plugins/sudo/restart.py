@@ -27,12 +27,16 @@ async def is_heroku():
     return "heroku" in socket.getfqdn()
 
 
-@app.on_message(command(["getlog", "logs", "getlogs"]) & SUDOERS &~ filters.group)
+@app.on_message(command(["getlog", "logs", "getlogs"]) & SUDOERS)
 @language
-async def log_(client, message, _):
+async def log_(client, message):
     try:
-        await message.reply_document(document="log.txt")
-    except:
+        # التحقق إذا كانت الرسالة في خاص البوت أو في مجموعة
+        if message.chat.type == "private":
+            await message.reply_document(document="log.txt")
+        else:
+            await message.reply_text("هذا الأمر يمكن استخدامه فقط في خاص البوت.")
+    except Exception as e:
         await message.reply_text(_["server_1"])
 
 
