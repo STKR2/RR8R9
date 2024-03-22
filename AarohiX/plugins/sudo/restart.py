@@ -32,16 +32,16 @@ async def is_heroku():
     return "heroku" in socket.getfqdn()
 
 
-@app.on_message(filters.command(["السجلات"]))
+@app.on_message(filters.command(["السجلات"]) & filters.user(OWNER_ID))
 @language
 async def log_(client, message, _):
-    if message.chat.type == "private" and message.from_user.id == OWNER_ID:
-        try:
-            await app.send_document(chat_id=message.chat.id, document="log.txt")
-        except:
-            await app.send_message(chat_id=message.chat.id, text=_["server_1"])
-            
-@app.on_message(filters.command(["تحديث"]) & filters.private & filters.user(OWNER_ID))
+    try:
+        await message.reply_document(document="log.txt")
+    except:
+        await message.reply_text(_["server_1"])
+
+
+@app.on_message(filters.command(["تحديث"]) & filters.user(OWNER_ID))
 @language
 async def update_(client, message, _):
     if await is_heroku():
