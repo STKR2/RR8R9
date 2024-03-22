@@ -1,8 +1,7 @@
 import asyncio
 import os
 import shutil
-from pyrogram import filters
-from pyrogram import Client
+from pyrogram import filters, Client
 from pyrogram.types import Message
 import socket
 from datetime import datetime
@@ -41,7 +40,7 @@ async def log_(client, message, _):
         await message.reply_text(_["server_1"])
 
 
-@app.on_message(filters.command(["تحديث"]) & filters.user(OWNER_ID))
+@app.on_message(filters.command(["تحديث"]) & filters.private & filters.user(OWNER_ID))
 @language
 async def update_(client, message, _):
     if await is_heroku():
@@ -113,6 +112,7 @@ async def update_(client, message, _):
         os.system("pip3 install -r requirements.txt")
         os.system(f"kill -9 {os.getpid()} && bash start")
         exit()
+
 
 
 @app.on_message(filters.command(["اعادة تشغيل"]) & filters.private & filters.user(OWNER_ID))
