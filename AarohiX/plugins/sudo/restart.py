@@ -2,7 +2,7 @@ import asyncio
 import os
 import shutil
 from pyrogram import filters
-
+from pyrogram import Client
 from pyrogram.types import Message
 import socket
 from datetime import datetime
