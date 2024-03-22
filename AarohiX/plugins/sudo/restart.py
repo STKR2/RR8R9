@@ -1,7 +1,7 @@
 import asyncio
 import os
 import shutil
-from pyrogram import filters, Client
+from pyrogram import filters
 from pyrogram.types import Message
 import socket
 from datetime import datetime
@@ -12,7 +12,7 @@ import urllib3
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError
 from pyrogram import filters
-from strings.filters import command
+
 import config
 from AarohiX import app
 from AarohiX.misc import HAPP, SUDOERS, XCB
@@ -31,7 +31,7 @@ async def is_heroku():
     return "heroku" in socket.getfqdn()
 
 
-@app.on_message(command(["السجلات"]) & filters.user(OWNER_ID))
+@app.on_message(filters.command(["السجلات"]) & filters.user(OWNER_ID))
 @language
 async def log_(client, message, _):
     try:
@@ -40,7 +40,7 @@ async def log_(client, message, _):
         await message.reply_text(_["server_1"])
 
 
-@app.on_message(command(["تحديث"]) & filters.private & filters.user(OWNER_ID))
+@app.on_message(filters.command(["تحديث"]) & filters.user(OWNER_ID))
 @language
 async def update_(client, message, _):
     if await is_heroku():
@@ -114,8 +114,7 @@ async def update_(client, message, _):
         exit()
 
 
-
-@app.on_message(command(["اعادة تشغيل"]) & filters.private & filters.user(OWNER_ID))
+@app.on_message(filters.command(["اعادة تشغيل"]) & filters.user(OWNER_ID))
 async def restart_(_, message):
     response = await message.reply_text("ʀᴇsᴛᴀʀᴛɪɴɢ...")
     ac_chats = await get_active_chats()
