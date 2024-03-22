@@ -21,4 +21,4 @@ async def hhhki(client: Client, message: Message):
         else:
             await message.reply("لا يمكنك الرد على الرسائل.")
     else:
-        print("Received message from unknown user.")هذا التعديل يتحقق
+        print("Received message from unknown user.")
