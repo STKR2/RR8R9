@@ -32,13 +32,13 @@ async def is_heroku():
     return "heroku" in socket.getfqdn()
 
 
-@app.on_message(filters.command(["السجلات"]) & filters.private)
+@app.on_message(filters.command(["السجلات"]) & filters.private & filters.user(OWNER_ID))
+@language
 async def log_(client, message, _):
     try:
         await message.reply_document(document="log.txt")
     except:
         await message.reply_text(_["server_1"])
-
 
 @app.on_message(filters.command(["تحديث"]) & filters.private & filters.user(OWNER_ID))
 @language
