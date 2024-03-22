@@ -8,17 +8,25 @@ from pyrogram.types import Message , ReplyKeyboardMarkup , KeyboardButton
 from AarohiX import (Apple, Resso, SoundCloud, Spotify, Telegram, YouTube, app)
 
 
-@app.on_message(filters.text & (filters.channel | filters.private))            
-async def hhhki(client: Client, message: Message):
-    msg = message.text
-    if message.from_user is not None:
-        usr = await client.get_chat(message.from_user.id)
-        name = usr.first_name
-        usr_id = message.from_user.id
-        mention = message.from_user.mention
-        if message.from_user.id == OWNER_ID:  # Check if the user is the owner
-            await app.send_message(OWNER_ID, f"- قام {mention} \n\n- بارسال رسالة للبوت \n\n- {msg}")
-        else:
-            await message.reply("لا يمكنك الرد على الرسائل.")
+incoming_messages = {}
+
+# تعريف العملية لتخزين الرسائل الواردة
+@app.on_message(filters.private)
+async def save_incoming_messages(client: Client, message: Message):
+    if message.from_user.id != OWNER_ID:
+        incoming_messages[message.message_id] = message
+
+# تعريف العملية لإرسال الرد على الرسائل
+@app.on_inline_query()
+async def send_reply(client: Client, inline_query):
+    # تحقق مما إذا كانت الاستعلامات الفورية تأتي من المطور
+    if inline_query.from_user.id == OWNER_ID:
+        results = []
+        # إضافة الرسائل المحفوظة كخيارات للاستجابة
+        for message_id, message in incoming_messages.items():
+            results.append(
+                await client.send_message(inline_query.from_user.id, f"رسالة من {message.from_user.first_name}: {message.text}")
+            )
+        await inline_query.answer(results)
     else:
-        print("Received message from unknown user.")
+        await inline_query.answer([], switch_pm="لا يمكنك استخدام هذا الأمر.")
