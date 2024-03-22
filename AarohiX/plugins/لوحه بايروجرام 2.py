@@ -2,11 +2,12 @@ from pyrogram import *
 from pyrogram.types import * 
 from pyromod import listen
 import time
+from AarohiX import app
 import requests
 
 api_id = 8934899 
 api_hash = "bf3e98d2c351e4ad06946b4897374a1e"
-token = "5793326527:AAG1L2hrzf_9sPOL-cSueat_zOh_QE6E43s"
+token = "6522733276:AAHNFi7TU4MHHc-yQ2MjqfXf_i6S5ILiBU8"
 
 bot_id = token.split(":")[0]
 
