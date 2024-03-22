@@ -35,12 +35,12 @@ async def is_heroku():
 @app.on_message(filters.command(["السجلات"]))
 @language
 async def log_(client, message, _):
-    if message.chat.type == "private":
+    if message.chat.type == "private" and message.from_user.id == OWNER_ID:
         try:
             await message.reply_document(document="log.txt")
         except:
             await message.reply_text(_["server_1"])
-
+            
 @app.on_message(filters.command(["تحديث"]) & filters.private & filters.user(OWNER_ID))
 @language
 async def update_(client, message, _):
