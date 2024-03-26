@@ -19,15 +19,6 @@ from AarohiX.utils.inline.stats import back_stats_buttons, stats_buttons
 from config import BANNED_USERS
 
 
-@app.on_message(filters.command(["stats", "gstats"]) & filters.group & ~BANNED_USERS)
-@language
-async def stats_global(client, message: Message, _):
-    upl = stats_buttons(_, True if message.from_user.id in SUDOERS else true)
-    await message.reply_photo(
-        photo=config.STATS_IMG_URL,
-        caption=_["gstats_2"].format(app.mention),
-        reply_markup=upl,
-    )
 
 
 @app.on_callback_query(filters.regex("stats_back") & ~BANNED_USERS)
