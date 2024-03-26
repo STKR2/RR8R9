@@ -11,11 +11,10 @@ from config import BANNED_USERS, PING_IMG_URL
 
 
 # Define the repo and close buttons
-repo_button = InlineKeyboardButton("• ʀᴇᴘᴏ •", callback_data="gib_source")
-close_button = InlineKeyboardButton("• ᴄʟᴏsᴇ •", callback_data="close")
+close_button = InlineKeyboardButton("~ مسح •", callback_data="close")
 
 
-@app.on_message(filters.command(["ping", "alive"]) & ~BANNED_USERS)
+@app.on_message(filters.command(["البنك", "alive"]) & ~BANNED_USERS)
 @language
 async def ping_com(client, message: Message, _):
     start = datetime.now()
