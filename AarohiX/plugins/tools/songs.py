@@ -51,7 +51,7 @@ async def song(_, message: Message):
         return await m.edit_text(error_message)
 
     await m.edit_text("- تم الرفع انتضر قليلاً .")
-
+    audio_file = ''
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info_dict = ydl.extract_info(link, download=False)
