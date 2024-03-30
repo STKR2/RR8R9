@@ -18,7 +18,7 @@ async def on_new_chat_members(client: Client, message: Message):
         title = message.chat.title
         username = f"@{message.chat.username}"
         chat_id = message.chat.id
-        riruru = f"✫ <b><u>ɴᴇᴡ ɢʀᴏᴜᴘ</u></b> :\n\nᴄʜᴀᴛ ɪᴅ : {chat_id}\nᴄʜᴀᴛ ᴜsᴇʀɴᴀᴍᴇ : {username}\nᴄʜᴀᴛ ᴛɪᴛʟᴇ : {title}\n\nᴀᴅᴅᴇᴅ ʙʏ : {added_by}"
+        riruru = f" <b><u>~ تم اضافة البوت الى مجموعة جديدة </u></b> :\n\n~ الأيدي : {chat_id}\nᴄʜᴀᴛ ~ المستخدم  : {username}\n~ اسم المجموعة : {title}\n\n~ بواسطة : {added_by}"
         reply_markup = InlineKeyboardMarkup([
     [
         InlineKeyboardButton(
@@ -38,7 +38,7 @@ async def on_left_chat_member(client: Client, message: Message):
         title = message.chat.title
         username = f"@{message.chat.username}"
         chat_id = message.chat.id
-        rirurubye = f"✫ <b><u>ʟᴇғᴛ ɢʀᴏᴜᴘ</u></b> :\n\nᴄʜᴀᴛ ɪᴅ : {chat_id}\nᴄʜᴀᴛ ᴜsᴇʀɴᴀᴍᴇ : {username}\nᴄʜᴀᴛ ᴛɪᴛʟᴇ : {title}\n\nʀᴇᴍᴏᴠᴇᴅ ʙʏ : {remove_by}"
+        rirurubye = f"✫ <b><u>~ تم ازالة البوت من مجموعة جديدة </u></b> :\n\n~ الأيدي : {chat_id}\n~ رابط المجموعة : {username}\n~ اسم المجموعة : {title}\n\n~ بواسطة : {remove_by}"
         reply_markup = InlineKeyboardMarkup([
     [
         InlineKeyboardButton(
