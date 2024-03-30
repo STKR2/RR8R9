@@ -69,7 +69,7 @@ async def update_(client, message, _):
     )
     for info in repo.iter_commits(f"HEAD..origin/{config.UPSTREAM_BRANCH}"):
         updates += f"<b>~ #{info.count()}: <a href={REPO_}/commit/{info}>{info.summary}</a> بواسطة  -> {info.author}</b>\n\t\t\t\t<b> ~ تنزيل التحديثات :</b> {ordinal(int(datetime.fromtimestamp(info.committed_date).strftime('%d')))} {datetime.fromtimestamp(info.committed_date).strftime('%b')}, {datetime.fromtimestamp(info.committed_date).strftime('%Y')}\n\n"
-    _update_response_ = "<b>~ جاري تحديث السورس </b>\n\n~ الملفات المحملة :\n\n<b><u>تحديث :</u></b>\n\n"
+    _update_response_ = "<b>~ جاري تحديث السورس </b>\n\n~ يتم رفع التحديثات :\n\n<b><u>المطور :</u></b>\n\n"
     _final_updates_ = _update_response_ + updates
     if len(_final_updates_) > 4096:
         url = await DilBin(updates)
