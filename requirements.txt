@@ -23,7 +23,7 @@ psutil
 pycountry
 pydub
 pyfiglet
-py-tgcalls==0.9.7
+py-tgcalls==1.2.9
 pykeyboard
 pyrogram==2.0.106
 python-dotenv
