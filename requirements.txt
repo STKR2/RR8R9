@@ -37,7 +37,7 @@ spotipy
 telegraph
 tgcrypto
 unidecode
-yt-dlp==2024.4.7
+yt-dlp
 youtube-search
 youtube-search-python
 wget
