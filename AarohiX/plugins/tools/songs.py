@@ -88,7 +88,8 @@ async def song(_, message: Message):
 
     # Remove temporary files after audio upload
     try:
-        os.remove(audio_file)
+        if audio_file:
+            os.remove(audio_file)
         os.remove(thumb_name)
     except Exception as ex:
         error_message = f"- فشل في حذف الملفات المؤقتة. \n\n**السبب :** `{ex}`"
