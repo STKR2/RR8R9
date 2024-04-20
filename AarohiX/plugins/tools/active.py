@@ -12,7 +12,7 @@ from AarohiX.utils.database import (
 )
 
 
-@app.on_message(command(["الاتصالات", "activevoice"]) & SUDOERS)
+@app.on_message(command(["الاتصالات", "التشغيل"]) & SUDOERS)
 async def activevc(_, message: Message):
     mystic = await message.reply_text("~ جاري البحث عن اتصالات .")
     served_chats = await get_active_chats()
@@ -44,7 +44,7 @@ async def activevc(_, message: Message):
         )
 
 
-@app.on_message(command(["الفيديوات", "activevideo"]) & SUDOERS)
+@app.on_message(command(["الفيديوات", "الفيديو"]) & SUDOERS)
 async def activevi_(_, message: Message):
     mystic = await message.reply_text("~ جاري البحث عن فيديوات متوفرة .")
     served_chats = await get_active_video_chats()
