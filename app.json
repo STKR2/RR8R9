@@ -1,7 +1,7 @@
 {
-    "name": "احدث نسخة من سورس فريدوم!!",
+    "name": "احدث نسخة من سورس NOBITTO!!",
     "description": " يمكنك تشغيل الملفات الصوتية في مباشرتا في القنوات والمجموعات .",
-    "logo": "https://te.legra.ph/file/4807752a011965b771900.jpg",
+    "logo": "https://telegra.ph/file/c53d408e86b7cb77f7caf.png",
     "keywords": [
     "python3",
     "telegram",
@@ -40,13 +40,13 @@
       },
       "YOUTUBE_IMG_URL": {
         "description": "~  ضع رابط صورة التشغيل .",
-        "value": "https://graph.org/file/8882cbd7cc786826d9ecb.jpg",
+        "value": "https://telegra.ph/file/c53d408e86b7cb77f7caf.png",
         "required": true
         
       },
       "SUPPORT_CHAT": {
         "description": "~  ضع قناة الدعم .",
-        "value": "https://t.me/vvyvv6",
+        "value": "https://t.me/VIVIVIVVIV2",
         "required": true
         
       },
@@ -58,13 +58,13 @@
       },
       "BOT_IMAGE": {
         "description": "~  ضع صورة كليشة الاشتراك الاجباري ، يمكنك تجاهل هذا الحقل .",
-        "value": "https://te.legra.ph/file/4807752a011965b771900.jpg",
+        "value": "https://telegra.ph/file/c53d408e86b7cb77f7caf.png",
         "required": false
         
       },
       "START_IMG_URL": {
         "description": "~  ضع صورة كليشة  الستارت .",
-        "value": "https://te.legra.ph/file/303a0e1d707b04a28a5ad.jpg",
+        "value": "https://telegra.ph/file/4a02e2542052091c5f1c7.jpg",
         "required": false
         
       },
