@@ -46,13 +46,13 @@
       },
       "SUPPORT_CHAT": {
         "description": "~  ضع قناة الدعم .",
-        "value": "https://t.me/vvyvv6",
+        "value": "https://t.me/BBSI8",
         "required": true
         
       },
       "Muntazer": {
         "description": "~  ضع قناة الاشتراك الاجباري ( لاتنسى رفع البوت مشرف في القناة ) .",
-        "value": "xl444",
+        "value": "BBSI8",
         "required": true
         
       },
