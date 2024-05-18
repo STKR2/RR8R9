@@ -7,13 +7,13 @@ from pyrogram import filters
 load_dotenv()
 
 
-API_ID = int(getenv("API_ID", ""))
+API_ID = int(getenv("API_ID", "20763653"))
 
-API_HASH = getenv("API_HASH", "")
+API_HASH = getenv("API_HASH", "f9f49a1daf7f6d1a7b91e51cfd2027a1")
 
-BOT_TOKEN = getenv("BOT_TOKEN", "")
+BOT_TOKEN = getenv("BOT_TOKEN", "7196458491:AAH8QJLExzG95q48WxYF1SK_z1o49JBZQw4")
 
-MUSIC_BOT_NAME = getenv("MUSIC_BOT_NAME", "bot")
+MUSIC_BOT_NAME = getenv("MUSIC_BOT_NAME", "Blaos")
 
 Muntazer = getenv("muntazer", "")
 
@@ -27,7 +27,7 @@ SONG_DOWNLOAD_DURATION = int(
 
 LOGGER_ID = int(getenv("LOGGER_ID", ""))
 
-OWNER_ID = int(getenv("OWNER_ID", "1854384004"))
+OWNER_ID = int(getenv("OWNER_ID", "6298991415"))
 
 BOT_USERNAME = getenv("BOT_USERNAME" , "")
 
@@ -46,8 +46,8 @@ GIT_TOKEN = getenv(
     "GIT_TOKEN", None
 )  # Fill this variable if your upstream repository is private
 
-SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/Xl444")
-SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/vvyvv6")
+SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/o225c")
+SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/o225c")
 
 AUTO_LEAVING_ASSISTANT = bool(getenv("AUTO_LEAVING_ASSISTANT", False))
 AUTO_SUGGESTION_MODE = getenv("AUTO_SUGGESTION_MODE", "True")
@@ -70,7 +70,7 @@ TG_VIDEO_FILESIZE_LIMIT = int(getenv("TG_VIDEO_FILESIZE_LIMIT", 209715200000))
 
 
 # Get your pyrogram v2 session from @Shsusu_bot on Telegram
-STRING1 = getenv("STRING_SESSION", "AQBkY4p3iuvhDpb7EVoy9S3sEPtIgwcXupTLrYMn5fEhKKA1k2oyLDpaN_E4ft8vl46lMnOWIXIIsmtsAXjJtEHGmpsv8ONZxVlWODtImC3i-0Kklwb6vZVH348oncJiAFF-FnPiz5qqo3fJBYjeUhn6oNJ4aRB6MO6xAw5HyXfPSVnzOiMDGGKAUaMJv4nzzy1_OxNySl3eVFPicTVC1qgovq9ohY2ueAAF2zklzu3fwCnMqy2SDHEr33uXyvP2PF_K-ioZsKNQvjM5FAakjnmO0032V84ocEgRsPXcNdwALXym5u_ZAvYMTac6TnwGRM-PK8jE2Oj9w3DGU5S6uVzWAAAAAZytwEkA")
+STRING1 = getenv("STRING_SESSION", "AgCyg_jKKf8OEcFhy5ankXtdb8HBbpmhQRnffdlNp2XzE93tzlKroxhxiP_WC-6ufrnhq2jabLudGgIHnKPY4VbzxjnwVZeqYOwxRwvVkfg9sL7KQnk_j-tBzGMOCmGMTueMyrZUdRkvdJ-6rwCN67YhplgMVMWvgytvTTq8rn3UxQBD6DcMm45y0bODUSke6TnoH2LXVKjLqNjhyocopGQ81OCjeG1kxxIZ0AUOHK2N4e7t_MpP9i7yz-eNTqoZomtA8hEQUQ8JbGacK3yWkeoBu5Pv6u3L7E2Sc0vUaInGgNnP2Q07xDBPropNqCY5Ny5VD2OdhuiM1EySTAymq7sdAAAAAZMDFG8A")
 STRING2 = getenv("STRING_SESSION2", None)
 STRING3 = getenv("STRING_SESSION3", None)
 STRING4 = getenv("STRING_SESSION4", None)
@@ -145,5 +145,5 @@ if SUPPORT_CHANNEL:
 if SUPPORT_CHAT:
     if not re.match("(?:http|https)://", SUPPORT_CHAT):
         raise SystemExit(
-            "[ERROR] - Your SUPPORT_CHAT url is wrong. Please ensure that it starts with https://"
+            "[Ziric] - Your SUPPORT_CHAT url is wrong. Please ensure that it starts with https://"
         )
